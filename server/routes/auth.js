@@ -2,6 +2,8 @@ const express = require("express")
 const passport = require('passport')
 const router = express.Router()
 const User = require("../models/User")
+const queryString = require('query-string')
+const { isLoggedIn } = require('../middlewares');
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt")
@@ -31,7 +33,7 @@ router.post("/signup", (req, res, next) => {
       req.logIn(userSaved, () => {
         // hide "encryptedPassword" before sending the JSON (it's a security risk)
         userSaved.password = undefined;
-        res.json( userSaved );
+        res.json(userSaved);
       });
     })
     .catch(err => next(err))
@@ -69,6 +71,22 @@ router.post("/login", (req, res, next) => {
     })
     .catch(err => next(err))
 })
+
+router.get('/profile', isLoggedIn, (req,res,next) => {
+  res.json(req.user)
+})
+
+router.get('/spotify-login', passport.authenticate('spotify', {
+  scope: ['user-read-email', 'user-read-private', 'playlist-modify-public', 'playlist-read-collaborative', 'playlist-modify-private', 'playlist-read-private']
+}))
+
+router.get('/spotify-login/callback', passport.authenticate('spotify', { failureRedirect: '/login' }), (req, res, next) => {
+  res.redirect('http://localhost:3000/login/callback?' + queryString.stringify({
+    accessToken: req.user.accessToken,
+    refreshToken: req.user.refreshToken
+  }))
+})
+
 
 router.post('/login-with-passport-local-strategy', (req, res, next) => {
   passport.authenticate('local', (err, theUser, failureDetails) => {

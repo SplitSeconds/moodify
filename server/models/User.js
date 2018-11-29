@@ -2,8 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: String,
-  password: String
+  spotifyId: String,
+  accessToken: String,
+  refreshToken: String,
+  expiresIn: String,
+  displayName: String,
+  pictureUrl: String,
+  spotifyProfileUrl: String,
 }, {
     timestamps: {
       createdAt: 'created_at',

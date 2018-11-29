@@ -52,6 +52,31 @@ export default {
       .get('/logout')
   },
 
+  getProfile() {
+    return service
+      .get('/profile')
+      .then(res => {
+        // If we have localStorage.getItem('user') saved, the application will consider we are loggedin
+        localStorage.setItem('user', JSON.stringify(res.data))
+        res.data
+      })
+      .catch(errHandler)
+  },
+
+  getPlaylists() {
+    return service
+      .get('/spotify/playlists')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  addPlaylistWithFixedName() {
+    return service
+      .post('/spotify/playlists')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   getCountries() {
     return service
       .get('/countries')
