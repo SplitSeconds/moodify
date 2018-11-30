@@ -9,22 +9,22 @@ const User = require("../models/User");
 
 const bcryptSalt = 10;
 
-require('../configs/database')
+require("../configs/database");
 
 let users = [
   {
     username: "alice",
-    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
+    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt))
   },
   {
     username: "bob",
-    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
+    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt))
   }
-]
+];
 
 User.deleteMany()
   .then(() => {
-    return User.create(users)
+    return User.create(users);
   })
   .then(usersCreated => {
     console.log(`${usersCreated.length} users created with the following id:`);
@@ -32,9 +32,9 @@ User.deleteMany()
   })
   .then(() => {
     // Close properly the connection to Mongoose
-    mongoose.disconnect()
+    mongoose.disconnect();
   })
   .catch(err => {
-    mongoose.disconnect()
-    throw err
-  })
+    mongoose.disconnect();
+    throw err;
+  });
