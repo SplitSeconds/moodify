@@ -65,9 +65,9 @@ class Home extends Component {
         <h2>Home</h2>
         <p>Tell us your moods</p>
         <form>
-          Value1: <input type="number" value={this.state.area} onChange={(e) => { this.handleInputChange("area", e) }} /> <br />
-          Value2: <input type="number" value={this.state.area} onChange={(e) => { this.handleInputChange("area", e) }} /> <br />
-          Value3: <input type="number" value={this.state.area} onChange={(e) => { this.handleInputChange("area", e) }} /> <br />
+          Value1: <input type="number" value={this.state.value1} onChange={(e) => { this.handleInputChange("value1", e) }} /> <br />
+          Value2: <input type="number" value={this.state.value2} onChange={(e) => { this.handleInputChange("value2", e) }} /> <br />
+          Value3: <input type="number" value={this.state.value3} onChange={(e) => { this.handleInputChange("value3", e) }} /> <br />
           <button onClick={(e) => this.handleClick(e)}>Get playlist</button>
         </form>
       </div>

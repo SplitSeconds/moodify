@@ -11,9 +11,9 @@ export default class LoginCallback extends Component {
   }
   componentDidMount() {
     api.getProfile()
-    .then(data => {
-      this.props.history.push('/')
-    })
-    .catch(err => console.log(err))
+      .then(data => {
+        this.props.history.push('/')
+      })
+      .catch(err => console.log(err))
   }
 }

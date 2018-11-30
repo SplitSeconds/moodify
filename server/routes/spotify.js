@@ -1,15 +1,11 @@
 const express = require("express")
 const router = express.Router()
 const SpotifyWebApi = require('spotify-web-api-node');
-const { isLoggedIn } = require('../middlewares');
+const { isLoggedIn, initSpotifyWithLoggedInUser } = require('../middlewares');
 
 
-router.get('/me', isLoggedIn, (req, res, next) => {
-  const spotifyApi = new SpotifyWebApi()
-  spotifyApi.setAccessToken(req.user.accessToken)
-  spotifyApi.setRefreshToken(req.user.refreshToken)
-
-  spotifyApi.getMe()
+router.get('/me', initSpotifyWithLoggedInUser, (req, res, next) => {
+  res.spotifyApi.getMe()
     .then(data => {
       console.log('DEBUG data', data);
       res.json(data)
@@ -19,24 +15,19 @@ router.get('/me', isLoggedIn, (req, res, next) => {
     })
 })
 
-router.get('/playlists', isLoggedIn, (req, res, next) => {
-  const spotifyApi = new SpotifyWebApi()
-  spotifyApi.setAccessToken(req.user.accessToken)
-  spotifyApi.setRefreshToken(req.user.refreshToken)
-
-  spotifyApi.getUserPlaylists(req.user.spotifyId)
+router.get('/playlists', initSpotifyWithLoggedInUser, (req, res, next) => {
+  res.spotifyApi.getUserPlaylists(req.user.spotifyId)
     .then(data => {
       res.json(data.body.items)
+    })
+    .catch(err => {
+      console.log('DEBUG err', err);
     })
 })
 
 // This route creates a playlist called "Test Nodejs" for the connected user
-router.post('/playlists', isLoggedIn, (req, res, next) => {
-  const spotifyApi = new SpotifyWebApi()
-  spotifyApi.setAccessToken(req.user.accessToken)
-  spotifyApi.setRefreshToken(req.user.refreshToken)
-
-  spotifyApi.createPlaylist(req.user.spotifyId, "Test Nodejs")
+router.post('/playlists', initSpotifyWithLoggedInUser, (req, res, next) => {
+  res.spotifyApi.createPlaylist(req.user.spotifyId, "Test Nodejs")
     .then(data => {
       res.json(data)
     })
