@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const passport = require('passport');
 const User = require('../models/User');
 const SpotifyStrategy = require('passport-spotify').Strategy;

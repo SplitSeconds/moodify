@@ -98,8 +98,6 @@ export default {
       .catch(errHandler)
   },
 
-
-
   addPicture(file) {
     const formData = new FormData()
     formData.append("picture", file)
@@ -112,4 +110,11 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
+
+  postUserInput(data){
+    return service
+    .post('/home', data)
+    .then(res => res.data)
+    .catch(errHandler)
+  }
 }
