@@ -111,9 +111,11 @@ export default {
       .catch(errHandler)
   },
 
-  postUserInput(data){
+  postUserInput(data, result){
     return service
-    .post('/home', data)
+    .post('/spotify/playlists', data, {
+      result: [result]
+    })
     .then(res => res.data)
     .catch(errHandler)
   }
