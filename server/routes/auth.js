@@ -81,10 +81,11 @@ router.get('/spotify-login', passport.authenticate('spotify', {
 }))
 
 router.get('/spotify-login/callback', passport.authenticate('spotify', { failureRedirect: '/login' }), (req, res, next) => {
-  res.redirect('http://localhost:3000/login/callback?' + queryString.stringify({
-    accessToken: req.user.accessToken,
-    refreshToken: req.user.refreshToken
-  }))
+  res.redirect('http://localhost:3000/login/callback')
+  // res.redirect('http://localhost:3000/login/callback?' + queryString.stringify({
+  //   accessToken: req.user.accessToken,
+  //   refreshToken: req.user.refreshToken
+  // }))
 })
 
 
