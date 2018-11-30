@@ -69,7 +69,6 @@ router.post("/login", (req, res, next) => {
         res.json(userDoc);
       });
     })
-<<<<<<< HEAD
     .catch(err => next(err));
 });
 
@@ -95,36 +94,13 @@ router.get(
   "/spotify-login/callback",
   passport.authenticate("spotify", { failureRedirect: "/login" }),
   (req, res, next) => {
-    res.redirect(
-      "http://localhost:3000/login/callback?" +
-        queryString.stringify({
-          accessToken: req.user.accessToken,
-          refreshToken: req.user.refreshToken
-        })
-    );
+    res.redirect("http://localhost:3000/login/callback");
+    // res.redirect('http://localhost:3000/login/callback?' + queryString.stringify({
+    //   accessToken: req.user.accessToken,
+    //   refreshToken: req.user.refreshToken
+    // }))
   }
 );
-=======
-    .catch(err => next(err))
-})
-
-router.get('/profile', isLoggedIn, (req,res,next) => {
-  res.json(req.user)
-})
-
-router.get('/spotify-login', passport.authenticate('spotify', {
-  scope: ['user-read-email', 'user-read-private', 'playlist-modify-public', 'playlist-read-collaborative', 'playlist-modify-private', 'playlist-read-private']
-}))
-
-router.get('/spotify-login/callback', passport.authenticate('spotify', { failureRedirect: '/login' }), (req, res, next) => {
-  res.redirect('http://localhost:3000/login/callback')
-  // res.redirect('http://localhost:3000/login/callback?' + queryString.stringify({
-  //   accessToken: req.user.accessToken,
-  //   refreshToken: req.user.refreshToken
-  // }))
-})
-
->>>>>>> 1990878e4fd443212491027d19d658987403fac9
 
 router.post("/login-with-passport-local-strategy", (req, res, next) => {
   passport.authenticate("local", (err, theUser, failureDetails) => {
