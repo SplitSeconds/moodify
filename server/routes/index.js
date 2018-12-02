@@ -12,8 +12,8 @@ router.get("/secret", isLoggedIn, (req, res, next) => {
 });
 
 router.get("/", (req, res, next) => {
-  let { danceability } = req.body;
-  Song.find({ danceability })
+  // let { danceability } = req.body;
+  Song.find()
     .then(songs => {
       res.json({
         songs: songs
