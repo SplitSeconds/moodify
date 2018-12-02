@@ -24,6 +24,7 @@
     "passport-local": "^1.0.0",
     "passport-spotify": "^1.0.1",
     "query-string": "^6.2.0",
+    "react-spotify-player": "^1.0.4",
     "serve-favicon": "^2.5.0",
     "spotify-web-api-node": "^4.0.0"
   },
