@@ -54,15 +54,6 @@ class Home extends Component {
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
-  componentDidMount() {
-    // Lottie.loadAnimation({
-    //   container: this.ref,
-    //   renderer: "svg",
-    //   loop: true,
-    //   autoplay: true,
-    //   path: "../../Moodify_Logo.json'"
-    // });
-  }
   render() {      
     return (
       <div className="Home">

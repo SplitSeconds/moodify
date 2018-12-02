@@ -14,7 +14,7 @@ class Secret extends Component {
       <div className="Secret">
         <h2>About</h2>
 
-        <p>Moodify is cool</p>
+        <p>Moodify is cool !!!</p>
 
       </div>
     );

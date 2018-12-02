@@ -12,7 +12,9 @@
     "node": "8.9.4"
   },
   "dependencies": {
+    "bodymovin": "^4.13.0",
     "lottie-web": "^5.4.2",
+    "react-lottie": "^1.2.3",
     "spotify-web-api-node": "^4.0.0"
   }
 }
