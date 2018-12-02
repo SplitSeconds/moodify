@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-// import songs from '../database.json'
+//import jsonSongs from '../../../../server/bin/songs.json'
 import api from '../../api';
+import SpotifyPlayer from 'react-spotify-player';
+import Animation from './Animation';
 
 class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      value1: '',
+      value1: '0.4',
       value2: '',
       value3: '',
+      isPlaylist: false
     }
   }
   handleInputChange(stateFieldName, event) {
@@ -22,17 +25,26 @@ class Home extends Component {
     let data = {
       value1: this.state.value1,
       value2: this.state.value2,
-      value3: this.state.value3
+      value3: this.state.value3,
+      // ids: songs.audio_features.map(function(song){
+      //   let result = []
+      //   for (i = 0; i < songs.audio_features.length; i++){
+      //     if (song.danceability > value1 && song.energy > value2){
+      //       result.push(song.id)
+      //     }
+      //     console.log("RESULT", result)
+      //     return result
+      //   }
+      // })
     }
     api.postUserInput(data)
       .then(result => {
         this.setState({
-          value1: "",
-          value2: "",
-          value3: "",
+          value1: '0.2',
+          value2: '',
+          value3: '',
+          isPlaylist: true,
           message: `Your playlist will be created`
-
-
         })
         setTimeout(() => {
           this.setState({
@@ -42,37 +54,44 @@ class Home extends Component {
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
-  // componentDidMount(){
-  //   Axios.get("https://swapi.co/api/people/1")
-  //     .then(result =>
-  //     // console.log(result.data)
-  //     newPlaylist = songs.audio_features.map(function(song){
-
-  //       let result = []
-  //       for (i = 0; i < songs.audio_features.length; i++){
-  //         if (song.danceability > userInput1 && song.energy > userInput2){
-  //         result.push(song.id)
-  //       }
-  //       console.log(result)
-  //       return result
-  //       }
-  //     })
-  //   )}
-
+  componentDidMount() {
+    // Lottie.loadAnimation({
+    //   container: this.ref,
+    //   renderer: "svg",
+    //   loop: true,
+    //   autoplay: true,
+    //   path: "../../Moodify_Logo.json'"
+    // });
+  }
   render() {
     return (
       <div className="Home">
-        <h2>Home</h2>
-        <p>Tell us your moods</p>
+        {/* <Animation /> */}
+        <h2>How do you feel today?</h2>
         <form>
-          Value1: <input type="number" value={this.state.value1} onChange={(e) => { this.handleInputChange("value1", e) }} /> <br />
+          Value1: <input className="input-field" type="number" min="0" max="1" step="0.2" value={this.state.value1} onChange={(e) => { this.handleInputChange("value1", e) }} /> <br />
           Value2: <input type="number" value={this.state.value2} onChange={(e) => { this.handleInputChange("value2", e) }} /> <br />
           Value3: <input type="number" value={this.state.value3} onChange={(e) => { this.handleInputChange("value3", e) }} /> <br />
           <button onClick={(e) => this.handleClick(e)}>Get playlist</button>
         </form>
+
+        <div>
+          <h3>Playlist</h3>
+
+          <SpotifyPlayer
+            uri="spotify:album:7M0Zg2A3mrTOOqfVyRUjb8"
+            size="large"
+            view="List"
+            theme="dark"
+          />
+        </div>
+
       </div>
     );
   }
+
 }
+
+
 
 export default Home;

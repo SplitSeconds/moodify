@@ -46,3 +46,6 @@ body {
 .Secret .result {
   font-size: 1.2em;
   color: #32c3ff; }
+
+.input-field {
+  width: 20vw; }

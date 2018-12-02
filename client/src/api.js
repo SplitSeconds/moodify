@@ -62,14 +62,18 @@ export default {
       })
       .catch(errHandler)
   },
-
+  getSpoftiyUserData() {
+    return service
+      .get('/spotify/me')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
   getPlaylists() {
     return service
       .get('/spotify/playlists')
       .then(res => res.data)
       .catch(errHandler)
   },
-
   addPlaylistWithFixedName() {
     return service
       .post('/spotify/playlists')
@@ -111,9 +115,11 @@ export default {
       .catch(errHandler)
   },
 
-  postUserInput(data){
+  postUserInput(data, result){
     return service
-    .post('/home', data)
+    .post('/spotify/playlists', data, {
+      result: [result]
+    })
     .then(res => res.data)
     .catch(errHandler)
   }
