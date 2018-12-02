@@ -32,7 +32,7 @@ class Home extends Component {
           value3: "",
           message: `Your playlist will be created`
 
-          
+
         })
         setTimeout(() => {
           this.setState({
@@ -59,7 +59,7 @@ class Home extends Component {
   //     })
   //   )}
 
-  render() {                
+  render() {
     return (
       <div className="Home">
         <h2>Home</h2>
