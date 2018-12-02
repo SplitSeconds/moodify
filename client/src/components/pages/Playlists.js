@@ -30,7 +30,7 @@ export default class Playlists extends Component {
     });
   };
   componentDidMount() {
-    api.getSpoftiyUserData().then(data =>
+    api.getSpoftifyUserData().then(data =>
       //console.log("Spotify data", data, "Spotify pic", data.body.images[0].url)
       this.setState({
         name: data.body.display_name,
