@@ -62,14 +62,18 @@ export default {
       })
       .catch(errHandler)
   },
-
+  getSpoftiyUserData() {
+    return service
+      .get('/spotify/me')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
   getPlaylists() {
     return service
       .get('/spotify/playlists')
       .then(res => res.data)
       .catch(errHandler)
   },
-
   addPlaylistWithFixedName() {
     return service
       .post('/spotify/playlists')

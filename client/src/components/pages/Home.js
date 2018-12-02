@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 //import jsonSongs from '../../../../server/bin/songs.json'
 import api from '../../api';
+import SpotifyPlayer from 'react-spotify-player';
+import Animation from './Animation';
 
 class Home extends Component {
   constructor(props) {
@@ -52,9 +54,19 @@ class Home extends Component {
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
+  componentDidMount() {
+    // Lottie.loadAnimation({
+    //   container: this.ref,
+    //   renderer: "svg",
+    //   loop: true,
+    //   autoplay: true,
+    //   path: "../../Moodify_Logo.json'"
+    // });
+  }
   render() {      
     return (
       <div className="Home">
+        {/* <Animation /> */}
         <h2>How do you feel today?</h2>
         <form>
           Value1: <input className="input-field" type="number" min="0" max="1" step="0.2" value={this.state.value1} onChange={(e) => { this.handleInputChange("value1", e) }} /> <br />
@@ -63,17 +75,23 @@ class Home extends Component {
           <button onClick={(e) => this.handleClick(e)}>Get playlist</button>
         </form>
        
-          <div>
-          
-             <h3>Playlist</h3>
-             <iframe src="https://open.spotify.com/embed/album/7M0Zg2A3mrTOOqfVyRUjb8" width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-          </div>
-        
-         
+        <div>
+          <h3>Playlist</h3>
+             
+          <SpotifyPlayer
+            uri="spotify:album:7M0Zg2A3mrTOOqfVyRUjb8"
+            size="large"
+            view="List"
+            theme="dark" 
+          /> 
+        </div>
 
       </div>
     );
   }
+
 }
+
+
 
 export default Home;

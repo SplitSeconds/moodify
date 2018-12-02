@@ -12,6 +12,7 @@
     "node": "8.9.4"
   },
   "dependencies": {
+    "lottie-web": "^5.4.2",
     "spotify-web-api-node": "^4.0.0"
   }
 }
