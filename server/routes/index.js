@@ -13,6 +13,7 @@ router.get("/secret", isLoggedIn, (req, res, next) => {
 
 router.get("/", (req, res, next) => {
   let { danceability } = req.body;
+  console.log("calling get songs");
   Song.find()
     .then(songs => {
       let value = songs.filter(song => {
@@ -25,4 +26,5 @@ router.get("/", (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
 module.exports = router;

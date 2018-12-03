@@ -25,8 +25,10 @@ export default class Playlists extends Component {
       console.log(data);
     });
   };
+  addSongs = () => {
+    api.addSongsToPlaylist();
+  };
   handleClickEdit = () => {
-    // Redirects the user to '/edit-country/'+idClicked
     this.props.history.push("/edit-profile/" + { EditProfile });
   };
   componentDidMount() {
@@ -69,6 +71,9 @@ export default class Playlists extends Component {
         </button>
         <button onClick={this.handleClickAdd} className="btn-style">
           Add playlist
+        </button>
+        <button onClick={this.addSongs} className="btn-style">
+          Add songs to playlist
         </button>
         <hr />
         {this.state.playlists.map(p => (
