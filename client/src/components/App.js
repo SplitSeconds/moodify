@@ -1,27 +1,27 @@
-import React, { Component } from 'react';
-import { Route, Link, NavLink, Switch } from 'react-router-dom';
-import Home from './pages/Home';
-import Playlists from './pages/Playlists';
-import AddCountry from './pages/AddCountry';
-import Secret from './pages/Secret';
-import Login from './pages/Login';
-import LoginCallback from './pages/LoginCallback';
-import Signup from './pages/Signup';
-import About from './pages/About';
-import api from '../api';
-import logo from '../logo.svg';
+import React, { Component } from "react";
+import { Route, Link, NavLink, Switch } from "react-router-dom";
+import Home from "./pages/Home";
+import Playlists from "./pages/Playlists";
+import AddCountry from "./pages/AddCountry";
+import Secret from "./pages/Secret";
+import Login from "./pages/Login";
+import LoginCallback from "./pages/LoginCallback";
+import Signup from "./pages/Signup";
+import About from "./pages/About";
+import api from "../api";
+import logo from "../logo.svg";
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       countries: []
-    }
+    };
     // api.loadUser();
   }
 
   handleLogoutClick(e) {
-    api.logout()
+    api.logout();
   }
 
   render() {
@@ -30,11 +30,17 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Moodify</h1>
-          <NavLink to="/" exact>Home</NavLink>
+          <NavLink to="/" exact>
+            Home
+          </NavLink>
           <NavLink to="/playlists">Playlists</NavLink>
           {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
           {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
-          {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link>}
+          {api.isLoggedIn() && (
+            <Link to="/" onClick={e => this.handleLogoutClick(e)}>
+              Logout
+            </Link>
+          )}
           <NavLink to="/secret">About</NavLink>
         </header>
         <Switch>

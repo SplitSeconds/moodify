@@ -1,9 +1,6 @@
-require("dotenv").config();
-
 const passport = require("passport");
 const User = require("../models/User");
 const SpotifyStrategy = require("passport-spotify").Strategy;
-
 passport.use(
   new SpotifyStrategy(
     {
@@ -12,9 +9,6 @@ passport.use(
       callbackURL: "http://localhost:5000/api/spotify-login/callback"
     },
     function(accessToken, refreshToken, expiresIn, profile, done) {
-      console.log("SpotifyStrategy");
-
-      // The function done should be called with 2 parameters: err (null if no error) and the user
       User.findOne({ spotifyId: profile.id })
         .then(user => {
           console.log("DEBUG profile", profile);
@@ -29,11 +23,9 @@ passport.use(
               pictureUrl: profile.photos[0],
               spotifyProfileUrl: profile.profileUrl
             });
-          } else {
-            user.accessToken = accessToken;
-            user.refreshToken = refreshToken;
-            return user.save();
           }
+          // TODO: update the user with the accessToken?
+          return user;
         })
         .then(user => done(null, user))
         .catch(err => done(err));

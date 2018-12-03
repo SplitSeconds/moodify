@@ -66,9 +66,9 @@ export default {
   },
   getSpoftiyUserData() {
     return service
-      .get('/spotify/me')
+      .get("/spotify/me")
       .then(res => res.data)
-      .catch(errHandler)
+      .catch(errHandler);
   },
   getPlaylists() {
     return service
