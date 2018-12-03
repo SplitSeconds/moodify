@@ -12,14 +12,17 @@ router.get("/secret", isLoggedIn, (req, res, next) => {
 });
 
 router.get("/", (req, res, next) => {
-  // let { danceability } = req.body;
+  let { danceability } = req.body;
   Song.find()
     .then(songs => {
+      let value = songs.filter(song => {
+        return song.danceability >= danceability;
+      });
+      console.log(value);
       res.json({
-        songs: songs
+        value
       });
     })
     .catch(err => next(err));
 });
-
 module.exports = router;

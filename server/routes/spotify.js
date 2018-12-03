@@ -26,6 +26,7 @@ router.get("/playlists", isLoggedIn, (req, res, next) => {
     res.json(data.body.items);
   });
 });
+
 // This route creates a playlist called "Test Nodejs" for the connected user
 // router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
 //   // const spotifyApi = new SpotifyWebApi();
@@ -45,8 +46,8 @@ router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
     .then(data => {
       let playlistId = data.body.id;
       return res.spotifyApi.addTracksToPlaylist(playlistId, [
-        "spotify:track:4iV5W9uYEdYUVa79Axb7Rh",
-        "spotify:track:1301WleyT98MSxVHPZCA6M"
+        "spotify:track:2rPE9A1vEgShuZxxzR2tZH",
+        "spotify:track:3QjIdDDKoZRyfWDKZC4Ayb"
       ]);
     });
 });
