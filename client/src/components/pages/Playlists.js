@@ -10,7 +10,9 @@ export default class Playlists extends Component {
       name: "",
       profilePic: "",
       about: "I like music.",
-      playlists: []
+      playlists: [],
+      savedtracks: [],
+      toptracks: []
     };
   }
   handleClickGet = () => {
@@ -23,6 +25,22 @@ export default class Playlists extends Component {
   handleClickAdd = () => {
     api.addPlaylistWithFixedName().then(data => {
       console.log(data);
+    });
+  };
+  handleClickSavedTracks = () => {
+    api.getMySavedTracks().then(savedtracks => {
+      console.log(savedtracks);
+      this.setState({
+        savedtracks
+      });
+    });
+  };
+  handleClickTopTracks = () => {
+    api.getMyTopTracks().then(toptracks => {
+      console.log(toptracks);
+      this.setState({
+        toptracks
+      });
     });
   };
   handleClickEdit = () => {
@@ -70,6 +88,16 @@ export default class Playlists extends Component {
         <button onClick={this.handleClickAdd} className="btn-style">
           Add playlist
         </button>
+        <button onClick={this.handleClickSavedTracks} className="btn-style">
+          My saved tracks
+        </button>
+        <hr />
+        {this.state.savedtracks.map(t => (
+          <div>
+            <h2>{t.name}</h2>
+            <a href={t.external_urls.spotify}>Link</a>
+          </div>
+        ))}
         <hr />
         {this.state.playlists.map(p => (
           <div>

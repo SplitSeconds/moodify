@@ -144,5 +144,17 @@ export default {
       .put("/users/profile", body)
       .then(res => res.data)
       .catch(errHandler);
+  },
+  getMySavedTracks() {
+    return service
+    .get("/spotify/playlists/savedtracks")
+    .then(res => res.data)
+    .catch(errHandler);
+  },
+  getMyTopTracks() {
+    return service
+    .get("/playlists/toptracks")
+    .then(res => res.data)
+    .catch(errHandler);
   }
 };
