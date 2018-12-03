@@ -11,14 +11,14 @@ passport.use(
       clientSecret: process.env.SPOTIFY_SECRET,
       callbackURL: "http://localhost:5000/api/spotify-login/callback"
     },
-    function(accessToken, refreshToken, expiresIn, profile, done) {
+    function (accessToken, refreshToken, expiresIn, profile, done) {
       console.log("SpotifyStrategy");
 
       // The function done should be called with 2 parameters: err (null if no error) and the user
       User.findOne({ spotifyId: profile.id })
         .then(user => {
           console.log("DEBUG profile", profile);
-          // If no user, 1st time the user connect
+          // If no user, 1st time the user connect 
           if (!user) {
             return User.create({
               spotifyId: profile.id,
