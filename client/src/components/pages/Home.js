@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import api from "../../api";
 import SpotifyPlayer from "react-spotify-player";
 import Animation from "./Animation";
+import Gif from "../../animation/Moodify_Logo.svg";
 
 class Home extends Component {
   constructor(props) {
@@ -50,6 +51,7 @@ class Home extends Component {
     return (
       <div className="Home">
         {/* <Animation /> */}
+        <img src={Gif} className="gif" alt="logo-ani" />
         <h2>How do you feel today?</h2>
         <form>
           Danceability:{" "}
@@ -73,6 +75,16 @@ class Home extends Component {
         <button onClick={this.addSongs} className="btn-style">
           Add songs to playlist
         </button>
+
+        {/* <Slider
+          style={{ width: 300 }}
+          step={1}
+          minimumValue={18}
+          maximumValue={71}
+          value={this.state.value1}
+          onValueChange={value1 => this.setState({ value1: value1 })}
+          onSlidingComplete={value1 => this.getVal(value1)}
+        /> */}
 
         <div>
           <h3>Playlist</h3>

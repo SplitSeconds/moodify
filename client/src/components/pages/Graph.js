@@ -49,9 +49,12 @@ export default class Graph extends Component {
       <div>
 
       
-      <div className="graph">
+      <div className="graph"> 
+      <div className="graph-box">
 
-<XYPlot height={200} width={200}>
+     
+
+<XYPlot height={300} width={300}>
 <VerticalGridLines />
   
   
@@ -67,6 +70,7 @@ export default class Graph extends Component {
         sizeRange={[5, 5]}
         data={myData}/>
   </XYPlot>
+  </div>
       </div>
       <button className="btn-style">Create graph</button>
       </div>
