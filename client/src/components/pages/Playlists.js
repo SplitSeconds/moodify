@@ -5,22 +5,21 @@ import EditProfile from './EditProfile'
 
 export default class Playlists extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       name: '',
       profilePic: '',
       about: 'I like music.',
       playlists: []
-    }
+    };
   }
   handleClickGet = () => {
-    api.getPlaylists()
-    .then(playlists => {
+    api.getPlaylists().then(playlists => {
       this.setState({
         playlists
-      })
-    })
-  }
+      });
+    });
+  };
   handleClickAdd = () => {
     api.addPlaylistWithFixedName()
     .then(data => {
@@ -72,6 +71,6 @@ export default class Playlists extends Component {
           </div>
         ))}
       </div>
-    )
+    );
   }
 }

@@ -17,12 +17,8 @@
     "lottie-web": "^5.4.2",
     "react-lottie": "^1.2.3",
     "react-vis": "^1.11.5",
-    "spotify-web-api-node": "^4.0.0"
+    "spotify-web-api-node": "^4.0.0",
+    "react-spotify-player": "^1.0.4"
   },
-  "devDependencies": {
-    "css-loader": "^1.0.1",
-    "node-sass": "^4.10.0",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1"
-  }
+  "devDependencies": {}
 }

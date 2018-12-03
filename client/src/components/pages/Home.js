@@ -5,26 +5,26 @@ import Animation from './Animation';
 
 class Home extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      value1: '0.4',
-      value2: '',
-      value3: '',
+      value1: "0.4",
+      value2: "",
+      value3: "",
       isPlaylist: false
-    }
+    };
   }
   handleInputChange(stateFieldName, event) {
     this.setState({
       [stateFieldName]: event.target.value
-    })
+    });
   }
   handleClick(e) {
-    e.preventDefault()
-    console.log(this.state.value1, this.state.value2, this.state.value3)
+    e.preventDefault();
+    console.log(this.state.value1, this.state.value2, this.state.value3);
     let data = {
       value1: this.state.value1,
       value2: this.state.value2,
-      value3: this.state.value3,
+      value3: this.state.value3
       // ids: songs.audio_features.map(function(song){
       //   let result = []
       //   for (i = 0; i < songs.audio_features.length; i++){
@@ -35,23 +35,24 @@ class Home extends Component {
       //     return result
       //   }
       // })
-    }
-    api.postUserInput(data)
+    };
+    api
+      .postUserInput(data)
       .then(result => {
         this.setState({
-          value1: '0.2',
-          value2: '',
-          value3: '',
+          value1: "0.2",
+          value2: "",
+          value3: "",
           isPlaylist: true,
           message: `Your playlist will be created`
-        })
+        });
         setTimeout(() => {
           this.setState({
             message: null
-          })
-        }, 2000)
+          });
+        }, 2000);
       })
-      .catch(err => this.setState({ message: err.toString() }))
+      .catch(err => this.setState({ message: err.toString() }));
   }
   render() {      
     return (
@@ -64,22 +65,20 @@ class Home extends Component {
           Value3: <input type="number" value={this.state.value3} onChange={(e) => { this.handleInputChange("value3", e) }} /> <br />
           <button onClick={(e) => this.handleClick(e)} className="btn-style">Get playlist</button>
         </form>
-       
+
         <div>
           <h3>Playlist</h3>
-             
+
           <SpotifyPlayer
             uri="spotify:album:7M0Zg2A3mrTOOqfVyRUjb8"
             size="large"
             view="List"
-            theme="dark" 
-          /> 
+            theme="dark"
+          />
         </div>
-
       </div>
     );
   }
-
 }
 
 export default Home;
