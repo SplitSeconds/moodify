@@ -83,6 +83,13 @@ export default {
       .catch(errHandler);
   },
 
+  getSongs() {
+    return service
+      .get("/")
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
   addTracks() {
     return service
       .post("/spotify/playlists/tracks")
@@ -126,16 +133,16 @@ export default {
 
   postUserInput(data, result) {
     return service
-    .post('/spotify/playlists', data, {
-      result: [result]
-    })
-    .then(res => res.data)
-    .catch(errHandler)
+      .post("/spotify/playlists", data, {
+        result: [result]
+      })
+      .then(res => res.data)
+      .catch(errHandler);
   },
   editProfile(body) {
     return service
-      .put('/users/profile', body)
+      .put("/users/profile", body)
       .then(res => res.data)
-      .catch(errHandler)
+      .catch(errHandler);
   }
 };
