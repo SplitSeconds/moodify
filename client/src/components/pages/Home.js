@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import api from "../../api";
 import SpotifyPlayer from "react-spotify-player";
 import Animation from "./Animation";
+import Gif from "../../animation/Moodify_Logo.svg";
 
 class Home extends Component {
   constructor(props) {
@@ -58,6 +59,7 @@ class Home extends Component {
     return (
       <div className="Home">
         {/* <Animation /> */}
+        <img src={Gif} className="gif" alt="logo-ani" />
         <h2>How do you feel today?</h2>
         <form>
           Value1:{" "}
