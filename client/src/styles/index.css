@@ -1,7 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Muli");
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif; }
+  font-family: Muli;
+  background-color: black;
+  color: white; }
+
+.btn-style {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 20px;
+  margin-top: 2vh; }
 
 .info {
   margin: 20px;
@@ -20,7 +30,7 @@ body {
     animation: App-logo-spin infinite 20s linear;
     height: 80px; }
   .App .App-header {
-    background-color: #32c3ff;
+    background-color: black;
     padding: 20px;
     color: white; }
     .App .App-header a {
@@ -49,3 +59,28 @@ body {
 
 .input-field {
   width: 20vw; }
+
+.about-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; }
+
+.about-container-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.pic-div {
+  display: flex;
+  justify-content: center;
+  margin-right: 2vw; }
+
+.profile-pic {
+  object-fit: cover;
+  height: 150px;
+  width: 150px;
+  border-radius: 100px; }
+
+.graph {
+  display: flex;
+  justify-content: center; }

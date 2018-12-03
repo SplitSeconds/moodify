@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import jsonSongs from '../../../../server/bin/songs.json'
 import api from '../../api';
 import SpotifyPlayer from 'react-spotify-player';
 import Animation from './Animation';
@@ -63,7 +62,7 @@ class Home extends Component {
           Value1: <input className="input-field" type="number" min="0" max="1" step="0.2" value={this.state.value1} onChange={(e) => { this.handleInputChange("value1", e) }} /> <br />
           Value2: <input type="number" value={this.state.value2} onChange={(e) => { this.handleInputChange("value2", e) }} /> <br />
           Value3: <input type="number" value={this.state.value3} onChange={(e) => { this.handleInputChange("value3", e) }} /> <br />
-          <button onClick={(e) => this.handleClick(e)}>Get playlist</button>
+          <button onClick={(e) => this.handleClick(e)} className="btn-style">Get playlist</button>
         </form>
        
         <div>
@@ -82,7 +81,5 @@ class Home extends Component {
   }
 
 }
-
-
 
 export default Home;

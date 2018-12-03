@@ -13,8 +13,16 @@
   },
   "dependencies": {
     "bodymovin": "^4.13.0",
+    "lottie-react-web": "^2.1.4",
     "lottie-web": "^5.4.2",
     "react-lottie": "^1.2.3",
+    "react-vis": "^1.11.5",
     "spotify-web-api-node": "^4.0.0"
+  },
+  "devDependencies": {
+    "css-loader": "^1.0.1",
+    "node-sass": "^4.10.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1"
   }
 }
