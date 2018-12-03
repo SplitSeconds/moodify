@@ -40,13 +40,15 @@ router.get("/playlists", isLoggedIn, (req, res, next) => {
 // });
 
 router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
-  res.spotifyApi.createPlaylist(req.user.spotifyId, "New Test").then(data => {
-    let playlistId = data.body.id;
-    return res.spotifyApi.addTracksToPlaylist(playlistId, [
-      "spotify:track:4iV5W9uYEdYUVa79Axb7Rh",
-      "spotify:track:1301WleyT98MSxVHPZCA6M"
-    ]);
-  });
+  res.spotifyApi
+    .createPlaylist(req.user.spotifyId, "Testing again!!!")
+    .then(data => {
+      let playlistId = data.body.id;
+      return res.spotifyApi.addTracksToPlaylist(playlistId, [
+        "spotify:track:4iV5W9uYEdYUVa79Axb7Rh",
+        "spotify:track:1301WleyT98MSxVHPZCA6M"
+      ]);
+    });
 });
 
 module.exports = router;
