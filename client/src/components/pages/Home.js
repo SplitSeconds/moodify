@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import api from '../../api';
 import SpotifyPlayer from 'react-spotify-player';
 import Animation from './Animation';
+import Gif from '../../animation/Moodify_Logo.gif'
+
 
 class Home extends Component {
   constructor(props) {
@@ -58,6 +60,7 @@ class Home extends Component {
     return (
       <div className="Home">
         {/* <Animation /> */}
+        <img src={Gif} className="gif" alt="logo-ani" />
         <h2>How do you feel today?</h2>
         <form>
           Value1: <input className="input-field" type="number" min="0" max="1" step="0.2" value={this.state.value1} onChange={(e) => { this.handleInputChange("value1", e) }} /> <br />
