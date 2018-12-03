@@ -3,6 +3,9 @@
 $primary: #32c3ff;
 
 
+//Import font
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
 // ----------------------------------------
 // To install Boostrap:
 // 1) Run in the client folder: $ npm i bootstrap
@@ -10,15 +13,24 @@ $primary: #32c3ff;
 // @import 'bootstrap/scss/bootstrap';
 // ----------------------------------------
 
+//@import "~react-vis/dist/style";
 
 // --------------------
 // Style reusable for all components
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: Muli;
+  background-color: black;
+  color: white;
 }
-
+.btn-style {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 20px;
+  margin-top: 2vh;
+}
 .info {
   margin: 20px;
   padding: 10px 20px;
@@ -43,7 +55,7 @@ body {
   }
 
   .App-header {
-    background-color: $primary;
+    background-color: black;
     padding: 20px;
     color: white;
 
@@ -96,4 +108,30 @@ body {
 
 .input-field{
   width: 20vw;
+}
+.about-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.about-container-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.pic-div {
+  display: flex;
+  justify-content: center;
+  margin-right: 2vw;
+}
+
+.profile-pic {
+  object-fit: cover;
+  height: 150px;
+  width: 150px;
+  border-radius: 100px;
+}
+.graph {
+  display: flex;
+  justify-content: center;
 }

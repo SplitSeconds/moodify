@@ -1,19 +1,15 @@
-import React, { Component } from 'react'
-import api from '../../api';
-
+import React, { Component } from "react";
+import api from "../../api";
 export default class LoginCallback extends Component {
   render() {
-    return (
-      <div>
-        Loading...
-      </div>
-    )
+    return <div>Loading...</div>;
   }
   componentDidMount() {
-    api.getProfile()
+    api
+      .getProfile()
       .then(data => {
-        this.props.history.push('/')
+        this.props.history.push("/");
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   }
 }

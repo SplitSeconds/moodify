@@ -4,7 +4,10 @@ const SpotifyWebApi = require("spotify-web-api-node");
 const { isLoggedIn, initSpotifyWithLoggedInUser } = require("../middlewares");
 
 router.get("/me", initSpotifyWithLoggedInUser, (req, res, next) => {
-  res.spotifyApi
+  const spotifyApi = new SpotifyWebApi();
+  spotifyApi.setAccessToken(req.user.accessToken);
+  spotifyApi.setRefreshToken(req.user.refreshToken);
+  spotifyApi
     .getMe()
     .then(data => {
       console.log("DEBUG data", data);
@@ -15,78 +18,37 @@ router.get("/me", initSpotifyWithLoggedInUser, (req, res, next) => {
     });
 });
 
-router.get("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
+router.get("/playlists", isLoggedIn, (req, res, next) => {
+  const spotifyApi = new SpotifyWebApi();
+  spotifyApi.setAccessToken(req.user.accessToken);
+  spotifyApi.setRefreshToken(req.user.refreshToken);
+  spotifyApi.getUserPlaylists(req.user.spotifyId).then(data => {
+    res.json(data.body.items);
+  });
+});
+// This route creates a playlist called "Test Nodejs" for the connected user
+// router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
+//   // const spotifyApi = new SpotifyWebApi();
+//   // // spotifyApi.setAccessToken(req.user.accessToken);
+//   // // spotifyApi.setRefreshToken(req.user.refreshToken);
+//   res.spotifyApi
+//     .createPlaylist(req.user.spotifyId, "Another Test")
+//     .then(data => {
+//       res.json(data);
+//     })
+//     .catch(err => next(err));
+// });
+
+router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
   res.spotifyApi
-    .getUserPlaylists(req.user.spotifyId)
+    .createPlaylist(req.user.spotifyId, "Testing again!!!")
     .then(data => {
-      res.json(data.body.items);
-    })
-    .catch(err => {
-      console.log("DEBUG err", err);
+      let playlistId = data.body.id;
+      return res.spotifyApi.addTracksToPlaylist(playlistId, [
+        "spotify:track:4iV5W9uYEdYUVa79Axb7Rh",
+        "spotify:track:1301WleyT98MSxVHPZCA6M"
+      ]);
     });
 });
-
-// This route creates a playlist called "Test Nodejs" for the connected user
-router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
-  res.spotifyApi
-    .createPlaylist(req.user.spotifyId, "Test Nodejs")
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => next(err));
-});
-
-router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
-  res.spotifyApi
-    .createPlaylist(req.user.spotifyId, "Test Nodejs")
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => next(err));
-});
-
-router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
-  res.spotifyApi
-    .addTracksToPlaylist("5ieJqeLJjjI8iJWaxeBLuK", [
-      "spotify:track:4iV5W9uYEdYUVa79Axb7Rh",
-      "spotify:track:1301WleyT98MSxVHPZCA6M"
-    ])
-    .then(
-      function(data) {
-        console.log("Added tracks to playlist!");
-      },
-      function(err) {
-        console.log("Something went wrong!", err);
-      }
-    );
-});
-
-//This route will create a playlist called whatever name the user sends
-
-// router.post('/playlists', initSpotifyWithLoggedInUser, (req, res, next) => {
-//   res.spotifyApi.createPlaylist(req.user.spotifyId, req.body.name)
-//     .then(data => {
-//       res.json(data)
-//     })
-//     .catch(err => next(err))
-// })
-
-//This route will add tracks to playlist...maybe at the same time
-
-// router.post("/playlists", (req, res, next) => {
-//   res.spotifyApi
-//     .addTracksToPlaylist("5ieJqeLJjjI8iJWaxeBLuK", [
-//       "spotify:track:4iV5W9uYEdYUVa79Axb7Rh",
-//       "spotify:track:1301WleyT98MSxVHPZCA6M"
-//     ])
-//     .then(
-//       function(data) {
-//         console.log("Added tracks to playlist!");
-//       },
-//       function(err) {
-//         console.log("Something went wrong!", err);
-//       }
-//     );
-// });
 
 module.exports = router;

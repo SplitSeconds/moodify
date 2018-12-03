@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-//import jsonSongs from '../../../../server/bin/songs.json'
 import api from "../../api";
 import SpotifyPlayer from "react-spotify-player";
 import Animation from "./Animation";
-// import Slider from 'react';
 
 class Home extends Component {
   constructor(props) {
@@ -14,9 +12,6 @@ class Home extends Component {
       value3: "",
       isPlaylist: false
     };
-  }
-  getVal(val) {
-    console.warn(val);
   }
   handleInputChange(stateFieldName, event) {
     this.setState({
@@ -59,15 +54,6 @@ class Home extends Component {
       })
       .catch(err => this.setState({ message: err.toString() }));
   }
-  componentDidMount() {
-    // Lottie.loadAnimation({
-    //   container: this.ref,
-    //   renderer: "svg",
-    //   loop: true,
-    //   autoplay: true,
-    //   path: "../../Moodify_Logo.json'"
-    // });
-  }
   render() {
     return (
       <div className="Home">
@@ -105,7 +91,9 @@ class Home extends Component {
             }}
           />{" "}
           <br />
-          <button onClick={e => this.handleClick(e)}>Get playlist</button>
+          <button onClick={e => this.handleClick(e)} className="btn-style">
+            Get playlist
+          </button>
         </form>
 
         {/* <Slider
