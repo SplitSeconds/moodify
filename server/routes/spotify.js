@@ -42,7 +42,7 @@ router.get("/playlists", isLoggedIn, (req, res, next) => {
 
 router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
   res.spotifyApi
-    .createPlaylist(req.user.spotifyId, "Testing again!!!")
+    .createPlaylist(req.user.spotifyId, "Lindsezäs plazlist")
     .then(data => {
       let playlistId = data.body.id;
       return res.spotifyApi.addTracksToPlaylist(playlistId, [
