@@ -44,7 +44,6 @@ export default class Playlists extends Component {
     });
   };
   handleClickEdit = () => {
-    // Redirects the user to '/edit-country/'+idClicked
     this.props.history.push("/edit-profile/" + { EditProfile });
   };
   componentDidMount() {

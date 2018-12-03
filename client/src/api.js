@@ -90,6 +90,20 @@ export default {
       .catch(errHandler);
   },
 
+  addSongsToPlaylist() {
+    return service
+      .get("/spotify/songs")
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getTopSongsPlaylist() {
+    return service
+      .get("/spotify/playlists/toptracks")
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
   addTracks() {
     return service
       .post("/spotify/playlists/tracks")
