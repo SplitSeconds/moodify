@@ -4,6 +4,7 @@ const Song = require("../models/Song");
 const SpotifyWebApi = require("spotify-web-api-node");
 const { isLoggedIn, initSpotifyWithLoggedInUser } = require("../middlewares");
 
+
 router.get("/me", initSpotifyWithLoggedInUser, (req, res, next) => {
   const spotifyApi = new SpotifyWebApi();
   spotifyApi.setAccessToken(req.user.accessToken);
@@ -153,14 +154,46 @@ router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
 //       });
 //       });
 
-//Trying to set up route for Users top tracks
-// router.get("/playlists/toptracks", isLoggedIn, (req, res, next) => {
-//   const spotifyApi = new SpotifyWebApi();
-//   spotifyApi.setAccessToken(req.user.accessToken);
-//   spotifyApi.setRefreshToken(req.user.refreshToken);
-//   spotifyApi.getMyTopTracks(req.user.spotifyId).then(data => {
-//     res.json(data.body.items);
-//   });
-// });
+
+//-------------------------------------------------
+//Nele is testing Users recently play tracks start
+//-------------------------------------------------
+router.get("/playlists/graph", isLoggedIn, (req, res, next) => {
+  const spotifyApi = new SpotifyWebApi();
+  spotifyApi.setAccessToken(req.user.accessToken);
+  spotifyApi.setRefreshToken(req.user.refreshToken);
+  spotifyApi
+  .getMe()
+  .then(data => {
+    spotifyApi.getMyRecentlyPlayedTracks({
+        limit: 10
+    })
+    .then(function(data) {
+        var arr = [], songIDs = [];
+        data.body.items.forEach(function(p) {
+            var obj = {
+                id: p.track.id,
+                played_at: p.played_at,
+                name: p.track.name
+            };
+        arr.push(obj);
+        songIDs.push(p.track.id);
+        //console.log("SONG IDs", songIDs)
+        spotifyApi.getAudioFeaturesForTracks(songIDs)
+        .then(data => {
+          console.log("RECENT TRACKS AUDIO FEATURES", data.body)
+          res.json(data.body)
+        })
+      });  
+    })
+  })
+    .catch(err => {
+      console.log("DEBUG err", err);
+    });
+    })
+
+//-------------------------------------------------
+//Nele is testing Users recently play tracks end
+//-------------------------------------------------
 
 module.exports = router;

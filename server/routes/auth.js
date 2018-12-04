@@ -84,8 +84,11 @@ router.get(
       "user-read-private",
       "playlist-modify-public",
       "playlist-read-collaborative",
+      "playlist-modify-public",
       "playlist-modify-private",
-      "playlist-read-private"
+      "playlist-read-private",
+      "user-read-recently-played",
+      "user-library-read"
     ]
   })
 );
