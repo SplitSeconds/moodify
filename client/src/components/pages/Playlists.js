@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import api from "../../api";
+import SpotifyPlayer from "react-spotify-player";
 import Graph from "./Graph";
 import EditProfile from "./EditProfile";
+import "../../styles/index.css";
 
 export default class Playlists extends Component {
   constructor(props) {
@@ -15,13 +17,7 @@ export default class Playlists extends Component {
       toptracks: []
     };
   }
-  handleClickGet = () => {
-    api.getPlaylists().then(playlists => {
-      this.setState({
-        playlists
-      });
-    });
-  };
+
   handleClickAdd = () => {
     api.addPlaylistWithFixedName().then(data => {
       console.log(data);
@@ -54,6 +50,13 @@ export default class Playlists extends Component {
         // profilePic: data.body.images[0].url
       })
     );
+
+    api.getPlaylists().then(playlists => {
+      console.log(playlists);
+      this.setState({
+        playlists
+      });
+    });
   }
   render() {
     return (
@@ -80,7 +83,6 @@ export default class Playlists extends Component {
         <h2>Your mood</h2>
         <Graph />
 
-        <h1>Playlists</h1>
         <button onClick={this.handleClickGet} className="btn-style">
           Get playlists
         </button>
@@ -98,10 +100,17 @@ export default class Playlists extends Component {
           </div>
         ))}
         <hr />
-        {this.state.playlists.map(p => (
-          <div>
-            <h2>{p.name}</h2>
-            <a href={p.external_urls.spotify}>Link</a>
+
+        <h1>Your playlists</h1>
+        {this.state.playlists.map((p, index) => (
+          <div className="user-playlists-wrapper" key={index}>
+            <SpotifyPlayer
+              uri="spotify:user:spotify:playlist:37i9dQZF1DZ06evO3OC4Te"
+              uri={p.uri}
+              size="large"
+              view="list"
+              theme="black"
+            />
           </div>
         ))}
       </div>
