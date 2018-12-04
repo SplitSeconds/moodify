@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const songSchema = new mongoose.Schema({
-
+  name: String,
   danceability: Number,
   energy: Number,
   key: Number,
@@ -20,9 +20,8 @@ const songSchema = new mongoose.Schema({
   analysis_url: String,
   duration_ms: Number,
   time_signature: Number
-
 });
 
-const Song = mongoose.model('Song', songSchema);
+const Song = mongoose.model("Song", songSchema);
 
 module.exports = Song;

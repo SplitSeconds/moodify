@@ -83,12 +83,12 @@ export default {
       .catch(errHandler);
   },
 
-  getSongs() {
-    return service
-      .get("/")
-      .then(res => res.data)
-      .catch(errHandler);
-  },
+  // getSongs() {
+  //   return service
+  //     .get("/")
+  //     .then(res => res.data)
+  //     .catch(errHandler);
+  // },
 
   addSongsToPlaylist() {
     return service
@@ -132,6 +132,13 @@ export default {
       .catch(errHandler);
   },
 
+  getAllSongs() {
+    return service
+      .get("/spotify/getsongs")
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
   addPicture(file) {
     const formData = new FormData();
     formData.append("picture", file);
@@ -161,14 +168,14 @@ export default {
   },
   getMySavedTracks() {
     return service
-    .get("/spotify/playlists/savedtracks")
-    .then(res => res.data)
-    .catch(errHandler);
+      .get("/spotify/playlists/savedtracks")
+      .then(res => res.data)
+      .catch(errHandler);
   },
   getMyTopTracks() {
     return service
-    .get("/playlists/toptracks")
-    .then(res => res.data)
-    .catch(errHandler);
+      .get("/playlists/toptracks")
+      .then(res => res.data)
+      .catch(errHandler);
   }
 };
