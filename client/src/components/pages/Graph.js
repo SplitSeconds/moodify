@@ -8,55 +8,50 @@ export default class Graph extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      value1: '',
-      value2: '',
-      value3: ''
+      myData: [
+        {x: 0, y: '', size: 5},
+        {x: 1, y: '', size: 5},
+        {x: 2, y: '', size: 5},
+        {x: 3, y: '', size: 5},
+        {x: 4, y: '', size: 5},
+        {x: 5, y: '', size: 5},
+        {x: 6, y: '', size: 5},
+        {x: 7, y: '', size: 5},
+        {x: 8, y: '', size: 5},
+        {x: 9, y: '', size: 5}
+      ]
     }
   }
 
   handleClick(e) {
       e.preventDefault();
-      let data = {
-        //audio_features.danceability
-        //audio_features.energy
-        //audio_features.valence
-        value1: this.state.value1,
-        value2: this.state.value2,
-        value3: this.state.value3
-      };
       api
-        .getMyRecentlyPlayedTracks(data)
-        .then(result => {
-          console.log("GRAPHDATA", result);
+        .getMyRecentlyPlayedTracks().then(data => {
+          console.log("GRAPHDATA", data);
+          //this.state.myData[i].y= 0
+          for(let i = 1; i < data.length; i++){
+            this.state.myData[i].y = (((data.body[i-1].danceability + data.body[i-1].valence + data.body[i-1].energy) / 3) * 10)
+          }
           this.setState({
-            value1: this.state.value1,
-            value2: this.state.value2,
-            value3: this.state.value3,
-            message: `Your graph will be created`
+          //let y1 = item[0]audio_features.danceability + item[0]audio_features.valence + item[0]audio_features.energy
+          
+            myData: [
+              {x: 0, y: this.state.myData[1].y, size: 5},
+              {x: 1, y: this.state.myData[2].y, size: 5},
+              {x: 2, y: this.state.myData[3].y, size: 5},
+              {x: 3, y: this.state.myData[4].y, size: 5},
+              {x: 4, y: this.state.myData[5].y, size: 5},
+              {x: 5, y: this.state.myData[6].y, size: 5},
+              {x: 6, y: this.state.myData[7].y, size: 5},
+              {x: 7, y: this.state.myData[8].y, size: 5},
+              {x: 8, y: this.state.myData[9].y, size: 5},
+              {x: 9, y: this.state.myData[10].y, size: 5}
+            ]
           });
-          setTimeout(() => {
-            this.setState({
-              message: null
-            });
-          }, 2000);
         })
         .catch(err => this.setState({ message: err.toString() }));
     }
-
-
   render() {
-    const myData = [
-      {x: 0, y: 8, size: 5},
-      {x: 1, y: 5, size: 5},
-      {x: 2, y: 4, size: 5},
-      {x: 3, y: 9, size: 5},
-      {x: 4, y: 1, size: 5},
-      {x: 5, y: 7, size: 5},
-      {x: 6, y: 6, size: 5},
-      {x: 7, y: 3, size: 5},
-      {x: 8, y: 2, size: 5},
-      {x: 9, y: 0, size: 5}
-    ];
   return (  
     <div>
       <div className="graph"> 
@@ -73,7 +68,7 @@ export default class Graph extends Component {
               color="white"
               opacity="0.5"
               sizeRange={[5, 5]}
-              data={myData}/>
+              data={this.statemyData}/>
           </XYPlot>
         </div>
       </div>
