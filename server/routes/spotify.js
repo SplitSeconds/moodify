@@ -166,7 +166,7 @@ router.get("/playlists/graph", isLoggedIn, (req, res, next) => {
       // console.log(data);
       spotifyApi
         .getMyRecentlyPlayedTracks({
-          limit: 10
+          limit: 20
         })
         .then(function(data) {
           var arr = [],
@@ -179,16 +179,18 @@ router.get("/playlists/graph", isLoggedIn, (req, res, next) => {
             };
             arr.push(obj);
             songIDs.push(p.track.id);
+            
             //console.log("SONG IDs", songIDs)
             spotifyApi.getAudioFeaturesForTracks(songIDs).then(data => {
-              console.log("RECENT TRACKS AUDIO FEATURES", data.body);
+              console.log("RECENT TRACKS AUDIO FEATURES", data.body, "NAME", arr);
               let info = data.body.audio_features;
               console.log(
-                "FUUUUUUUCCCCCCCKKKKKKKK " + data.body.audio_features.length
+                "FUUUUUUUCCCCCCCKKKKKKKK " + data.body.audio_features.length 
               );
 
-              if (data.body.audio_features.length >= 10) {
+              if (data.body.audio_features.length >= 20) {
                 res.json(info);
+                //res.json(arr);
               }
             });
           });
