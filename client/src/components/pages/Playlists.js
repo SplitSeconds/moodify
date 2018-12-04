@@ -83,9 +83,6 @@ export default class Playlists extends Component {
         <h2>Your mood</h2>
         <Graph />
 
-        <button onClick={this.handleClickGet} className="btn-style">
-          Get playlists
-        </button>
         <button onClick={this.handleClickAdd} className="btn-style">
           Add playlist
         </button>
@@ -102,6 +99,7 @@ export default class Playlists extends Component {
         <hr />
 
         <h1>Your playlists</h1>
+
         {this.state.playlists.map((p, index) => (
           <div className="user-playlists-wrapper" key={index}>
             <SpotifyPlayer
