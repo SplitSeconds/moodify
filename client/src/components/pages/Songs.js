@@ -1,24 +1,19 @@
 import React, { Component } from "react";
 import api from "../../api";
-import Songs from "./Songs";
-import SpotifyPlayer from "react-spotify-player";
-// import Animation from "./Animation";
-import Gif from "../../animation/Moodify_Logo.svg";
 
-class Home extends Component {
+class Songs extends Component {
   constructor(props) {
     super(props);
     this.state = {
       danceability: "",
-      songs: [],
-      moreSongs: [],
-      isPlaylist: false
+      moreSongs: []
     };
   }
   handleInputChange(stateFieldName, event) {
-    this.setState({
-      [stateFieldName]: event.target.value
-    });
+    let newState = {};
+    newState[stateFieldName] = event.target.value;
+
+    this.setState(newState);
   }
   handleClick(e) {
     e.preventDefault();
@@ -55,26 +50,16 @@ class Home extends Component {
       });
     });
   };
-  componentDidMount() {
-    // api
-    //   .getSongs()
-    //   .then(songs => {
-    //     console.log(songs);
-    //     this.setState({
-    //       songs: songs
-    //     });
-    //   })
-    //   .catch(err => console.log(err));
-  }
+  componentDidMount() {}
+
   render() {
+    let filtered = this.state.moreSongs.filter(song => {
+      if (song.danceability > song.danceability < 0.51) {
+        return true;
+      } else return false;
+    });
     return (
-      <div className="Home">
-        <div>
-          <Songs />
-        </div>
-        {/* <Animation /> */}
-        <img src={Gif} className="gif" alt="logo-ani" />
-        <h2>How do you feel today?</h2>
+      <div className="Songs">
         <form>
           Danceability:{" "}
           <input
@@ -86,40 +71,19 @@ class Home extends Component {
             }}
           />{" "}
           <br />
-          <button onClick={e => this.handleClick(e)} className="btn-style">
-            Get playlist
-          </button>
         </form>
-        {this.state.songs.map(song => (
-          <div>
-            <h2>{song.track.name}</h2>
-          </div>
-        ))}
-        {this.state.moreSongs.map(song => (
+
+        {filtered.map(song => (
           <div>
             <h2>{song._id}</h2>
           </div>
         ))}
-        <button onClick={this.addSongs} className="btn-style">
-          Add songs to playlist
-        </button>
         <button onClick={this.getAllSongs} className="btn-style">
           Add all of the songs
         </button>
-        <div />
-        <div>
-          <h3>Playlist</h3>
-
-          <SpotifyPlayer
-            uri="spotify:album:7M0Zg2A3mrTOOqfVyRUjb8"
-            size="large"
-            view="List"
-            theme="dark"
-          />
-        </div>
       </div>
     );
   }
 }
 
-export default Home;
+export default Songs;

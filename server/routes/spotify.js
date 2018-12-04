@@ -42,6 +42,17 @@ router.get("/songs", (req, res, next) => {
     .catch(err => next(err));
 });
 
+router.get("/getsongs", (req, res, next) => {
+  // let songs = data.body.tracks.items;
+  Song.find()
+    .then(data => {
+      let songs = data;
+      console.log(data);
+      res.json({ songs });
+    })
+    .catch(err => next(err));
+});
+
 router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
   let danceabilityWeight = 1;
   let { danceability, tempo } = req.body;
@@ -76,33 +87,40 @@ router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.post("/playlists/toptracks", (req, res, next) => {
-  console.log("you made it!");
-  res.spotifyApi
-    .getPlaylist("5ieJqeLJjjI8iJWaxeBLuK")
-    .then(
-      function(data) {
-        console.log("Some information about this playlist", data.body);
-      },
-      function(err) {
-        console.log("Something went wrong!", err);
-      }
-    )
-    .catch(err => next(err));
-});
-
-// This route creates a playlist called "Test Nodejs" for the connected user
-// router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
-//   // const spotifyApi = new SpotifyWebApi();
-//   // // spotifyApi.setAccessToken(req.user.accessToken);
-//   // // spotifyApi.setRefreshToken(req.user.refreshToken);
-//   res.spotifyApi
-//     .createPlaylist(req.user.spotifyId, "Another Test")
-//     .then(data => {
-//       res.json(data);
-//     })
-//     .catch(err => next(err));
-// });
+//send names to the front end
+//send audio features to the front end
+//user manipulates audio features, and maybe create an if statement that says if it matches the ID of the playlist, it shows that track name
+//then send the tracks to spotify API
+router.get(
+  "/playlists/toptracks",
+  initSpotifyWithLoggedInUser,
+  (req, res, next) => {
+    res.spotifyApi
+      .getPlaylist("091l3sqkJPvGitfuJsLZLh")
+      .then(
+        data => {
+          let songs = data.body.tracks.items;
+          res.json(songs);
+          console.log(data.body.tracks.items[0].track.name);
+          console.log(songs);
+          // return res.spotifyApi
+          //   .getAudioFeaturesForTrack("3Qm86XLflmIXVm1wcwkgDK")
+          //   .then(
+          //     data => {
+          //       console.log(data.body);
+          //     },
+          //     function(err) {
+          //       done(err);
+          //     }
+          //   );
+        },
+        function(err) {
+          console.log("Something went wrong!", err);
+        }
+      )
+      .catch(err => next(err));
+  }
+);
 
 router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
   res.spotifyApi

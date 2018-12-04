@@ -7,26 +7,94 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const Song = require("../models/Song");
+const SpotifyWebApi = require("spotify-web-api-node");
 const songs = require("./songs.json");
-const dbName = "moodify-project";
+const { isLoggedIn, initSpotifyWithLoggedInUser } = require("../middlewares");
 
 const bcryptSalt = 10;
 
-require("../configs/database");
+const spotifyApi = new SpotifyWebApi({
+  clientId: process.env.SPOTIFY_ID,
+  clientSecret: process.env.SPOTIFY_SECRET,
+  URL: "http://localhost:5000/api/spotifycallback-login/callback"
+});
 
-Song.deleteMany()
-  .then(() => {
-    return Song.create(songs);
-  })
-  .then(songCreated => {
-    console.log(`${songCreated.length} song created with the following id:`);
-    console.log(songCreated.map(u => u._id));
-  })
-  .then(() => {
-    // Close properly the connection to Mongoose
-    mongoose.disconnect();
+// Retrieve an access token.
+spotifyApi
+  .clientCredentialsGrant()
+  .then(data => {
+    spotifyApi.setAccessToken(data.body["access_token"]);
+
+    Song.deleteMany()
+      .then(() => {
+        return Song.create(songs);
+      })
+      .then(songCreated => {
+        console.log(
+          `${songCreated.length} song created with the following id:`
+        );
+        console.log(songCreated.map(u => u._id));
+        let getTrackPromises = songCreated.map(songCreated =>
+          spotifyApi.getTrack(songCreated.id)
+        );
+        Promise.all(getTrackPromises).then(arrayData => {
+          for (let i = 0; i < arrayData.length; i++) {
+            console.log(arrayData[i].body.name);
+          }
+        });
+        spotifyApi
+          .getTrack(songCreated.id)
+          .then(data => {
+            console.log("data", data.body);
+          })
+          .catch(err => console.log("ERROR", err));
+      })
+      .then(() => {
+        // Close properly the connection to Mongoose
+        mongoose.disconnect();
+      })
+      .catch(err => {
+        mongoose.disconnect();
+        throw err;
+      });
   })
   .catch(err => {
-    mongoose.disconnect();
-    throw err;
+    console.log("Something went wrong when retrieving an access token", err);
   });
+
+require("../configs/database");
+
+console.log("Crendentials", {
+  clientId: process.env.SPOTIFY_ID,
+  clientSecret: process.env.SPOTIFY_SECRET
+});
+
+// Song.deleteMany()
+//   .then(() => {
+//     return Song.create(songs);
+//   })
+//   .then(songCreated => {
+//     console.log(`${songCreated.length} song created with the following id:`);
+//     console.log(songCreated.map(u => u._id));
+//   })
+//   .then(() => {
+//     // Close properly the connection to Mongoose
+//     mongoose.disconnect();
+//   })
+//   .catch(err => {
+//     mongoose.disconnect();
+//     throw err;
+//   });
+
+// let getTrackPromises = songs.map(song => spotifyApi.getTrack(song.id));
+// Promise.all(getTrackPromises).then(arrayData => {
+//   for (let i = 0; i < arrayData.length; i++) {
+//     console.log(arrayData[i].body.name);
+//   }
+// });
+// spotifyApi
+//   .getTrack(songs.id)
+//   .then(data => {
+//     console.log("data", data.body);
+//   })
+//   .catch(err => console.log("ERROR", err));

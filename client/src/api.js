@@ -83,12 +83,12 @@ export default {
       .catch(errHandler);
   },
 
-  getSongs() {
-    return service
-      .get("/")
-      .then(res => res.data)
-      .catch(errHandler);
-  },
+  // getSongs() {
+  //   return service
+  //     .get("/")
+  //     .then(res => res.data)
+  //     .catch(errHandler);
+  // },
 
   addSongsToPlaylist() {
     return service
@@ -128,6 +128,13 @@ export default {
   getSecret() {
     return service
       .get("/secret")
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getAllSongs() {
+    return service
+      .get("/spotify/getsongs")
       .then(res => res.data)
       .catch(errHandler);
   },
