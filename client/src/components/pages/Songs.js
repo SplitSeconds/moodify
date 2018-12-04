@@ -9,39 +9,18 @@ class Songs extends Component {
       moreSongs: []
     };
   }
-  handleInputChange(stateFieldName, event) {
-    let newState = {};
-    newState[stateFieldName] = event.target.value;
+  // handleInputChange(stateFieldName, event) {
+  //   let newState = {};
+  //   newState[stateFieldName] = event.target.value;
 
-    this.setState(newState);
-  }
-  handleClick(e) {
-    e.preventDefault();
-    let data = {
-      danceability: this.state.danceability
-    };
-    api
-      .getSongs(data)
-      .then(result => {
-        this.setState({
-          result
-        });
-        setTimeout(() => {
-          this.setState({
-            message: null
-          });
-        }, 2000);
-      })
-      .catch(err => this.setState({ message: err.toString() }));
-  }
-  addSongs = () => {
-    api.getTopSongsPlaylist().then(songs => {
-      console.log(songs);
-      this.setState({
-        songs
-      });
-    });
-  };
+  //   this.setState(newState);
+  // }
+  // handleClick(e) {
+  //   e.preventDefault();
+  //   let data = {
+  //     danceability: this.state.danceability
+  //   };
+  // }
   getAllSongs = () => {
     api.getAllSongs().then(moreSongs => {
       console.log(moreSongs);
@@ -50,14 +29,40 @@ class Songs extends Component {
       });
     });
   };
-  componentDidMount() {}
+  // handleInput = e => {
+  //   console.log("well, at least something happened");
+  //   let filtered = this.state.moreSongs.filter(song => {
+  //     if (song.danceability > e.target.value) {
+  //       return true;
+  //     } else return false;
+  //   });
+
+  //   this.setState({
+  //     danceability: filtered
+  //   });
+
+  // console.log(filtered);
+  // if (song.danceability > e.targetvalue) {
+  //   value = true;
+  // }
+
+  // this.setState({
+  //   danceability: e.target.value
+  // });
+
+  // return this.state.moreSongs.filter(song => {
+  //   if (song.danceability > e.target.value) {
+  //     return true;
+  //   } else return false;
+  // });
+  // };
 
   render() {
-    let filtered = this.state.moreSongs.filter(song => {
-      if (song.danceability > song.danceability < 0.51) {
-        return true;
-      } else return false;
-    });
+    // let filtered = this.state.moreSongs.filter(song => {
+    //   if (song.danceability > this.target.value) {
+    //     return true;
+    //   } else return false;
+    // });
     return (
       <div className="Songs">
         <form>
@@ -67,17 +72,17 @@ class Songs extends Component {
             type="number"
             value={this.state.danceability}
             onChange={e => {
-              this.handleInputChange("danceability", e);
+              this.handleInput(e);
             }}
           />{" "}
           <br />
         </form>
 
-        {filtered.map(song => (
+        {/* {filtered.map(song => (
           <div>
             <h2>{song._id}</h2>
           </div>
-        ))}
+        ))} */}
         <button onClick={this.getAllSongs} className="btn-style">
           Add all of the songs
         </button>
