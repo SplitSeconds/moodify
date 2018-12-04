@@ -11,8 +11,7 @@ export default class Playlists extends Component {
       profilePic: "",
       about: "I like music.",
       playlists: [],
-      savedtracks: [],
-      toptracks: []
+      recenttracks: []
     };
   }
   handleClickGet = () => {
@@ -27,21 +26,16 @@ export default class Playlists extends Component {
       console.log(data);
     });
   };
-  handleClickSavedTracks = () => {
-    api.getMySavedTracks().then(savedtracks => {
-      console.log(savedtracks);
-      this.setState({
-        savedtracks
-      });
-    });
-  };
-  handleClickTopTracks = () => {
-    api.getMyTopTracks().then(toptracks => {
-      console.log(toptracks);
-      this.setState({
-        toptracks
-      });
-    });
+  handleClickGraph = () => {
+    // display users mood graph on click
+
+    // Old code to test
+    // api.getMyRecentlyPlayedTracks().then(recenttracks => {
+    //   console.log(recenttracks);
+    //   this.setState({
+    //     recenttracks
+    //   });
+    // });
   };
   handleClickEdit = () => {
     this.props.history.push("/edit-profile/" + { EditProfile });
@@ -64,7 +58,7 @@ export default class Playlists extends Component {
           <div className="pic-div">
             <img
               src={this.state.profilePic}
-              alt="Profile picture"
+              alt="Profile pic"
               className="profile-pic"
             />
           </div>
@@ -79,6 +73,9 @@ export default class Playlists extends Component {
 
         <h2>Your mood</h2>
         <Graph />
+        {/* <button onClick={this.handleClickGraph} className="btn-style">
+          Create graph
+        </button> */}
 
         <h1>Playlists</h1>
         <button onClick={this.handleClickGet} className="btn-style">
@@ -87,16 +84,7 @@ export default class Playlists extends Component {
         <button onClick={this.handleClickAdd} className="btn-style">
           Add playlist
         </button>
-        <button onClick={this.handleClickSavedTracks} className="btn-style">
-          My saved tracks
-        </button>
-        <hr />
-        {this.state.savedtracks.map(t => (
-          <div>
-            <h2>{t.name}</h2>
-            <a href={t.external_urls.spotify}>Link</a>
-          </div>
-        ))}
+        
         <hr />
         {this.state.playlists.map(p => (
           <div>

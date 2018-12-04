@@ -159,16 +159,16 @@ export default {
       .then(res => res.data)
       .catch(errHandler);
   },
-  getMySavedTracks() {
+  //-------------------------------------------------
+  //Nele is testing Users recently play tracks start
+  //-------------------------------------------------
+  getMyRecentlyPlayedTracks() {
     return service
-    .get("/spotify/playlists/savedtracks")
-    .then(res => res.data)
-    .catch(errHandler);
-  },
-  getMyTopTracks() {
-    return service
-    .get("/playlists/toptracks")
-    .then(res => res.data)
-    .catch(errHandler);
+      .get("/spotify/playlists/graph")
+      .then(res => res.data)
+      .catch(errHandler);
   }
+  //-------------------------------------------------
+  //Nele is testing Users recently play tracks end
+  //-------------------------------------------------
 };

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import api from "../../api";
 import SpotifyPlayer from "react-spotify-player";
-import Animation from "./Animation";
+// import Animation from "./Animation";
 import Gif from "../../animation/Moodify_Logo.svg";
 
 class Home extends Component {
