@@ -13,8 +13,7 @@ export default class Playlists extends Component {
       profilePic: "",
       about: "I like music.",
       playlists: [],
-      savedtracks: [],
-      toptracks: []
+      recenttracks: []
     };
   }
 
@@ -23,21 +22,23 @@ export default class Playlists extends Component {
       console.log(data);
     });
   };
-  handleClickSavedTracks = () => {
-    api.getMySavedTracks().then(savedtracks => {
-      console.log(savedtracks);
-      this.setState({
-        savedtracks
-      });
+  handleClickRemove = () => {
+    console.log("handleClickRemove called!");
+    this.setState({
+      // playlists: this.state.playlists.splice(this.state.index.uri, 1)
+      // console.log(playlists)
+      // profilePic: data.body.images[0].url
     });
   };
-  handleClickTopTracks = () => {
-    api.getMyTopTracks().then(toptracks => {
-      console.log(toptracks);
-      this.setState({
-        toptracks
-      });
-    });
+  handleClickGraph = () => {
+    // display users mood graph on click
+    // Old code to test
+    // api.getMyRecentlyPlayedTracks().then(recenttracks => {
+    //   console.log(recenttracks);
+    //   this.setState({
+    //     recenttracks
+    //   });
+    // });
   };
   handleClickEdit = () => {
     this.props.history.push("/edit-profile/" + { EditProfile });
@@ -67,7 +68,7 @@ export default class Playlists extends Component {
           <div className="pic-div">
             <img
               src={this.state.profilePic}
-              alt="Profile picture"
+              alt="Profile pic"
               className="profile-pic"
             />
           </div>
@@ -82,33 +83,30 @@ export default class Playlists extends Component {
 
         <h2>Your mood</h2>
         <Graph />
+        {/* <button onClick={this.handleClickGraph} className="btn-style">
+          Create graph
+        </button> */}
 
         <button onClick={this.handleClickAdd} className="btn-style">
           Add playlist
         </button>
-        <button onClick={this.handleClickSavedTracks} className="btn-style">
-          My saved tracks
-        </button>
-        <hr />
-        {this.state.savedtracks.map(t => (
-          <div>
-            <h2>{t.name}</h2>
-            <a href={t.external_urls.spotify}>Link</a>
-          </div>
-        ))}
+
         <hr />
 
         <h1>Your playlists</h1>
 
         {this.state.playlists.map((p, index) => (
           <div className="user-playlists-wrapper" key={index}>
-            <SpotifyPlayer
-              uri="spotify:user:spotify:playlist:37i9dQZF1DZ06evO3OC4Te"
-              uri={p.uri}
-              size="large"
-              view="list"
-              theme="black"
-            />
+            <SpotifyPlayer uri={p.uri} size="large" view="list" theme="black" />
+            <div>
+              <button
+                onClick={this.handleClickRemove}
+                // uri={p.uri}
+                className="btn-style"
+              >
+                Remove
+              </button>
+            </div>
           </div>
         ))}
       </div>

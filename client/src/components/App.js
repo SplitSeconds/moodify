@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, Link, NavLink, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Playlists from './pages/Playlists';
-import AddCountry from './pages/AddCountry';
 import Login from './pages/Login';
 import LoginCallback from './pages/LoginCallback';
 import Signup from './pages/Signup';
@@ -45,7 +44,6 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/playlists" component={Playlists} />
-          <Route path="/add-country" component={AddCountry} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" exact component={Login} />
           <Route path="/login/callback" component={LoginCallback} />

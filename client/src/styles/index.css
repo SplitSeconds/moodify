@@ -98,3 +98,23 @@ body {
 .user-playlists-wrapper {
   display: inline-block;
   margin: 30px; }
+
+/* Slider ---------------------------  */
+.slider-wrapper {
+  width: 100%; }
+
+.form-wrapper {
+  display: flex;
+  justify-content: center; }
+
+.form {
+  width: 70%; }
+
+.input-range__label-container {
+  display: none; }
+
+.form-label {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 10px; }
