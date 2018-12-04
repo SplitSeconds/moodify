@@ -14,7 +14,7 @@ function initSpotifyWithLoggedInUser(req, res, next) {
   const spotifyApi = new SpotifyWebApi({
     clientId: process.env.SPOTIFY_ID,
     clientSecret: process.env.SPOTIFY_SECRET,
-    //redirectUri: 'http:/localhost:3000/login/callback'
+    redirectUri: "http:/localhost:3000/login/callback"
   });
   spotifyApi.setAccessToken(req.user.accessToken);
   spotifyApi.setRefreshToken(req.user.refreshToken);
