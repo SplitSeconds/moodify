@@ -6,7 +6,7 @@ passport.use(
     {
       clientID: process.env.SPOTIFY_ID,
       clientSecret: process.env.SPOTIFY_SECRET,
-      callbackURL: "http://localhost:5000/api/spotify-login/callback"
+      URL: "http://localhost:5000/api/spotifycallback-login/callback"
     },
     function(accessToken, refreshToken, expiresIn, profile, done) {
       User.findOne({ spotifyId: profile.id })
@@ -23,9 +23,13 @@ passport.use(
               pictureUrl: profile.photos[0],
               spotifyProfileUrl: profile.profileUrl
             });
+          } else {
+            user.accessToken = accessToken;
+            user.refreshToken = refreshToken;
+            return user.save();
           }
           // TODO: update the user with the accessToken?
-          return user;
+          // return user;
         })
         .then(user => done(null, user))
         .catch(err => done(err));
