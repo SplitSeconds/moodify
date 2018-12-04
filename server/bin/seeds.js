@@ -24,7 +24,7 @@ spotifyApi
   .clientCredentialsGrant()
   .then(data => {
     spotifyApi.setAccessToken(data.body["access_token"]);
-
+    //find by ID and update and append getTrack
     Song.deleteMany()
       .then(() => {
         return Song.create(songs);
