@@ -95,9 +95,7 @@ class Home extends Component {
         <div>
           <SongsStyle />
         </div>
-        <div>
-          <Songs />
-        </div>
+        <div>{/* <Songs /> */}</div>
         {/* <Animation /> */}
         <img src={Gif} className="gif" alt="logo-ani" />
         <button onClick={this.addSongs} className="btn-style">
@@ -109,9 +107,9 @@ class Home extends Component {
         <div />
         <div>
           <h3>Playlist</h3>
-          <div className="slider-wrapper">
+          {/* <div className="slider-wrapper">
             <Slider />
-          </div>
+          </div> */}
 
           <SpotifyPlayer
             uri="spotify:album:7M0Zg2A3mrTOOqfVyRUjb8"
