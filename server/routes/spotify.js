@@ -28,6 +28,19 @@ router.get("/playlists", isLoggedIn, (req, res, next) => {
   });
 });
 
+router.post("/playliststest", initSpotifyWithLoggedInUser, (req, res, next) => {
+  const { songUris } = req.body;
+  console.log("songUris", songUris);
+
+  res.spotifyApi
+    .createPlaylist(req.user.spotifyId, "Anjali's playlist")
+    .then(data => {
+      let playlistId = data.body.id;
+      console.log("playlist id" + playlistId);
+      return res.spotifyApi.addTracksToPlaylist(playlistId, songUris);
+    });
+});
+
 router.get("/songs", (req, res, next) => {
   let { danceabilityMin } = req.query;
   console.log("you have called get songs in spotify.js");

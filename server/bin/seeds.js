@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const Song = require("../models/Song");
 const SpotifyWebApi = require("spotify-web-api-node");
-const songs = require("./songs.json");
+const jsonSongs = require("./songs.json");
 const { isLoggedIn, initSpotifyWithLoggedInUser } = require("../middlewares");
 
 const bcryptSalt = 10;
@@ -24,29 +24,31 @@ spotifyApi.clientCredentialsGrant().then(data => {
   //find by ID and update
   Song.deleteMany()
     .then(() => {
-      return Song.create(songs);
-    })
-    .then(songCreated => {
-      // console.log(songCreated.map(u => u.name));
-      let getTrackPromises = songCreated.map(songCreated =>
-        spotifyApi.getTrack(songCreated.id)
+      let getTrackPromises = jsonSongs.map(song =>
+        spotifyApi.getTrack(song.id)
       );
-      Promise.all(getTrackPromises).then(arrayData => {
-        for (let i = 0; i < arrayData.length; i++) {
-          // console.log("here are the names " + arrayData[i].body.name);
-          arrayData[i].body.name === songCreated[i].name;
-          console.log(arrayData[i].body.name);
-          console.log(songCreated[i].tempo);
-        }
-      });
+      return Promise.all(getTrackPromises);
     })
-    .then(() => {
+    .then(results => {
+      console.log(`We have ${results.length} spotify songs`);
+      console.log("First body results from the spotify API", results[0].body);
+      return Song.create(
+        jsonSongs.map((jsonSong, i) => ({
+          ...jsonSong,
+          name: results[i].body.name,
+          artists: results[i].body.artists.map(artist => artist.name)
+        }))
+      );
+    })
+    .then(songDocuments => {
+      // console.log(songDocuments);
       // Close properly the connection to Mongoose
       mongoose.disconnect();
     })
     .catch(err => {
       mongoose.disconnect();
-      throw err;
+      console.log("ERROR", err);
+      console.log("Retry the seed a couple a times");
     });
 });
 

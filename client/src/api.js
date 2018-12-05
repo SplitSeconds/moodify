@@ -78,7 +78,7 @@ export default {
   },
   addPlaylistWithFixedName() {
     return service
-      .post("/spotify/playlists")
+      .post("/spotify/playliststest")
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -94,6 +94,22 @@ export default {
     return service
       .get("/spotify/songs")
       .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  //-------------------------------------------------
+  //Anjali is testing generating a playlist
+  //-------------------------------------------------
+
+  addToPlaylist(songUris) {
+    console.log("songUris", songUris);
+
+    return service
+      .post("/spotify/playliststest", { songUris })
+      .then(res => {
+        console.log(" calling playlist in api.js");
+        res.data;
+      })
       .catch(errHandler);
   },
 
