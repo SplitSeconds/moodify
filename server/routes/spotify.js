@@ -28,6 +28,19 @@ router.get("/playlists", isLoggedIn, (req, res, next) => {
   });
 });
 
+router.post("/playliststest", initSpotifyWithLoggedInUser, (req, res, next) => {
+  const { songUris } = req.body;
+  console.log("songUris", songUris);
+
+  res.spotifyApi
+    .createPlaylist(req.user.spotifyId, "Anjali's playlist")
+    .then(data => {
+      let playlistId = data.body.id;
+      console.log("playlist id" + playlistId);
+      return res.spotifyApi.addTracksToPlaylist(playlistId, songUris);
+    });
+});
+
 router.get("/songs", (req, res, next) => {
   let { danceabilityMin } = req.query;
   console.log("you have called get songs in spotify.js");
@@ -74,7 +87,7 @@ router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
         .map(song => song.uri); // extract uris
 
       return res.spotifyApi
-        .createPlaylist(req.user.spotifyId, "test anjali " + danceability)
+        .createPlaylist(req.user.spotifyId, "test anjali new" + danceability)
         .then(data => {
           let playlistId = data.body.id;
           return res.spotifyApi.addTracksToPlaylist(playlistId, songUris);
@@ -165,13 +178,13 @@ router.get("/playlists/graph", isLoggedIn, (req, res, next) => {
               //console.log("RECENT TRACKS AUDIO FEATURES", data.body, "NAME", arr);
               let info = data.body.audio_features;
 
-              // console.log("FUUUUUUUCCCCCCCKKKKKKKK " + data.body.audio_features.length);
+              //console.log("FUUUUUUUCCCCCCCKKKKKKKK " + data.body.audio_features.length);
               // console.log("HEREEEEE ISSSS First " + arrayPass[0]);
               // console.log("HEREEEEE ISSSS Second " + arrayPass[1]);
               //console.log("THIIIIIIIIIIS" + arrayPass.length);
 
               arrayPass.push(info, arr);
-              // console.log("MEEEEEEEEEEEH" + arrayPass.length)
+              //console.log("MEEEEEEEEEEEH" + arrayPass.length)
 
               if (data.body.audio_features.length >= 20) {
                 res.json(arrayPass);

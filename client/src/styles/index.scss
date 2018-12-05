@@ -12,7 +12,9 @@ $primary: #32c3ff;
 // @import 'bootstrap/scss/bootstrap';
 // ----------------------------------------
 
-//@import "~react-vis/dist/style";
+//----------- Graph colors:
+//Electric Purple (bright purple / stroke) "8A2BE2"
+//Ultra Violet (less bright / orb) "5F4B8B"
 
 // --------------------
 // Style reusable for all components
@@ -113,6 +115,8 @@ body {
 .input-field {
   width: 20vw;
 }
+
+/* Profile section ---------------------------  */
 .about-container {
   display: flex;
   flex-direction: row;
@@ -123,6 +127,12 @@ body {
   flex-direction: column;
   justify-content: center;
 }
+.about-container-section h3{
+  margin-top: 2px;
+}
+.about-container-section p{
+  margin-top: 2px;
+}
 .pic-div {
   display: flex;
   justify-content: center;
@@ -131,10 +141,11 @@ body {
 
 .profile-pic {
   object-fit: cover;
-  height: 150px;
-  width: 150px;
-  border-radius: 100px;
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
 }
+/* Graph ---------------------------  */
 .graph {
   display: flex;
   justify-content: center;
@@ -145,9 +156,26 @@ body {
   width: 300px;
   margin-right: 25px;
 }
-.gif {
-  width: 20vw;
+.rv-xy-plot__axis__tick__text {
+  color: white;
 }
+.rv-xy-plot__grid-lines__line {
+  stroke: gray;
+  stroke-width: 1;
+}
+.rv-xy-plot__axis__line{
+  stroke: black !important;
+}
+.rv-xy-plot__axis{
+  margin-right: 10px !important;
+} 
+.rv-xy-plot__axis--vertical {
+  margin-right: 10px !important;
+}
+/* Animation ---------------------------  */
+// .gif {
+//   width: 20vw;
+// }
 
 .Playlist h3 {
   margin-top: 10px;
@@ -241,3 +269,4 @@ body {
     margin: 0 25%;
   }
 }
+

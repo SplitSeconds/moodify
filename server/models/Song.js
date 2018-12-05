@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 const songSchema = new mongoose.Schema({
   name: String,
+  artists: [String],
+
   danceability: Number,
   energy: Number,
   key: Number,

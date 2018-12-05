@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import api from "../../api";
+import InputRange from "react-input-range";
 
 class Songs extends Component {
   constructor(props) {
@@ -8,45 +9,41 @@ class Songs extends Component {
       danceability: "",
       energy: "",
       acousticness: "",
-      moreSongs: [],
-      filtered: []
+      moreSongs: []
+      // filtered: []
     };
   }
-  // handleInputChange(stateFieldName, event) {
-  //   let newState = {};
-  //   newState[stateFieldName] = event.target.value;
-
-  //   this.setState(newState);
-  // }
-  // handleClick(e) {
-  //   e.preventDefault();
-  //   let data = {
-  //     danceability: this.state.danceability
-  //   };
-  // }
   getAllSongs = () => {
     api.getAllSongs().then(moreSongs => {
-      // console.log(moreSongs);
       this.setState({
         moreSongs: moreSongs.songs
       });
     });
   };
-  handleInput = e => {
+  getPlaylist = () => {
+    // let data = this.state.filtered;
+    console.log("hi");
+    api
+      .addToPlaylist(this.getFilteredSongs().map(song => song.uri))
+      .then(() => {})
+      .catch(error => console.log(error));
+  };
+  handleInput = (fieldName, e) => {
     let name = e.target.name;
     this.setState({
-      [name]: e.target.value
+      [fieldName]: e.target.value
     });
   };
 
-  render() {
-    let filtered = this.state.moreSongs
+  getFilteredSongs() {
+    return this.state.moreSongs
       .map(song => {
         // a score is added, the closer score and 0 are, the better it is
         let score =
           Math.abs(song.danceability - this.state.danceability) +
-          Math.abs(song.energy + this.state.energy) +
-          Math.abs(song.acousticness + this.state.acousticness);
+          Math.abs(song.energy - this.state.energy) +
+          Math.abs(song.acousticness - this.state.acousticness);
+
         return {
           ...song,
           score: score
@@ -54,11 +51,26 @@ class Songs extends Component {
       })
       .sort((a, b) => a.score - b.score)
       .slice(0, 10);
+  }
+
+  render() {
+    let filtered = this.getFilteredSongs();
 
     return (
       <div className="Songs">
         <form>
           Danceability:{" "}
+          <InputRange
+            maxValue={1}
+            minValue={0}
+            step={0.01}
+            name="danceability"
+            value={this.state.danceability}
+            onChange={danceability => this.setState({ danceability })}
+            onChangeComplete={danceability =>
+              console.log("value1: " + danceability)
+            }
+          />
           <input
             className="input-field"
             type="number"
@@ -70,6 +82,15 @@ class Songs extends Component {
           />{" "}
           <br />
           Energy:{" "}
+          <InputRange
+            maxValue={1}
+            minValue={0}
+            step={0.01}
+            name="danceability"
+            value={this.state.energy}
+            onChange={energy => this.setState({ energy })}
+            onChangeComplete={energy => console.log("value1: " + energy)}
+          />
           <input
             className="input-field"
             type="number"
@@ -81,6 +102,17 @@ class Songs extends Component {
           />{" "}
           <br />
           Acousticness:{" "}
+          <InputRange
+            maxValue={1}
+            minValue={0}
+            step={0.01}
+            name="danceability"
+            value={this.state.acousticness}
+            onChange={acousticness => this.setState({ acousticness })}
+            onChangeComplete={acousticness =>
+              console.log("value1: " + acousticness)
+            }
+          />
           <input
             className="input-field"
             type="number"
@@ -98,11 +130,18 @@ class Songs extends Component {
             <h2>{song._id}</h2>
           </div>
         ))}
-        <button onClick={this.getAllSongs} className="btn-style">
+
+        {/* <button onClick={this.getAllSongs} className="btn-style">
           Preview Songs
+        </button> */}
+        <button onClick={this.getPlaylist} className="btn-style">
+          Create playlist
         </button>
       </div>
     );
+  }
+  componentDidMount() {
+    this.getAllSongs();
   }
 }
 
