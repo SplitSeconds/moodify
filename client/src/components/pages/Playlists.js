@@ -10,7 +10,7 @@ export default class Playlists extends Component {
     super(props);
     this.state = {
       name: "",
-      profilePic: "",
+      // profilePic: "",
       about: "I like music.",
       playlists: [],
       recenttracks: []
@@ -45,7 +45,7 @@ export default class Playlists extends Component {
     );
 
     api.getPlaylists().then(playlists => {
-      console.log(playlists);
+      //console.log(playlists);
       this.setState({
         playlists
       });

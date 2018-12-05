@@ -6,8 +6,9 @@ import SpotifyPlayer from "react-spotify-player";
 // import Animation from "./Animation";
 import Gif from "../../animation/Moodify_Logo.svg";
 import Slider from "../Slider";
-// import "react-input-range/lib/css/index.css";
+import "react-input-range/lib/css/index.css";
 import "../../styles/index.scss";
+
 
 class Home extends Component {
   constructor(props) {
@@ -112,15 +113,15 @@ class Home extends Component {
         <div />
         <div>
           <h3>Playlist</h3>
-          <div className="slider-wrapper">
+          {/* <div className="slider-wrapper">
             <Slider />
-          </div>
+          </div> */}
 
           <SpotifyPlayer
             uri="spotify:album:7M0Zg2A3mrTOOqfVyRUjb8"
             size="large"
             view="List"
-            theme="dark"
+            theme="black"
           />
         </div>
       </div>
