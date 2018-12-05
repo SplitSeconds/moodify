@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import api from "../../api";
 import Songs from "./Songs";
+import SongsStyle from "./SongsStyle";
 import SpotifyPlayer from "react-spotify-player";
 // import Animation from "./Animation";
 import Gif from "../../animation/Moodify_Logo.svg";
@@ -58,6 +59,9 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
+        <div>
+          <SongsStyle />
+        </div>
         <div>
           <Songs />
         </div>
