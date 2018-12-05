@@ -8,9 +8,9 @@ class Slider extends React.Component {
     super(props);
 
     this.state = {
-      value1: 0.7,
-      value2: 3,
-      value3: 7
+      value1: 0,
+      value2: 0,
+      value3: 0
     };
   }
 
