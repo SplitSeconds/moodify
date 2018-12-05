@@ -88,6 +88,9 @@ body {
   }
 }
 
+.nav-links {
+}
+
 // --------------------
 // Style for Home component
 .Home {
@@ -146,6 +149,15 @@ body {
   width: 20vw;
 }
 
+.Playlist h3 {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.Playlist h2 {
+  margin-bottom: 0px;
+}
+
 /* User playlists section   */
 .user-playlists-wrapper {
   display: inline-block;
@@ -184,7 +196,7 @@ body {
 }
 
 .input-range__track--background {
-  background-color: #3f51b575 !important;
+  background-color: #3f51b567 !important;
 }
 
 /* Songs preview -------------------- */

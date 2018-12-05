@@ -89,6 +89,7 @@ class Home extends Component {
       });
     });
   };
+
   render() {
     return (
       <div className="Home">
@@ -98,12 +99,12 @@ class Home extends Component {
         <div>{/* <Songs /> */}</div>
         {/* <Animation /> */}
         <img src={Gif} className="gif" alt="logo-ani" />
-        <button onClick={this.addSongs} className="btn-style">
+        {/* <button onClick={this.addSongs} className="btn-style">
           Add songs to playlist
         </button>
         <button onClick={this.getAllSongs} className="btn-style">
           Add all of the songs
-        </button>
+        </button> */}
         <div />
         <div>
           <h3>Playlist</h3>
@@ -114,8 +115,8 @@ class Home extends Component {
           <SpotifyPlayer
             uri="spotify:album:7M0Zg2A3mrTOOqfVyRUjb8"
             size="large"
-            view="List"
-            theme="dark"
+            view="list"
+            theme="black"
           />
         </div>
       </div>

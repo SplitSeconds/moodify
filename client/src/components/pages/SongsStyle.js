@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import InputRange from "react-input-range";
+import SpotifyPlayer from "react-spotify-player";
 import "react-input-range/lib/css/index.css";
 import api from "../../api";
 
@@ -12,7 +13,7 @@ class SongsStyle extends Component {
       acousticness: 0.5,
       moreSongs: [],
       filtered: [],
-      buttonVisible: false
+      buttonIsVisible: false
     };
   }
   getAllSongs = () => {
@@ -20,7 +21,7 @@ class SongsStyle extends Component {
       console.log(moreSongs);
       this.setState({
         moreSongs: moreSongs.songs,
-        buttonVisible: true
+        buttonIsVisible: true
       });
     });
   };
@@ -61,7 +62,7 @@ class SongsStyle extends Component {
             name="danceability"
             value={this.state.danceability}
             onChange={danceability =>
-              this.setState({ danceability, buttonVisible: true })
+              this.setState({ danceability, buttonIsVisible: true })
             }
             onChangeComplete={this.getAllSongs}
             // {danceability => console.log("value1: " + danceability)}
@@ -101,7 +102,7 @@ class SongsStyle extends Component {
         <div className="songs-preview-wrapper">
           <div className="songs-preview-container">
             {filtered.map(song => (
-              <div className="songs-preview-section">
+              <div key={song.uri} className="songs-preview-section">
                 <div>
                   <h4>{song._id}</h4>
                   {/* <button>remove item</button> */}
@@ -111,6 +112,14 @@ class SongsStyle extends Component {
                   <h5>{song.title}</h5>
                   <h5>{song.artistName}</h5>
                 </div>
+
+                <SpotifyPlayer
+                  uri={song.uri}
+                  // uri="spotify:track:6rqhFgbbKwnb9MLmUQDhG6"
+                  size="compact"
+                  view="list"
+                  theme="black"
+                />
               </div>
             ))}
           </div>
@@ -118,7 +127,10 @@ class SongsStyle extends Component {
           Preview Songs
         </button> */}
           <div className="create-playlist-btn-wrapper">
-            <button className="btn-style create-playlist-btn">
+            <button
+              name="buttonIsVisible"
+              className="btn-style create-playlist-btn"
+            >
               Create playlist
             </button>
           </div>

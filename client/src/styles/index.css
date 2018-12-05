@@ -97,6 +97,13 @@ body {
 .gif {
   width: 20vw; }
 
+.Playlist h3 {
+  margin-top: 10px;
+  margin-bottom: 30px; }
+
+.Playlist h2 {
+  margin-bottom: 0px; }
+
 /* User playlists section   */
 .user-playlists-wrapper {
   display: inline-block;
@@ -128,7 +135,7 @@ body {
   margin-bottom: 15px; }
 
 .input-range__track--background {
-  background-color: #3f51b575 !important; }
+  background-color: #3f51b567 !important; }
 
 /* Songs preview -------------------- */
 .songs-preview-container {
