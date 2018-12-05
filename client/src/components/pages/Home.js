@@ -121,6 +121,7 @@ class Home extends Component {
               this.handleInputChange("danceability", e);
             }}
           />{" "}
+          /
           <br />
           <button onClick={e => this.handleClick(e)} className="btn-style">
             Get playlist

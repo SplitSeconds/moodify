@@ -6,7 +6,10 @@ class Songs extends Component {
     super(props);
     this.state = {
       danceability: "",
-      moreSongs: []
+      energy: "",
+      acousticness: "",
+      moreSongs: [],
+      filtered: []
     };
   }
   // handleInputChange(stateFieldName, event) {
@@ -29,40 +32,43 @@ class Songs extends Component {
       });
     });
   };
-  // handleInput = e => {
-  //   console.log("well, at least something happened");
-  //   let filtered = this.state.moreSongs.filter(song => {
-  //     if (song.danceability > e.target.value) {
-  //       return true;
-  //     } else return false;
-  //   });
-
-  //   this.setState({
-  //     danceability: filtered
-  //   });
-
-  // console.log(filtered);
-  // if (song.danceability > e.targetvalue) {
-  //   value = true;
-  // }
-
-  // this.setState({
-  //   danceability: e.target.value
-  // });
-
-  // return this.state.moreSongs.filter(song => {
-  //   if (song.danceability > e.target.value) {
-  //     return true;
-  //   } else return false;
-  // });
-  // };
+  handleInput = e => {
+    let name = e.target.name;
+    this.setState({
+      [name]: e.target.value
+    });
+  };
 
   render() {
-    // let filtered = this.state.moreSongs.filter(song => {
-    //   if (song.danceability > this.target.value) {
-    //     return true;
-    //   } else return false;
-    // });
+    let filtered = this.state.moreSongs.filter(song => {
+      if (song.danceability > this.state.danceability) {
+        return true;
+      } else return false;
+    });
+    let filteredEnergy = filtered.filter(song => {
+      if (song.energy > this.state.energy) {
+        return true;
+      } else return false;
+    });
+    let filteredAcoustic = filteredEnergy.filter(song => {
+      if (song.energy > this.state.acousticness) {
+        return true;
+      } else return false;
+    });
+
+    //here is the score algorithm...
+    // this.state.moreSongs
+    //   .map(song => {
+    //     let score = Math.abs(song.danceability - this.state.danceability);
+    //     return {
+    //       ...score,
+    //       score: score
+    //     };
+    //   })
+    //   .sort((a, b) => a.score - b.score)
+    //   .slice(0, 10)
+    //   .map(songs => songs._id);
+
     return (
       <div className="Songs">
         <form>
@@ -70,7 +76,30 @@ class Songs extends Component {
           <input
             className="input-field"
             type="number"
+            name="danceability"
             value={this.state.danceability}
+            onChange={e => {
+              this.handleInput(e);
+            }}
+          />{" "}
+          <br />
+          Energy:{" "}
+          <input
+            className="input-field"
+            type="number"
+            name="energy"
+            value={this.state.energy}
+            onChange={e => {
+              this.handleInput(e);
+            }}
+          />{" "}
+          <br />
+          Acousticness:{" "}
+          <input
+            className="input-field"
+            type="number"
+            name="acousticness"
+            value={this.state.acousticness}
             onChange={e => {
               this.handleInput(e);
             }}
@@ -78,13 +107,13 @@ class Songs extends Component {
           <br />
         </form>
 
-        {/* {filtered.map(song => (
+        {filteredAcoustic.map(song => (
           <div>
             <h2>{song._id}</h2>
           </div>
-        ))} */}
+        ))}
         <button onClick={this.getAllSongs} className="btn-style">
-          Add all of the songs
+          Preview Songs
         </button>
       </div>
     );

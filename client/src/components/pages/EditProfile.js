@@ -5,8 +5,7 @@ export default class Profile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // user: null,
-      about: null
+      about: 'I like music!'
     }
   }
   handleChange = (e) => {
@@ -63,7 +62,7 @@ export default class Profile extends Component {
     );
   }
   componentDidMount() {
-    api.api.getSpoftiyUserData()()
+    api.getSpoftiyUserData()
       .then(user => {
         this.setState({
           about: user.about

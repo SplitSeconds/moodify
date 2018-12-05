@@ -22,14 +22,6 @@ export default class Playlists extends Component {
       console.log(data);
     });
   };
-  handleClickRemove = () => {
-    console.log("handleClickRemove called!");
-    this.setState({
-      // playlists: this.state.playlists.splice(this.state.index.uri, 1)
-      // console.log(playlists)
-      // profilePic: data.body.images[0].url
-    });
-  };
   handleClickGraph = () => {
     // display users mood graph on click
     // Old code to test
@@ -87,26 +79,16 @@ export default class Playlists extends Component {
           Create graph
         </button> */}
 
-        <button onClick={this.handleClickAdd} className="btn-style">
+        {/* <button onClick={this.handleClickAdd} className="btn-style">
           Add playlist
-        </button>
-
-        <hr />
+        </button> */}
 
         <h1>Your playlists</h1>
 
         {this.state.playlists.map((p, index) => (
           <div className="user-playlists-wrapper" key={index}>
             <SpotifyPlayer uri={p.uri} size="large" view="list" theme="black" />
-            <div>
-              <button
-                onClick={this.handleClickRemove}
-                // uri={p.uri}
-                className="btn-style"
-              >
-                Remove
-              </button>
-            </div>
+            <div />
           </div>
         ))}
       </div>
