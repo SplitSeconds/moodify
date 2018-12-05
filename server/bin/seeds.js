@@ -24,7 +24,7 @@ spotifyApi
   .clientCredentialsGrant()
   .then(data => {
     spotifyApi.setAccessToken(data.body["access_token"]);
-    //find by ID and update and append getTrack
+    //find by ID and update
     Song.deleteMany()
       .then(() => {
         return Song.create(songs);
@@ -39,15 +39,19 @@ spotifyApi
         );
         Promise.all(getTrackPromises).then(arrayData => {
           for (let i = 0; i < arrayData.length; i++) {
+            Song.updateOne({
+              name: arrayData[i].body.name
+            });
+
             console.log(arrayData[i].body.name);
           }
         });
-        spotifyApi
-          .getTrack(songCreated.id)
-          .then(data => {
-            console.log("data", data.body);
-          })
-          .catch(err => console.log("ERROR", err));
+        // spotifyApi
+        //   .getTrack(songCreated.id)
+        //   .then(data => {
+        //     console.log("data", data.body);
+        //   })
+        // .catch(err => console.log("ERROR", err));
       })
       .then(() => {
         // Close properly the connection to Mongoose
