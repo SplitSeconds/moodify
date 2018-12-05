@@ -94,6 +94,8 @@ body {
   p {
     font-size: 1.2em;
   }
+  display: flex;
+  flex-direction: column;
 }
 
 // --------------------
@@ -157,11 +159,17 @@ body {
 
 .form-wrapper {
   display: flex;
-  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  margin: 0 15%;
 }
 
 .form {
-  width: 70%;
+  width: 100%;
+}
+
+.input-range {
+  margin-bottom: 15px;
 }
 
 .input-range__label-container {
@@ -172,5 +180,23 @@ body {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+/* Songs preview -------------------- */
+.songs-preview-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+/* ------------------------------- */
+/* Media Queries ----------------- */
+
+@media only screen and (min-width: 1080px) {
+  .form-wrapper {
+    margin: 0 25%;
+  }
 }

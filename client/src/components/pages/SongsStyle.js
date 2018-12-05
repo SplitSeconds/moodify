@@ -8,18 +8,10 @@ class SongsStyle extends Component {
     super(props);
     this.state = {
       danceability: 0.7,
-      valence: 0.3,
-      energy: 0.5,
-      acousticness: "",
+      energy: 0.3,
+      acousticness: 0.5,
       moreSongs: [],
       filtered: []
-
-      // danceability: 0.7,
-      // energy: 0.3,
-      // valence: 0.5,
-      // // acousticness: 0.5,
-      // moreSongs: [],
-      // filtered: []
     };
   }
   getAllSongs = () => {
@@ -43,8 +35,8 @@ class SongsStyle extends Component {
         // a score is added, the closer score and 0 are, the better it is
         let score =
           Math.abs(song.danceability - this.state.danceability) +
-          Math.abs(song.energy + this.state.energy) +
-          Math.abs(song.acousticness + this.state.acousticness);
+          Math.abs(song.energy - this.state.energy) +
+          Math.abs(song.acousticness - this.state.acousticness);
         return {
           ...song,
           score: score
@@ -54,182 +46,70 @@ class SongsStyle extends Component {
       .slice(0, 10);
 
     return (
-      <div className="test">
-        <div className="form-wrapper">
-          <form className="form">
-            <div className="form-label">
-              <span>Slow</span>
-              <span>Dancey</span>
-            </div>
-            <InputRange
-              maxValue={1}
-              minValue={0}
-              step={0.01}
-              name="danceability"
-              value={this.state.danceability}
-              onChange={e => {
-                this.handleInput(e);
-              }}
-              onChange={danceability => this.setState({ danceability })}
-              onChangeComplete={this.getAllSongs}
-              // console.log("danceability: " + danceability);
-            />
+      <div className="form-wrapper">
+        <form className="form">
+          <div className="form-label">
+            <span>Slow</span>
+            <span>Dancey</span>
+          </div>
+          <InputRange
+            maxValue={1}
+            minValue={0}
+            step={0.01}
+            name="danceability"
+            value={this.state.danceability}
+            onChange={danceability => this.setState({ danceability })}
+            onChangeComplete={this.getAllSongs}
+            // {danceability => console.log("value1: " + danceability)}
+          />
 
-            <div className="form-label">
-              <span>Moody</span>
-              <span>Cheerful</span>
-            </div>
-            <InputRange
-              maxValue={1}
-              minValue={0}
-              step={0.01}
-              value={this.state.valence}
-              onChange={valence => this.setState({ valence })}
-              onChangeComplete={valence => console.log("valence" + valence)}
-            />
+          <div className="form-label">
+            <span>Moody</span>
+            <span>Cheerful</span>
+          </div>
+          <InputRange
+            maxValue={1}
+            minValue={0}
+            step={0.01}
+            name="danceability"
+            value={this.state.energy}
+            onChange={energy => this.setState({ energy })}
+            onChangeComplete={this.getAllSongs}
+          />
+          {/* {energy => console.log("value1: " + energy)} */}
 
-            <div className="form-label">
-              <span>Chill</span>
-              <span>Aggressive</span>
-            </div>
-            <InputRange
-              maxValue={1}
-              minValue={0}
-              step={0.01}
-              value={this.state.energy}
-              onChange={energy => this.setState({ energy })}
-              onChangeComplete={energy => console.log("energy" + energy)}
-            />
-            <br />
-            <button onClick={e => this.handleClick(e)} className="btn-style">
-              Get playlist
-            </button>
-          </form>
-        </div>
+          <div className="form-label">
+            <span>Chill</span>
+            <span>Aggressive</span>
+          </div>
+          <InputRange
+            maxValue={1}
+            minValue={0}
+            step={0.01}
+            name="danceability"
+            value={this.state.acousticness}
+            onChange={acousticness => this.setState({ acousticness })}
+            onChangeComplete={this.getAllSongs}
+          />
+          {/* {acousticness => console.log("value1: " + acousticness)} */}
+        </form>
 
-        {/* <div className="Songs">
-          <form>
-            Danceability:{" "}
-            <input
-              className="input-field"
-              type="number"
-              name="danceability"
-              value={this.state.danceability}
-              onChange={e => {
-                this.handleInput(e);
-              }}
-            />{" "}
-            <br />
-            Energy:{" "}
-            <input
-              className="input-field"
-              type="number"
-              name="energy"
-              value={this.state.energy}
-              onChange={e => {
-                this.handleInput(e);
-              }}
-            />{" "}
-            <br />
-            Acousticness:{" "}
-            <input
-              className="input-field"
-              type="number"
-              name="acousticness"
-              value={this.state.acousticness}
-              onChange={e => {
-                this.handleInput(e);
-              }}
-            />{" "}
-            <br />
-          </form>
-
-          {filteredAcoustic.map(song => (
-            <div>
-              <h2>{song._id}</h2>
-            </div>
-          ))}
-          <button onClick={this.getAllSongs} className="btn-style">
-            Preview Songs
-          </button>
-        </div>
-        <div className="Songs">
-          <form>
-            Danceability:{" "}
-            <InputRange
-              maxValue={1}
-              minValue={0}
-              step={0.01}
-              name="danceability"
-              value={this.state.danceability}
-              onChange={danceability => this.setState({ danceability })}
-              onChangeComplete={danceability =>
-                console.log("value1: " + danceability)
-              }
-            />
-            <input
-              className="input-field"
-              type="number"
-              name="danceability"
-              value={this.state.danceability}
-              onChange={e => {
-                this.handleInput(e);
-              }}
-            />{" "}
-            <br />
-            Energy:{" "}
-            <InputRange
-              maxValue={1}
-              minValue={0}
-              step={0.01}
-              name="danceability"
-              value={this.state.energy}
-              onChange={energy => this.setState({ energy })}
-              onChangeComplete={energy => console.log("value1: " + energy)}
-            />
-            <input
-              className="input-field"
-              type="number"
-              name="energy"
-              value={this.state.energy}
-              onChange={e => {
-                this.handleInput(e);
-              }}
-            />{" "}
-            <br />
-            Acousticness:{" "}
-            <InputRange
-              maxValue={1}
-              minValue={0}
-              step={0.01}
-              name="danceability"
-              value={this.state.acousticness}
-              onChange={acousticness => this.setState({ acousticness })}
-              onChangeComplete={acousticness =>
-                console.log("value1: " + acousticness)
-              }
-            />
-            <input
-              className="input-field"
-              type="number"
-              name="acousticness"
-              value={this.state.acousticness}
-              onChange={e => {
-                this.handleInput(e);
-              }}
-            />{" "}
-            <br />
-          </form>
-
+        <div className="songs-preview-container">
           {filtered.map(song => (
             <div>
               <h2>{song._id}</h2>
+              <button>remove item</button>
+              <div>
+                <img>{song.albumArt}</img>
+                <h5>{song.title}</h5>
+                <h5>{song.artistName}</h5>
+              </div>
             </div>
           ))}
-          <button onClick={this.getAllSongs} className="btn-style">
-            Preview Songs
-          </button>
-        </div> */}
+        </div>
+        {/* <button onClick={this.getAllSongs} className="btn-style temp-btn">
+          Preview Songs
+        </button> */}
       </div>
     );
   }
