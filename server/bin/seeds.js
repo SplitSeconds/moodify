@@ -30,21 +30,24 @@ spotifyApi
         return Song.create(songs);
       })
       .then(songCreated => {
-        console.log(
-          `${songCreated.length} song created with the following id:`
-        );
-        console.log(songCreated.map(u => u._id));
+        // console.log(
+        //   `${songCreated.length} song created with the following id:`
+        // );
+        console.log(songCreated.map(u => u.name));
         let getTrackPromises = songCreated.map(songCreated =>
           spotifyApi.getTrack(songCreated.id)
         );
         Promise.all(getTrackPromises).then(arrayData => {
           for (let i = 0; i < arrayData.length; i++) {
-            Song.updateOne({
-              name: arrayData[i].body.name
+            Song.findByIdAndUpdate(songCreated.id, {
+              $set: {
+                name: "hi"
+                // name: arrayData[i].body.name
+              }
             });
-
-            console.log(arrayData[i].body.name);
+            console.log("here are the names " + arrayData[i].body.name);
           }
+          console.log(songCreated.map(u => u.name));
         });
         // spotifyApi
         //   .getTrack(songCreated.id)

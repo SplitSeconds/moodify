@@ -46,7 +46,7 @@ router.get("/getsongs", (req, res, next) => {
   Song.find()
     .then(data => {
       let songs = data;
-      console.log(data);
+      // console.log(data);
       res.json({ songs });
     })
     .catch(err => next(err));
@@ -179,13 +179,18 @@ router.get("/playlists/graph", isLoggedIn, (req, res, next) => {
             };
             arr.push(obj);
             songIDs.push(p.track.id);
-            
+
             //console.log("SONG IDs", songIDs)
             spotifyApi.getAudioFeaturesForTracks(songIDs).then(data => {
-              console.log("RECENT TRACKS AUDIO FEATURES", data.body, "NAME", arr);
+              console.log(
+                "RECENT TRACKS AUDIO FEATURES",
+                data.body,
+                "NAME",
+                arr
+              );
               let info = data.body.audio_features;
               console.log(
-                "FUUUUUUUCCCCCCCKKKKKKKK " + data.body.audio_features.length 
+                "FUUUUUUUCCCCCCCKKKKKKKK " + data.body.audio_features.length
               );
 
               if (data.body.audio_features.length >= 20) {

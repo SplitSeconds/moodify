@@ -26,7 +26,7 @@ class Songs extends Component {
   // }
   getAllSongs = () => {
     api.getAllSongs().then(moreSongs => {
-      console.log(moreSongs);
+      // console.log(moreSongs);
       this.setState({
         moreSongs: moreSongs.songs
       });
@@ -40,34 +40,20 @@ class Songs extends Component {
   };
 
   render() {
-    let filtered = this.state.moreSongs.filter(song => {
-      if (song.danceability > this.state.danceability) {
-        return true;
-      } else return false;
-    });
-    let filteredEnergy = filtered.filter(song => {
-      if (song.energy > this.state.energy) {
-        return true;
-      } else return false;
-    });
-    let filteredAcoustic = filteredEnergy.filter(song => {
-      if (song.energy > this.state.acousticness) {
-        return true;
-      } else return false;
-    });
-
-    //here is the score algorithm...
-    // this.state.moreSongs
-    //   .map(song => {
-    //     let score = Math.abs(song.danceability - this.state.danceability);
-    //     return {
-    //       ...score,
-    //       score: score
-    //     };
-    //   })
-    //   .sort((a, b) => a.score - b.score)
-    //   .slice(0, 10)
-    //   .map(songs => songs._id);
+    let filtered = this.state.moreSongs
+      .map(song => {
+        // a score is added, the closer score and 0 are, the better it is
+        let score =
+          Math.abs(song.danceability - this.state.danceability) +
+          Math.abs(song.energy + this.state.energy) +
+          Math.abs(song.acousticness + this.state.acousticness);
+        return {
+          ...song,
+          score: score
+        };
+      })
+      .sort((a, b) => a.score - b.score)
+      .slice(0, 10);
 
     return (
       <div className="Songs">
@@ -107,7 +93,7 @@ class Songs extends Component {
           <br />
         </form>
 
-        {filteredAcoustic.map(song => (
+        {filtered.map(song => (
           <div>
             <h2>{song._id}</h2>
           </div>
