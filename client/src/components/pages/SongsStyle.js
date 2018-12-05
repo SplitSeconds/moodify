@@ -11,14 +11,16 @@ class SongsStyle extends Component {
       energy: 0.3,
       acousticness: 0.5,
       moreSongs: [],
-      filtered: []
+      filtered: [],
+      buttonVisible: false
     };
   }
   getAllSongs = () => {
     api.getAllSongs().then(moreSongs => {
       console.log(moreSongs);
       this.setState({
-        moreSongs: moreSongs.songs
+        moreSongs: moreSongs.songs,
+        buttonVisible: true
       });
     });
   };
@@ -94,22 +96,31 @@ class SongsStyle extends Component {
           {/* {acousticness => console.log("value1: " + acousticness)} */}
         </form>
 
-        <div className="songs-preview-container">
-          {filtered.map(song => (
-            <div>
-              <h2>{song._id}</h2>
-              <button>remove item</button>
-              <div>
-                <img>{song.albumArt}</img>
-                <h5>{song.title}</h5>
-                <h5>{song.artistName}</h5>
+        <div className="songs-preview-wrapper">
+          <div className="songs-preview-container">
+            {filtered.map(song => (
+              <div className="songs-preview-section">
+                <div>
+                  <h4>{song._id}</h4>
+                  {/* <button>remove item</button> */}
+                </div>
+                <div>
+                  <img>{song.albumArt}</img>
+                  <h5>{song.title}</h5>
+                  <h5>{song.artistName}</h5>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-        {/* <button onClick={this.getAllSongs} className="btn-style temp-btn">
+            ))}
+          </div>
+          {/* <button onClick={this.getAllSongs} className="btn-style temp-btn">
           Preview Songs
         </button> */}
+          <div className="create-playlist-btn-wrapper">
+            <button className="btn-style create-playlist-btn">
+              Create playlist
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

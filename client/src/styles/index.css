@@ -127,6 +127,9 @@ body {
   margin-top: 20px;
   margin-bottom: 15px; }
 
+.input-range__track--background {
+  background-color: #3f51b575 !important; }
+
 /* Songs preview -------------------- */
 .songs-preview-container {
   display: flex;
@@ -134,6 +137,26 @@ body {
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 15px; }
+
+.songs-preview-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30px; }
+
+.songs-preview-section {
+  display: flex; }
+
+.songs-preview-section h4 {
+  margin: 0; }
+
+.create-playlist-btn-wrapper {
+  display: flex;
+  align-items: center; }
+
+.create-playlist-btn {
+  width: 200px;
+  height: 30px; }
 
 /* ------------------------------- */
 /* Media Queries ----------------- */
