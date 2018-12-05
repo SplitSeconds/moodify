@@ -39,13 +39,13 @@ export default class Playlists extends Component {
     api.getSpoftiyUserData().then(data =>
       //console.log("Spotify data", data, "Spotify pic", data.body.images[0].url)
       this.setState({
-        name: data.body.display_name
-        // profilePic: data.body.images[0].url
+        name: data.body.display_name,
+        profilePic: data.body.images[0].url
       })
     );
 
     api.getPlaylists().then(playlists => {
-      console.log(playlists);
+      //console.log(playlists);
       this.setState({
         playlists
       });

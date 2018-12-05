@@ -165,13 +165,13 @@ router.get("/playlists/graph", isLoggedIn, (req, res, next) => {
               //console.log("RECENT TRACKS AUDIO FEATURES", data.body, "NAME", arr);
               let info = data.body.audio_features;
   
-              console.log("FUUUUUUUCCCCCCCKKKKKKKK " + data.body.audio_features.length);
+              //console.log("FUUUUUUUCCCCCCCKKKKKKKK " + data.body.audio_features.length);
               // console.log("HEREEEEE ISSSS First " + arrayPass[0]);
               // console.log("HEREEEEE ISSSS Second " + arrayPass[1]);
               //console.log("THIIIIIIIIIIS" + arrayPass.length);
 
               arrayPass.push(info, arr);
-              console.log("MEEEEEEEEEEEH" + arrayPass.length)
+              //console.log("MEEEEEEEEEEEH" + arrayPass.length)
 
               if (data.body.audio_features.length >= 20) {
               

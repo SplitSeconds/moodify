@@ -9,6 +9,7 @@ import Slider from "../Slider";
 import "react-input-range/lib/css/index.css";
 import "../../styles/index.scss";
 
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -117,7 +118,7 @@ class Home extends Component {
             uri="spotify:album:7M0Zg2A3mrTOOqfVyRUjb8"
             size="large"
             view="List"
-            theme="dark"
+            theme="black"
           />
         </div>
       </div>

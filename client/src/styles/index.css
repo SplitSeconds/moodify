@@ -60,6 +60,7 @@ body {
 .input-field {
   width: 20vw; }
 
+/* Profile section ---------------------------  */
 .about-container {
   display: flex;
   flex-direction: row;
@@ -70,6 +71,12 @@ body {
   flex-direction: column;
   justify-content: center; }
 
+.about-container-section h3 {
+  margin-top: 2px; }
+
+.about-container-section p {
+  margin-top: 2px; }
+
 .pic-div {
   display: flex;
   justify-content: center;
@@ -77,10 +84,11 @@ body {
 
 .profile-pic {
   object-fit: cover;
-  height: 150px;
-  width: 150px;
-  border-radius: 100px; }
+  height: 100px;
+  width: 100px;
+  border-radius: 50px; }
 
+/* Graph ---------------------------  */
 .graph {
   display: flex;
   justify-content: center;
@@ -91,6 +99,23 @@ body {
   width: 300px;
   margin-right: 25px; }
 
+.rv-xy-plot__axis__tick__text {
+  color: white; }
+
+.rv-xy-plot__grid-lines__line {
+  stroke: gray;
+  stroke-width: 1; }
+
+.rv-xy-plot__axis__line {
+  stroke: black !important; }
+
+.rv-xy-plot__axis {
+  margin-right: 10px !important; }
+
+.rv-xy-plot__axis--vertical {
+  margin-right: 10px !important; }
+
+/* Animation ---------------------------  */
 .gif {
   width: 20vw; }
 
