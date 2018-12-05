@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import api from "../../api";
+import InputRange from "react-input-range";
 
 class Songs extends Component {
   constructor(props) {
@@ -45,8 +46,8 @@ class Songs extends Component {
         // a score is added, the closer score and 0 are, the better it is
         let score =
           Math.abs(song.danceability - this.state.danceability) +
-          Math.abs(song.energy + this.state.energy) +
-          Math.abs(song.acousticness + this.state.acousticness);
+          Math.abs(song.energy - this.state.energy) +
+          Math.abs(song.acousticness - this.state.acousticness);
         return {
           ...song,
           score: score
@@ -59,6 +60,17 @@ class Songs extends Component {
       <div className="Songs">
         <form>
           Danceability:{" "}
+          <InputRange
+            maxValue={1}
+            minValue={0}
+            step={0.01}
+            name="danceability"
+            value={this.state.danceability}
+            onChange={danceability => this.setState({ danceability })}
+            onChangeComplete={danceability =>
+              console.log("value1: " + danceability)
+            }
+          />
           <input
             className="input-field"
             type="number"
@@ -70,6 +82,15 @@ class Songs extends Component {
           />{" "}
           <br />
           Energy:{" "}
+          <InputRange
+            maxValue={1}
+            minValue={0}
+            step={0.01}
+            name="danceability"
+            value={this.state.energy}
+            onChange={energy => this.setState({ energy })}
+            onChangeComplete={energy => console.log("value1: " + energy)}
+          />
           <input
             className="input-field"
             type="number"
@@ -81,6 +102,17 @@ class Songs extends Component {
           />{" "}
           <br />
           Acousticness:{" "}
+          <InputRange
+            maxValue={1}
+            minValue={0}
+            step={0.01}
+            name="danceability"
+            value={this.state.acousticness}
+            onChange={acousticness => this.setState({ acousticness })}
+            onChangeComplete={acousticness =>
+              console.log("value1: " + acousticness)
+            }
+          />
           <input
             className="input-field"
             type="number"

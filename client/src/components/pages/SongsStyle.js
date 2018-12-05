@@ -35,8 +35,8 @@ class SongsStyle extends Component {
         // a score is added, the closer score and 0 are, the better it is
         let score =
           Math.abs(song.danceability - this.state.danceability) +
-          Math.abs(song.energy + this.state.energy) +
-          Math.abs(song.acousticness + this.state.acousticness);
+          Math.abs(song.energy - this.state.energy) +
+          Math.abs(song.acousticness - this.state.acousticness);
         return {
           ...song,
           score: score

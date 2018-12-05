@@ -74,7 +74,7 @@ router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
         .map(song => song.uri); // extract uris
 
       return res.spotifyApi
-        .createPlaylist(req.user.spotifyId, "test anjali " + danceability)
+        .createPlaylist(req.user.spotifyId, "test anjali new" + danceability)
         .then(data => {
           let playlistId = data.body.id;
           return res.spotifyApi.addTracksToPlaylist(playlistId, songUris);
