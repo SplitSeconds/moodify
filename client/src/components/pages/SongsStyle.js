@@ -60,7 +60,9 @@ class SongsStyle extends Component {
             step={0.01}
             name="danceability"
             value={this.state.danceability}
-            onChange={danceability => this.setState({ danceability })}
+            onChange={danceability =>
+              this.setState({ danceability, buttonVisible: true })
+            }
             onChangeComplete={this.getAllSongs}
             // {danceability => console.log("value1: " + danceability)}
           />
