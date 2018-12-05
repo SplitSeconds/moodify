@@ -4,16 +4,14 @@ body {
   padding: 0;
   font-family: Muli;
   background-color: black;
-  color: white;
-}
+  color: white; }
 
 .btn-style {
   background-color: black;
   color: white;
   border: 1px solid white;
   border-radius: 20px;
-  margin-top: 2vh;
-}
+  margin-top: 2vh; }
 
 .info {
   margin: 20px;
@@ -21,175 +19,145 @@ body {
   border-radius: 10px;
   display: inline-block;
   background-color: #5776e9;
-  color: white;
-}
+  color: white; }
 
 .info.info-danger {
-  background-color: #e73f3f;
-}
+  background-color: #e73f3f; }
 
 .App {
-  text-align: center;
-}
-.App .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-.App .App-header {
-  background-color: black;
-  padding: 20px;
-  color: white;
-}
-.App .App-header a {
-  color: white;
-  padding: 0 5px;
-  text-decoration: unset;
-}
-.App .App-header a.active {
-  font-weight: bold;
-}
-.App .App-title {
-  font-size: 1.5em;
-}
-.App .App-intro {
-  font-size: large;
-}
+  text-align: center; }
+  .App .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px; }
+  .App .App-header {
+    background-color: black;
+    padding: 20px;
+    color: white; }
+    .App .App-header a {
+      color: white;
+      padding: 0 5px;
+      text-decoration: unset; }
+    .App .App-header a.active {
+      font-weight: bold; }
+  .App .App-title {
+    font-size: 1.5em; }
+  .App .App-intro {
+    font-size: large; }
 
 @keyframes App-logo-spin {
   from {
-    transform: rotate(0deg);
-  }
+    transform: rotate(0deg); }
   to {
-    transform: rotate(360deg);
-  }
-}
+    transform: rotate(360deg); } }
 
 .Home {
   display: flex;
-  flex-direction: column;
-}
-.Home p {
-  font-size: 1.2em;
-}
+  flex-direction: column; }
+  .Home p {
+    font-size: 1.2em; }
 
 .Secret .result {
   font-size: 1.2em;
-  color: #32c3ff;
-}
+  color: #32c3ff; }
 
 .input-field {
-  width: 20vw;
-}
+  width: 20vw; }
 
 /* Profile section ---------------------------  */
 .about-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-}
+  justify-content: center; }
 
 .about-container-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-}
+  justify-content: center; }
 
 .about-container-section h3 {
-  margin-top: 2px;
-}
+  margin-top: 2px; }
 
 .about-container-section p {
-  margin-top: 2px;
-}
+  margin-top: 2px; }
 
 .pic-div {
   display: flex;
   justify-content: center;
-  margin-right: 2vw;
-}
+  margin-right: 2vw; }
 
 .profile-pic {
   object-fit: cover;
   height: 100px;
   width: 100px;
-  border-radius: 50px;
-}
+  border-radius: 50px; }
 
 /* Graph ---------------------------  */
 .graph {
   display: flex;
   justify-content: center;
   align-content: center;
-  align-items: center;
-}
+  align-items: center; }
 
 .graph-box {
   width: 300px;
-  margin-right: 25px;
-}
+  margin-right: 25px; }
 
 .rv-xy-plot__axis__tick__text {
-  color: white;
-}
+  color: white; }
 
 .rv-xy-plot__grid-lines__line {
   stroke: gray;
-  stroke-width: 1;
-}
+  stroke-width: 1; }
 
 .rv-xy-plot__axis__line {
-  stroke: black !important;
-}
+  stroke: black !important; }
 
 .rv-xy-plot__axis {
-  margin-right: 10px !important;
-}
+  margin-right: 10px !important; }
 
 .rv-xy-plot__axis--vertical {
-  margin-right: 10px !important;
-}
+  margin-right: 10px !important; }
 
 /* Animation ---------------------------  */
+.Playlist h3 {
+  margin-top: 10px;
+  margin-bottom: 30px; }
+
+.Playlist h2 {
+  margin-bottom: 0px; }
+
 /* User playlists section   */
 .user-playlists-wrapper {
   display: inline-block;
-  margin: 30px;
-}
+  margin: 30px; }
 
 /* Slider ---------------------------  */
 .slider-wrapper {
-  width: 100%;
-}
+  width: 100%; }
 
 .form-wrapper {
   display: flex;
   align-content: center;
   flex-direction: column;
-  margin: 0 15%;
-}
+  margin: 0 15%; }
 
 .form {
-  width: 100%;
-}
+  width: 100%; }
 
 .input-range {
-  margin-bottom: 15px;
-}
+  margin-bottom: 15px; }
 
 .input-range__label-container {
-  display: none;
-}
+  display: none; }
 
 .form-label {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  margin-bottom: 15px;
-}
+  margin-bottom: 15px; }
 
 .input-range__track--background {
-  background-color: #3f51b567 !important;
-}
+  background-color: #3f51b567 !important; }
 
 /* Songs preview -------------------- */
 .songs-preview-container {
@@ -197,38 +165,30 @@ body {
   flex-direction: column;
   justify-content: center;
   margin-top: 20px;
-  margin-bottom: 15px;
-}
+  margin-bottom: 15px; }
 
 .songs-preview-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 30px;
-}
+  margin-top: 30px; }
 
 .songs-preview-section {
-  display: flex;
-}
+  display: flex; }
 
 .songs-preview-section h4 {
-  margin: 0;
-}
+  margin: 0; }
 
 .create-playlist-btn-wrapper {
   display: flex;
-  align-items: center;
-}
+  align-items: center; }
 
 .create-playlist-btn {
   width: 200px;
-  height: 30px;
-}
+  height: 30px; }
 
 /* ------------------------------- */
 /* Media Queries ----------------- */
 @media only screen and (min-width: 1080px) {
   .form-wrapper {
-    margin: 0 25%;
-  }
-}
+    margin: 0 25%; } }
