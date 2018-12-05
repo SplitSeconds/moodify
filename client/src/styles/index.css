@@ -50,8 +50,11 @@ body {
   to {
     transform: rotate(360deg); } }
 
-.Home p {
-  font-size: 1.2em; }
+.Home {
+  display: flex;
+  flex-direction: column; }
+  .Home p {
+    font-size: 1.2em; }
 
 .Secret .result {
   font-size: 1.2em;
@@ -130,10 +133,15 @@ body {
 
 .form-wrapper {
   display: flex;
-  justify-content: center; }
+  align-content: center;
+  flex-direction: column;
+  margin: 0 15%; }
 
 .form {
-  width: 70%; }
+  width: 100%; }
+
+.input-range {
+  margin-bottom: 15px; }
 
 .input-range__label-container {
   display: none; }
@@ -142,4 +150,41 @@ body {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  margin-bottom: 10px; }
+  margin-bottom: 15px; }
+
+.input-range__track--background {
+  background-color: #3f51b575 !important; }
+
+/* Songs preview -------------------- */
+.songs-preview-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 15px; }
+
+.songs-preview-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30px; }
+
+.songs-preview-section {
+  display: flex; }
+
+.songs-preview-section h4 {
+  margin: 0; }
+
+.create-playlist-btn-wrapper {
+  display: flex;
+  align-items: center; }
+
+.create-playlist-btn {
+  width: 200px;
+  height: 30px; }
+
+/* ------------------------------- */
+/* Media Queries ----------------- */
+@media only screen and (min-width: 1080px) {
+  .form-wrapper {
+    margin: 0 25%; } }

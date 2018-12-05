@@ -7,18 +7,20 @@ class SongsStyle extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      danceability: "",
-      energy: "",
-      acousticness: "",
+      danceability: 0.7,
+      energy: 0.3,
+      acousticness: 0.5,
       moreSongs: [],
-      filtered: []
+      filtered: [],
+      buttonVisible: false
     };
   }
   getAllSongs = () => {
     api.getAllSongs().then(moreSongs => {
       console.log(moreSongs);
       this.setState({
-        moreSongs: moreSongs.songs
+        moreSongs: moreSongs.songs,
+        buttonVisible: true
       });
     });
   };
@@ -35,8 +37,8 @@ class SongsStyle extends Component {
         // a score is added, the closer score and 0 are, the better it is
         let score =
           Math.abs(song.danceability - this.state.danceability) +
-          Math.abs(song.energy + this.state.energy) +
-          Math.abs(song.acousticness + this.state.acousticness);
+          Math.abs(song.energy - this.state.energy) +
+          Math.abs(song.acousticness - this.state.acousticness);
         return {
           ...song,
           score: score
@@ -46,31 +48,29 @@ class SongsStyle extends Component {
       .slice(0, 10);
 
     return (
-      <div className="Songs">
-        <form>
-          Danceability:{" "}
+      <div className="form-wrapper">
+        <form className="form">
+          <div className="form-label">
+            <span>Slow</span>
+            <span>Dancey</span>
+          </div>
           <InputRange
             maxValue={1}
             minValue={0}
             step={0.01}
             name="danceability"
             value={this.state.danceability}
-            onChange={danceability => this.setState({ danceability })}
-            onChangeComplete={danceability =>
-              console.log("value1: " + danceability)
+            onChange={danceability =>
+              this.setState({ danceability, buttonVisible: true })
             }
+            onChangeComplete={this.getAllSongs}
+            // {danceability => console.log("value1: " + danceability)}
           />
-          <input
-            className="input-field"
-            type="number"
-            name="danceability"
-            value={this.state.danceability}
-            onChange={e => {
-              this.handleInput(e);
-            }}
-          />{" "}
-          <br />
-          Energy:{" "}
+
+          <div className="form-label">
+            <span>Moody</span>
+            <span>Cheerful</span>
+          </div>
           <InputRange
             maxValue={1}
             minValue={0}
@@ -78,19 +78,14 @@ class SongsStyle extends Component {
             name="danceability"
             value={this.state.energy}
             onChange={energy => this.setState({ energy })}
-            onChangeComplete={energy => console.log("value1: " + energy)}
+            onChangeComplete={this.getAllSongs}
           />
-          <input
-            className="input-field"
-            type="number"
-            name="energy"
-            value={this.state.energy}
-            onChange={e => {
-              this.handleInput(e);
-            }}
-          />{" "}
-          <br />
-          Acousticness:{" "}
+          {/* {energy => console.log("value1: " + energy)} */}
+
+          <div className="form-label">
+            <span>Chill</span>
+            <span>Aggressive</span>
+          </div>
           <InputRange
             maxValue={1}
             minValue={0}
@@ -98,30 +93,36 @@ class SongsStyle extends Component {
             name="danceability"
             value={this.state.acousticness}
             onChange={acousticness => this.setState({ acousticness })}
-            onChangeComplete={acousticness =>
-              console.log("value1: " + acousticness)
-            }
+            onChangeComplete={this.getAllSongs}
           />
-          <input
-            className="input-field"
-            type="number"
-            name="acousticness"
-            value={this.state.acousticness}
-            onChange={e => {
-              this.handleInput(e);
-            }}
-          />{" "}
-          <br />
+          {/* {acousticness => console.log("value1: " + acousticness)} */}
         </form>
 
-        {filtered.map(song => (
-          <div>
-            <h2>{song._id}</h2>
+        <div className="songs-preview-wrapper">
+          <div className="songs-preview-container">
+            {filtered.map(song => (
+              <div className="songs-preview-section">
+                <div>
+                  <h4>{song._id}</h4>
+                  {/* <button>remove item</button> */}
+                </div>
+                <div>
+                  <img>{song.albumArt}</img>
+                  <h5>{song.title}</h5>
+                  <h5>{song.artistName}</h5>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-        <button onClick={this.getAllSongs} className="btn-style">
+          {/* <button onClick={this.getAllSongs} className="btn-style temp-btn">
           Preview Songs
-        </button>
+        </button> */}
+          <div className="create-playlist-btn-wrapper">
+            <button className="btn-style create-playlist-btn">
+              Create playlist
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
