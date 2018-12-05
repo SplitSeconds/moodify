@@ -133,30 +133,12 @@ router.post("/playlists", initSpotifyWithLoggedInUser, (req, res, next) => {
     });
 });
 
-//Getting Users saved tracks
-// router.get("/playlists/savedtracks", isLoggedIn, (req, res, next) => {
-//     const spotifyApi = new SpotifyWebApi();
-//     console.log("Hi saved tracks");
-//     spotifyApi.setAccessToken(req.user.accessToken);
-//     spotifyApi.setRefreshToken(req.user.refreshToken);
-//     spotifyApi
-//       .getMySavedTracks(req.user.spotifyId, {
-//         limit: 2,
-//         offset: 1
-//       })
-//       .then(data => {
-//         console.log("DEBUG data", data.body.items);
-//         res.json(data);
-//       })
-//       .catch(err => {
-//         console.log("DEBUG err", err);
-//       });
-//       });
-
 //-------------------------------------------------
 //Nele is testing Users recently play tracks start
 //-------------------------------------------------
 router.get("/playlists/graph", isLoggedIn, (req, res, next) => {
+  var arr = [];
+  var arrayPass = [];
   const spotifyApi = new SpotifyWebApi();
   spotifyApi.setAccessToken(req.user.accessToken);
   spotifyApi.setRefreshToken(req.user.refreshToken);
@@ -169,28 +151,32 @@ router.get("/playlists/graph", isLoggedIn, (req, res, next) => {
           limit: 20
         })
         .then(function(data) {
-          var arr = [],
-            songIDs = [];
+          songIDs = [];
           data.body.items.forEach(function(p) {
             var obj = {
               id: p.track.id,
               played_at: p.played_at,
               name: p.track.name
             };
-            arr.push(obj);
+            arr.push(obj.name);
             songIDs.push(p.track.id);
-            
-            //console.log("SONG IDs", songIDs)
+
             spotifyApi.getAudioFeaturesForTracks(songIDs).then(data => {
-              console.log("RECENT TRACKS AUDIO FEATURES", data.body, "NAME", arr);
+              //console.log("RECENT TRACKS AUDIO FEATURES", data.body, "NAME", arr);
               let info = data.body.audio_features;
-              console.log(
-                "FUUUUUUUCCCCCCCKKKKKKKK " + data.body.audio_features.length 
-              );
+  
+              console.log("FUUUUUUUCCCCCCCKKKKKKKK " + data.body.audio_features.length);
+              // console.log("HEREEEEE ISSSS First " + arrayPass[0]);
+              // console.log("HEREEEEE ISSSS Second " + arrayPass[1]);
+              //console.log("THIIIIIIIIIIS" + arrayPass.length);
+
+              arrayPass.push(info, arr);
+              console.log("MEEEEEEEEEEEH" + arrayPass.length)
 
               if (data.body.audio_features.length >= 20) {
-                res.json(info);
-                //res.json(arr);
+              
+                res.json(arrayPass);
+                //res.json(info);
               }
             });
           });
