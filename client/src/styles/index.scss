@@ -12,8 +12,6 @@ $primary: #32c3ff;
 // @import 'bootstrap/scss/bootstrap';
 // ----------------------------------------
 
-//@import "~react-vis/dist/style";
-
 //----------- Graph colors:
 //Electric Purple (bright purple / stroke) "8A2BE2"
 //Ultra Violet (less bright / orb) "5F4B8B"
@@ -172,9 +170,9 @@ body {
   margin-right: 10px !important;
 }
 /* Animation ---------------------------  */
-.gif {
-  width: 20vw;
-}
+// .gif {
+//   width: 20vw;
+// }
 
 /* User playlists section   */
 .user-playlists-wrapper {

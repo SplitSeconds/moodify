@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../../styles/index.css";
 import 'react-vis/dist/style.css';
 import api from "../../api";
-import { XYPlot, LineMarkSeries, HorizontalGridLines, VerticalGridLines, XAxis, YAxis  } from "react-vis";
+import { XYPlot, LineMarkSeries, HorizontalGridLines, XAxis, YAxis  } from "react-vis";
 
 export default class Graph extends Component {
   constructor(props) {
@@ -203,8 +203,6 @@ export default class Graph extends Component {
       <div className="graph">
         <div className="graph-box">
           <XYPlot height={250} width={355}>
-          {/* <VerticalGridLines />
-          <HorizontalGridLines /> */}
           <XAxis />
           <YAxis />
             <LineMarkSeries
