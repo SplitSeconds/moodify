@@ -16,7 +16,7 @@ const bcryptSalt = 10;
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_ID,
   clientSecret: process.env.SPOTIFY_SECRET,
-  URL: "http://localhost:5000/api/spotifycallback-login/callback"
+  URL: process.env.BACKEND_URI + "/api/spotifycallback-login/callback"
 });
 
 spotifyApi.clientCredentialsGrant().then(data => {

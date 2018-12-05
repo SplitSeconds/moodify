@@ -6,7 +6,7 @@ import SpotifyPlayer from "react-spotify-player";
 // import Animation from "./Animation";
 import Gif from "../../animation/Moodify_Logo.svg";
 import Slider from "../Slider";
-import "react-input-range/lib/css/index.css";
+// import "react-input-range/lib/css/index.css";
 import "../../styles/index.scss";
 
 class Home extends Component {
