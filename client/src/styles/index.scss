@@ -2,9 +2,8 @@
 // Definition of variables
 $primary: #32c3ff;
 
-
 //Import font
-@import url('https://fonts.googleapis.com/css?family=Muli');
+@import url("https://fonts.googleapis.com/css?family=Muli");
 
 // ----------------------------------------
 // To install Boostrap:
@@ -106,15 +105,15 @@ body {
   }
 }
 
-.input-field{
+.input-field {
   width: 20vw;
 }
-.about-container{
+.about-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.about-container-section{
+.about-container-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -138,10 +137,40 @@ body {
   align-items: center;
 }
 .graph-box {
-  width:300px;
-  border: 1px solid white;
+  width: 300px;
+  margin-right: 25px;
 }
 .gif {
   width: 20vw;
- 
+}
+
+/* User playlists section   */
+.user-playlists-wrapper {
+  display: inline-block;
+  margin: 30px;
+}
+
+/* Slider ---------------------------  */
+.slider-wrapper {
+  width: 100%;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  width: 70%;
+}
+
+.input-range__label-container {
+  display: none;
+}
+
+.form-label {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
