@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import api from "../../api";
+import SpotifyPlayer from "react-spotify-player";
 import Graph from "./Graph";
 import EditProfile from "./EditProfile";
+import "../../styles/index.css";
 
 export default class Playlists extends Component {
   constructor(props) {
@@ -14,13 +16,7 @@ export default class Playlists extends Component {
       recenttracks: []
     };
   }
-  handleClickGet = () => {
-    api.getPlaylists().then(playlists => {
-      this.setState({
-        playlists
-      });
-    });
-  };
+
   handleClickAdd = () => {
     api.addPlaylistWithFixedName().then(data => {
       console.log(data);
@@ -28,7 +24,6 @@ export default class Playlists extends Component {
   };
   handleClickGraph = () => {
     // display users mood graph on click
-
     // Old code to test
     // api.getMyRecentlyPlayedTracks().then(recenttracks => {
     //   console.log(recenttracks);
@@ -48,6 +43,13 @@ export default class Playlists extends Component {
         // profilePic: data.body.images[0].url
       })
     );
+
+    api.getPlaylists().then(playlists => {
+      console.log(playlists);
+      this.setState({
+        playlists
+      });
+    });
   }
   render() {
     return (
@@ -77,19 +79,16 @@ export default class Playlists extends Component {
           Create graph
         </button> */}
 
-        <h1>Playlists</h1>
-        <button onClick={this.handleClickGet} className="btn-style">
-          Get playlists
-        </button>
-        <button onClick={this.handleClickAdd} className="btn-style">
+        {/* <button onClick={this.handleClickAdd} className="btn-style">
           Add playlist
-        </button>
-        
-        <hr />
-        {this.state.playlists.map(p => (
-          <div>
-            <h2>{p.name}</h2>
-            <a href={p.external_urls.spotify}>Link</a>
+        </button> */}
+
+        <h1>Your playlists</h1>
+
+        {this.state.playlists.map((p, index) => (
+          <div className="user-playlists-wrapper" key={index}>
+            <SpotifyPlayer uri={p.uri} size="large" view="list" theme="black" />
+            <div />
           </div>
         ))}
       </div>

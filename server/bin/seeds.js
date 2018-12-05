@@ -24,30 +24,37 @@ spotifyApi
   .clientCredentialsGrant()
   .then(data => {
     spotifyApi.setAccessToken(data.body["access_token"]);
-    //find by ID and update and append getTrack
+    //find by ID and update
     Song.deleteMany()
       .then(() => {
         return Song.create(songs);
       })
       .then(songCreated => {
-        console.log(
-          `${songCreated.length} song created with the following id:`
-        );
-        console.log(songCreated.map(u => u._id));
+        // console.log(
+        //   `${songCreated.length} song created with the following id:`
+        // );
+        console.log(songCreated.map(u => u.name));
         let getTrackPromises = songCreated.map(songCreated =>
           spotifyApi.getTrack(songCreated.id)
         );
         Promise.all(getTrackPromises).then(arrayData => {
           for (let i = 0; i < arrayData.length; i++) {
-            console.log(arrayData[i].body.name);
+            Song.findByIdAndUpdate(songCreated.id, {
+              $set: {
+                name: "hi"
+                // name: arrayData[i].body.name
+              }
+            });
+            console.log("here are the names " + arrayData[i].body.name);
           }
+          console.log(songCreated.map(u => u.name));
         });
-        spotifyApi
-          .getTrack(songCreated.id)
-          .then(data => {
-            console.log("data", data.body);
-          })
-          .catch(err => console.log("ERROR", err));
+        // spotifyApi
+        //   .getTrack(songCreated.id)
+        //   .then(data => {
+        //     console.log("data", data.body);
+        //   })
+        // .catch(err => console.log("ERROR", err));
       })
       .then(() => {
         // Close properly the connection to Mongoose

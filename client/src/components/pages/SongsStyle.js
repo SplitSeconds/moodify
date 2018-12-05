@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import InputRange from "react-input-range";
+import "react-input-range/lib/css/index.css";
 import api from "../../api";
 
-class Songs extends Component {
+class SongsStyle extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,21 +14,9 @@ class Songs extends Component {
       filtered: []
     };
   }
-  // handleInputChange(stateFieldName, event) {
-  //   let newState = {};
-  //   newState[stateFieldName] = event.target.value;
-
-  //   this.setState(newState);
-  // }
-  // handleClick(e) {
-  //   e.preventDefault();
-  //   let data = {
-  //     danceability: this.state.danceability
-  //   };
-  // }
   getAllSongs = () => {
     api.getAllSongs().then(moreSongs => {
-      // console.log(moreSongs);
+      console.log(moreSongs);
       this.setState({
         moreSongs: moreSongs.songs
       });
@@ -59,6 +49,17 @@ class Songs extends Component {
       <div className="Songs">
         <form>
           Danceability:{" "}
+          <InputRange
+            maxValue={1}
+            minValue={0}
+            step={0.01}
+            name="danceability"
+            value={this.state.danceability}
+            onChange={danceability => this.setState({ danceability })}
+            onChangeComplete={danceability =>
+              console.log("value1: " + danceability)
+            }
+          />
           <input
             className="input-field"
             type="number"
@@ -70,6 +71,15 @@ class Songs extends Component {
           />{" "}
           <br />
           Energy:{" "}
+          <InputRange
+            maxValue={1}
+            minValue={0}
+            step={0.01}
+            name="danceability"
+            value={this.state.energy}
+            onChange={energy => this.setState({ energy })}
+            onChangeComplete={energy => console.log("value1: " + energy)}
+          />
           <input
             className="input-field"
             type="number"
@@ -81,6 +91,17 @@ class Songs extends Component {
           />{" "}
           <br />
           Acousticness:{" "}
+          <InputRange
+            maxValue={1}
+            minValue={0}
+            step={0.01}
+            name="danceability"
+            value={this.state.acousticness}
+            onChange={acousticness => this.setState({ acousticness })}
+            onChangeComplete={acousticness =>
+              console.log("value1: " + acousticness)
+            }
+          />
           <input
             className="input-field"
             type="number"
@@ -106,4 +127,4 @@ class Songs extends Component {
   }
 }
 
-export default Songs;
+export default SongsStyle;

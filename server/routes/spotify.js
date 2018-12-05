@@ -46,7 +46,7 @@ router.get("/getsongs", (req, res, next) => {
   Song.find()
     .then(data => {
       let songs = data;
-      console.log(data);
+      // console.log(data);
       res.json({ songs });
     })
     .catch(err => next(err));
