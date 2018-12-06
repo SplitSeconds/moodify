@@ -10,8 +10,10 @@ export default class Playlists extends Component {
     super(props);
     this.state = {
       name: "",
-      // profilePic: "",
-      defaultPic: "../../../build/static/media/default-pic.png",
+      profilePic: "",
+      defaultPic:
+        "https://res.cloudinary.com/dvgji8j2h/image/upload/v1544116918/default-pic.png",
+      // defaultPic: "../../../build/static/media/default-pic.png",
       about: "I like music.",
       playlists: [],
       recenttracks: []
@@ -40,10 +42,18 @@ export default class Playlists extends Component {
   componentDidMount() {
     api.getSpoftiyUserData().then(data =>
       //console.log("Spotify data", data, "Spotify pic", data.body.images[0].url)
-      this.setState({
-        name: data.body.display_name
-        // profilePic: data.body.images[0].url
-      })
+      {
+        if (data.body.images[0]) {
+          this.setState({
+            name: data.body.display_name,
+            profilePic: data.body.images[0].url
+          });
+        } else
+          this.setState({
+            name: data.body.display_name,
+            profilePic: this.state.defaultPic
+          });
+      }
     );
 
     api.getPlaylists().then(playlists => {
@@ -54,21 +64,22 @@ export default class Playlists extends Component {
     });
   }
   render() {
-    // if (!this.state.playlists || !this.state.profilePic) {
-    //   return <div>Loading...</div>;
-    // }
+    if (
+      !this.state.playlists ||
+      !this.state.profilePic ||
+      !this.state.defaultPic
+    ) {
+      return <div>Loading...</div>;
+    }
+
     return (
       <div className="Playlist">
         <div className="about-container">
-          <h2>Hi {this.state.name}!</h2>
-          <h3>How've you been?</h3>
+          <h1>Hi {this.state.name}!</h1>
+          <h3 className="how-u-been">How've you been?</h3>
           <div className="pic-div">
             <img
-              src={
-                this.state.profilePic
-                  ? this.state.profilePic
-                  : this.state.defaultPic
-              }
+              src={this.state.profilePic}
               alt="Profile pic"
               className="profile-pic"
             />

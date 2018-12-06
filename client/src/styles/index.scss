@@ -220,6 +220,10 @@ body {
   color: white;
 }
 
+.how-u-been {
+  color: #412faf;
+}
+
 /* User playlists section   */
 .user-playlists-wrapper {
   display: inline-block;
@@ -258,6 +262,7 @@ body {
 
 .input-range__track {
   height: 0.6rem !important;
+  background: #412faf !important;
 }
 
 .form-label {
@@ -267,8 +272,12 @@ body {
   margin-bottom: 15px;
 }
 
+.input-range__track--active {
+  background: #412faf !important;
+}
+
 .input-range__track--background {
-  background-color: #3f51b567 !important;
+  background: #402faf5d !important;
 }
 
 /* Songs preview -------------------- */
@@ -290,8 +299,7 @@ body {
   display: flex;
   margin-bottom: 10px;
   padding-top: 10px;
-  border-top: 1px solid #3f51b567;
-  // border-top: 0.4px solid rgba(255, 255, 255, 0.486);
+  border-top: 0.6px solid #412faf;
   width: 70%;
 }
 
