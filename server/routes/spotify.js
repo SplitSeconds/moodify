@@ -32,10 +32,17 @@ router.post("/playliststest", initSpotifyWithLoggedInUser, (req, res, next) => {
   const { songUris, playlistName } = req.body;
   console.log("songUris", songUris);
 
-  res.spotifyApi.createPlaylist(req.user.spotifyId, playlistName).then(data => {
-    let playlistId = data.body.id;
-    return res.spotifyApi.addTracksToPlaylist(playlistId, songUris);
-  });
+  res.spotifyApi
+    .createPlaylist(req.user.spotifyId, playlistName)
+    .then(data => {
+      let playlistId = data.body.id;
+      return res.spotifyApi.addTracksToPlaylist(playlistId, songUris);
+    })
+    .then(() => {
+      res.json({
+        success: true
+      });
+    });
 });
 
 router.get("/songs", (req, res, next) => {
