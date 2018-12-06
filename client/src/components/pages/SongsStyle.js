@@ -168,6 +168,7 @@ class SongsStyle extends Component {
               onClick={this.postPlaylist}
               name="buttonIsVisible"
               className="btn-style create-playlist-btn"
+              width="500"
             >
               Create playlist
             </button>

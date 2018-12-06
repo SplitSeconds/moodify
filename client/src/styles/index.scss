@@ -354,8 +354,10 @@ body {
 }
 .login-text {
   position: absolute;
+  left: 0;
   top: 70px;
-  right: 130px;
+  right: 0;
+  bottom: 0;
 }
 .login-h2 {
   margin-bottom: 1vh;
@@ -364,38 +366,38 @@ body {
   text-decoration: none;
   color: white;
 }
-  .song-info {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin-left: 15px;
-  }
+.song-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 15px;
+}
 
-  .song-name {
-    font-size: 1.1em;
-    margin-bottom: 3px;
-  }
+.song-name {
+  font-size: 1.1em;
+  margin-bottom: 3px;
+}
 
-  .song-artists {
-    font-size: 0.8em;
-    color: rgba(255, 255, 255, 0.486);
-  }
+.song-artists {
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.486);
+}
 
-  .inline-block {
-    display: inline-block;
-  }
+.inline-block {
+  display: inline-block;
+}
 
-  /* ------------------------------- */
-  /* Media Queries ----------------- */
+/* ------------------------------- */
+/* Media Queries ----------------- */
 
-  @media only screen and (min-width: 1080px) {
-    .form-wrapper {
-      margin: 0 25%;
-    }
+@media only screen and (min-width: 1080px) {
+  .form-wrapper {
+    margin: 0 25%;
   }
+}
 
-  @media only screen and (max-width: 700px) {
-    .songs-preview-section {
-      width: 100%;
-    }
+@media only screen and (max-width: 700px) {
+  .songs-preview-section {
+    width: 100%;
   }
+}
