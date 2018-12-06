@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import api from "../../api";
 import InputRange from "react-input-range";
+import SpotifyPlayer from "react-spotify-player";
+import { readFile } from "fs";
 
 class Songs extends Component {
   constructor(props) {
@@ -9,8 +11,10 @@ class Songs extends Component {
       danceability: "",
       energy: "",
       acousticness: "",
-      moreSongs: []
-      // filtered: []
+      moreSongs: [],
+      playlistName: "",
+      firstPlaylist: [],
+      isloading: false
     };
   }
   getAllSongs = () => {
@@ -20,23 +24,32 @@ class Songs extends Component {
       });
     });
   };
-  getPlaylist = () => {
+  postPlaylist = () => {
     api
-      .addToPlaylist(this.getFilteredSongs().map(song => song.uri))
+      .addToPlaylist(
+        this.getFilteredSongs().map(song => song.uri),
+        this.state.playlistName
+      )
       .then(() => {})
       .catch(error => console.log(error));
+    this.displayPlaylist();
   };
-  handleInput = (fieldName, e) => {
-    let name = e.target.name;
-    this.setState({
-      [fieldName]: e.target.value
+
+  displayPlaylist = () => {
+    api.getPlaylists().then(firstPlaylist => {
+      this.setState({
+        firstPlaylist
+      });
     });
   };
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState({ playlistName: e.target.value });
+  }
 
   getFilteredSongs() {
     return this.state.moreSongs
       .map(song => {
-        // a score is added, the closer score and 0 are, the better it is
         let score =
           Math.abs(song.danceability - this.state.danceability) +
           Math.abs(song.energy - this.state.energy) +
@@ -53,7 +66,6 @@ class Songs extends Component {
 
   render() {
     let filtered = this.getFilteredSongs();
-
     return (
       <div className="Songs">
         <form>
@@ -69,15 +81,6 @@ class Songs extends Component {
               console.log("value1: " + danceability)
             }
           />
-          <input
-            className="input-field"
-            type="number"
-            name="danceability"
-            value={this.state.danceability}
-            onChange={e => {
-              this.handleInput(e);
-            }}
-          />{" "}
           <br />
           Energy:{" "}
           <InputRange
@@ -89,15 +92,6 @@ class Songs extends Component {
             onChange={energy => this.setState({ energy })}
             onChangeComplete={energy => console.log("value1: " + energy)}
           />
-          <input
-            className="input-field"
-            type="number"
-            name="energy"
-            value={this.state.energy}
-            onChange={e => {
-              this.handleInput(e);
-            }}
-          />{" "}
           <br />
           Acousticness:{" "}
           <InputRange
@@ -111,13 +105,15 @@ class Songs extends Component {
               console.log("value1: " + acousticness)
             }
           />
+          <br />
+          Playlist name:{" "}
           <input
             className="input-field"
-            type="number"
-            name="acousticness"
-            value={this.state.acousticness}
+            type="text"
+            name="playlistName"
+            value={this.state.playlistName}
             onChange={e => {
-              this.handleInput(e);
+              this.handleSubmit(e);
             }}
           />{" "}
           <br />
@@ -129,9 +125,24 @@ class Songs extends Component {
           </div>
         ))}
 
-        <button onClick={this.getPlaylist} className="btn-style">
+        <button onClick={this.postPlaylist} className="btn-style">
           Create playlist
         </button>
+
+        <div className="user-playlists-wrapper">
+          <SpotifyPlayer
+            uri={
+              this.state.firstPlaylist.length ? (
+                this.state.firstPlaylist[0].uri
+              ) : (
+                <p>Default Markup</p>
+              )
+            }
+            size="large"
+            view="list"
+            theme="black"
+          />
+        </div>
       </div>
     );
   }

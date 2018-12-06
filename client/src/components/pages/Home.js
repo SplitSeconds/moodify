@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import api from "../../api";
 import Songs from "./Songs";
+import GeneratedPlaylist from "./GeneratedPlaylist";
 import SongsStyle from "./SongsStyle";
 import SpotifyPlayer from "react-spotify-player";
 // import Animation from "./Animation";
@@ -88,13 +89,14 @@ class Home extends Component {
         <div />
         <div>
           <h3>Playlist</h3>
+          {/* <GeneratedPlaylist />
 
           <SpotifyPlayer
             uri="spotify:album:7M0Zg2A3mrTOOqfVyRUjb8"
             size="large"
             view="List"
             theme="black"
-          />
+          /> */}
         </div>
       </div>
     );
