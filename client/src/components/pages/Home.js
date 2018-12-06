@@ -91,6 +91,9 @@ class Home extends Component {
   };
 
   render() {
+    // if (!this.state.isPlaylist) {
+    //   return <div>Loading...</div>;
+    // }
     return (
       <div className="Home">
         <div>
