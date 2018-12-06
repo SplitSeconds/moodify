@@ -100,7 +100,7 @@ body {
 .animation-container {
   margin-right: 20px;
 }
-.logo-animation{
+.logo-animation {
   display: flex;
 }
 // .Moodify-logo {
@@ -109,7 +109,7 @@ body {
 //   height: 50px;
 //   margin-right: 10px;
 // }
-.App-title {
+.App-title  {
   display: flex;
   margin-left: 20px !important;
 }
@@ -215,6 +215,11 @@ body {
   text-decoration: none;
 }
 
+.login-with-spotify-prompt a {
+  text-decoration: none;
+  color: white;
+}
+
 /* User playlists section   */
 .user-playlists-wrapper {
   display: inline-block;
@@ -241,8 +246,18 @@ body {
   margin-bottom: 15px;
 }
 
+.input-range__slider {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-top: -0.85rem !important;
+}
+
 .input-range__label-container {
   display: none;
+}
+
+.input-range__track {
+  height: 0.6rem !important;
 }
 
 .form-label {
@@ -299,6 +314,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   margin-top: 20px;
 }
 

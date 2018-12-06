@@ -151,6 +151,10 @@ body {
 .Login a {
   text-decoration: none; }
 
+.login-with-spotify-prompt a {
+  text-decoration: none;
+  color: white; }
+
 /* User playlists section   */
 .user-playlists-wrapper {
   display: inline-block;
@@ -172,8 +176,16 @@ body {
 .input-range {
   margin-bottom: 15px; }
 
+.input-range__slider {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-top: -0.85rem !important; }
+
 .input-range__label-container {
   display: none; }
+
+.input-range__track {
+  height: 0.6rem !important; }
 
 .form-label {
   display: flex;
@@ -220,6 +232,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   margin-top: 20px; }
 
 .create-playlist-btn {
