@@ -77,10 +77,7 @@ class Home extends Component {
     // }
     return (
       <div className="Home">
-
-        <div className="login-component">
-              {!api.isLoggedIn() && <Login />}
-        </div>
+        <div className="login-component">{!api.isLoggedIn() && <Login />}</div>
 
         <div>
           <SongsStyle />
@@ -93,7 +90,6 @@ class Home extends Component {
         </button> */}
         <div />
         <div>
-          <h3>Playlist</h3>
           {/* <GeneratedPlaylist />
 
           <SpotifyPlayer

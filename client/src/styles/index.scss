@@ -18,6 +18,9 @@ $primary: #32c3ff;
 
 // --------------------
 // Style reusable for all components
+.error {
+  display: none;
+}
 body {
   margin: 0;
   padding: 0;
@@ -145,6 +148,7 @@ body {
 }
 
 .input-field {
+  margin-top: 10px;
   width: 20vw;
 }
 
@@ -226,6 +230,15 @@ body {
   text-decoration: none;
 }
 
+.login-with-spotify-prompt a {
+  text-decoration: none;
+  color: white;
+}
+
+.how-u-been {
+  color: #412faf;
+}
+
 /* User playlists section   */
 .user-playlists-wrapper {
   display: inline-block;
@@ -252,8 +265,19 @@ body {
   margin-bottom: 15px;
 }
 
+.input-range__slider {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-top: -0.85rem !important;
+}
+
 .input-range__label-container {
   display: none;
+}
+
+.input-range__track {
+  height: 0.6rem !important;
+  background: #412faf !important;
 }
 
 .form-label {
@@ -263,8 +287,12 @@ body {
   margin-bottom: 15px;
 }
 
+.input-range__track--active {
+  background: #412faf !important;
+}
+
 .input-range__track--background {
-  background-color: #3f51b567 !important;
+  background: #402faf5d !important;
 }
 
 /* Songs preview -------------------- */
@@ -286,8 +314,7 @@ body {
   display: flex;
   margin-bottom: 10px;
   padding-top: 10px;
-  border-top: 1px solid #3f51b567;
-  // border-top: 0.4px solid rgba(255, 255, 255, 0.486);
+  border-top: 0.6px solid #412faf;
   width: 70%;
 }
 
@@ -310,12 +337,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   margin-top: 20px;
 }
 
 .create-playlist-btn {
   width: 30%;
-  height: 30px;
+  height: 35px;
+}
+
+.playlist-headline {
+  margin-top: 20px;
 }
 
 /* Login -------------------- */

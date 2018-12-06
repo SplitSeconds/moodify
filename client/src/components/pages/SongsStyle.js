@@ -10,7 +10,7 @@ class SongsStyle extends Component {
     this.state = {
       danceability: 0.7,
       energy: 0.3,
-      acousticness: 0.5,
+      valence: 0.5,
       moreSongs: [],
       firstPlaylist: [],
       buttonIsVisible: false,
@@ -38,8 +38,8 @@ class SongsStyle extends Component {
     this.displayPlaylist();
   };
 
-  displayPlaylist = () => {
-    api.getPlaylists().then(firstPlaylist => {
+  displayPlaylist = async () => {
+    await api.getPlaylists().then(firstPlaylist => {
       this.setState({
         firstPlaylist
       });
@@ -57,7 +57,7 @@ class SongsStyle extends Component {
         let score =
           Math.abs(song.danceability - this.state.danceability) +
           Math.abs(song.energy - this.state.energy) +
-          Math.abs(song.acousticness - this.state.acousticness);
+          Math.abs(song.valence - this.state.valence);
 
         return {
           ...song,
@@ -83,7 +83,7 @@ class SongsStyle extends Component {
             <span>Dancey</span>
           </div>
           <InputRange
-            maxValue={1}
+            // maxValue={1}
             minValue={0}
             step={0.01}
             name="danceability"
@@ -95,6 +95,20 @@ class SongsStyle extends Component {
             // {danceability => console.log("value1: " + danceability)}
           />
           <div className="form-label">
+            <span>Chill</span>
+            <span>Energetic</span>
+          </div>
+          <InputRange
+            maxValue={1}
+            minValue={0}
+            step={0.01}
+            name="energy"
+            value={this.state.energy}
+            onChange={energy => this.setState({ energy })}
+            onChangeComplete={this.getAllSongs}
+          />
+          {/* {energy => console.log("value1: " + energy)} */}
+          <div className="form-label">
             <span>Moody</span>
             <span>Cheerful</span>
           </div>
@@ -102,23 +116,9 @@ class SongsStyle extends Component {
             maxValue={1}
             minValue={0}
             step={0.01}
-            name="danceability"
-            value={this.state.energy}
-            onChange={energy => this.setState({ energy })}
-            onChangeComplete={this.getAllSongs}
-          />
-          {/* {energy => console.log("value1: " + energy)} */}
-          <div className="form-label">
-            <span>Chill</span>
-            <span>Aggressive</span>
-          </div>
-          <InputRange
-            maxValue={1}
-            minValue={0}
-            step={0.01}
-            name="danceability"
-            value={this.state.acousticness}
-            onChange={acousticness => this.setState({ acousticness })}
+            name="valence"
+            value={this.state.valence}
+            onChange={valence => this.setState({ valence })}
             onChangeComplete={this.getAllSongs}
           />
           {/* {acousticness => console.log("value1: " + acousticness)} */}
@@ -151,7 +151,9 @@ class SongsStyle extends Component {
               </div>
             ))}
           </div>
-          Playlist name:{" "}
+          <div className="playlist-headline">
+            Playlist name:{" "}
+          </div>
           <div className="playlist-title">
             <input
               className="input-field"
@@ -171,6 +173,9 @@ class SongsStyle extends Component {
             >
               Create playlist
             </button>
+            <h5 className="login-with-spotify-prompt">
+              <a href="">Login with Spotify to create a playlist</a>
+            </h5>
           </div>
           <div className="user-playlists-wrapper">
             <SpotifyPlayer
