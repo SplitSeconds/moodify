@@ -6,7 +6,9 @@ class Login extends Component {
     return (
       <div className="Login">
         <h2>Login</h2>
+        <button className="btn-style">
         <a href={api.service.defaults.baseURL+"/spotify-login"}>Login with Spotify</a>
+        </button>
       </div>
     );
   }
