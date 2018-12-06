@@ -29,18 +29,13 @@ export default class Profile extends Component {
         this.setState({
           message: "Your profile was updated"
         })
-        setTimeout(() => {
-          this.setState({
-            message: null
-          })
-        }, 3000)
       })
   }
   render() {
     // If there is 
-    if (!this.state.username) {
-      return <div><h2>Profile</h2><p>Loading...</p></div>
-    }
+    // if (!this.state.username) {
+    //   return <div><h2>Profile</h2><p>Loading...</p></div>
+    // }
     return (
       <div className="Profile">
         <h2>Profile</h2>

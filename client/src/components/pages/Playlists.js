@@ -10,7 +10,7 @@ export default class Playlists extends Component {
     super(props);
     this.state = {
       name: "",
-      // profilePic: "",
+      profilePic: "",
       about: "I like music.",
       playlists: [],
       recenttracks: []
@@ -39,8 +39,8 @@ export default class Playlists extends Component {
     api.getSpoftiyUserData().then(data =>
       //console.log("Spotify data", data, "Spotify pic", data.body.images[0].url)
       this.setState({
-        name: data.body.display_name
-        // profilePic: data.body.images[0].url
+        name: data.body.display_name,
+        profilePic: data.body.images[0].url
       })
     );
 
@@ -54,24 +54,24 @@ export default class Playlists extends Component {
   render() {
     return (
       <div className="Playlist">
-        <h1>{this.state.name}'s Profile</h1>
-
-        <div className="about-container">
-          <div className="pic-div">
-            <img
-              src={this.state.profilePic}
-              alt="Profile pic"
-              className="profile-pic"
-            />
-          </div>
-          <div className="about-container-section">
-            <h3>About me:</h3>
-            <p>{this.state.about}</p>
-          </div>
-        </div>
-        <button onClick={this.handleClickEdit} className="btn-style">
+         <div className="about-container">
+           <h2>Hi {this.state.name}!</h2>
+           <h3>How are you feeling today?</h3>
+           <div className="pic-div">
+             <img
+               src={this.state.profilePic}
+               alt="Profile pic"
+               className="profile-pic"
+             />
+           </div>
+          {/* <div className="about-container-section"> */}
+            {/* <h3>About me:</h3> */}
+            {/* <p>{this.state.about}</p> */}
+          {/* </div> */}
+        {/* <button onClick={this.handleClickEdit} className="btn-style">
           Edit Profile
-        </button>
+        </button> */}
+        </div>
 
         <h2>Your mood</h2>
         <Graph />
@@ -83,7 +83,7 @@ export default class Playlists extends Component {
           Add playlist
         </button> */}
 
-        <h1>Your playlists</h1>
+        <h2>Your playlists</h2>
 
         {this.state.playlists.map((p, index) => (
           <div className="user-playlists-wrapper" key={index}>

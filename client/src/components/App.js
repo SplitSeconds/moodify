@@ -5,9 +5,9 @@ import Playlists from './pages/Playlists';
 import Login from './pages/Login';
 import LoginCallback from './pages/LoginCallback';
 import Signup from './pages/Signup';
-import About from './pages/About';
+import EditProfile from './pages/EditProfile';
 import api from '../api';
-import logo from '../logo.svg';
+import logo from '../Moodify.png';
 
 class App extends Component {
   constructor(props) {
@@ -26,8 +26,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Moodify</h1>
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
+          <div className="logo-container">
+            <img src={logo} className="Moodify-logo" alt="logo" />
+            <h1 className="App-title">Moodify</h1>
+          </div>
           <NavLink to="/" exact>
             Home
           </NavLink>
@@ -47,7 +50,7 @@ class App extends Component {
           <Route path="/signup" component={Signup} />
           <Route path="/login" exact component={Login} />
           <Route path="/login/callback" component={LoginCallback} />
-          <Route path="/secret" component={About} />
+          <Route path="/edit-profile" component={EditProfile} />
           <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>
