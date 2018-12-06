@@ -10,8 +10,8 @@ class Login extends Component {
           <AnimationBackground />
         </div>
         <div className="login-text">
-          <h3 className="login-h2">Welcome.</h3>
-          <button className="btn-style">
+          <h2 className="login-h2">Welcome.</h2>
+          <button className="btn-style welcome-login-btn">
             <a
               href={api.service.defaults.baseURL + "/spotify-login"}
               className="btn-link"

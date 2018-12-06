@@ -12,7 +12,7 @@ export default class Playlists extends Component {
       name: "",
       profilePic: "",
       defaultPic:
-        "https://res.cloudinary.com/dvgji8j2h/image/upload/v1544116918/default-pic.png",
+        "https://res.cloudinary.com/dvgji8j2h/image/upload/v1544125636/Screen_Shot_2018-12-06_at_20.png",
       // defaultPic: "../../../build/static/media/default-pic.png",
       about: "I like music.",
       playlists: [],

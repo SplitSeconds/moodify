@@ -35,6 +35,15 @@ body {
   border-radius: 20px;
   margin-top: 2vh;
 }
+
+button:focus {
+  outline: 0;
+}
+
+input:focus {
+  outline: 0;
+}
+
 .info {
   margin: 20px;
   padding: 10px 20px;
@@ -148,7 +157,12 @@ body {
 }
 
 .input-field {
-  width: 20vw;
+  // width: 20vw;
+  width: 60%;
+  height: 30px;
+  color: white;
+  background-color: #402faf38;
+  border: 1px solid #412faf;
 }
 
 /* Profile section ---------------------------  */
@@ -342,7 +356,16 @@ body {
 
 .create-playlist-btn {
   width: 30%;
-  height: 30px;
+  height: 35px;
+}
+
+.playlist-headline {
+  margin-top: 20px;
+}
+
+.name-your-playlist {
+  color: white;
+  margin-top: 60px;
 }
 
 /* Login -------------------- */
@@ -352,20 +375,33 @@ body {
 .login-wrapper {
   position: relative;
 }
+// .login-text {
+//   position: absolute;
+//   top: 70px;
+//   right: 130px;
+// }
+
 .login-text {
   position: absolute;
   left: 0;
-  top: 70px;
+  top: 100px;
   right: 0;
   bottom: 0;
 }
+
 .login-h2 {
   margin-bottom: 1vh;
 }
 .btn-link {
   text-decoration: none;
   color: white;
+  padding: 5px;
 }
+
+.welcome-login-btn {
+  padding: 8px 13px;
+}
+
 .song-info {
   display: flex;
   flex-direction: column;
