@@ -146,9 +146,9 @@ class Songs extends Component {
       </div>
     );
   }
-  componentDidMount() {
-    this.getAllSongs();
-  }
+  // componentDidMount() {
+  //   this.getAllSongs();
+  // }
 }
 
 export default Songs;
