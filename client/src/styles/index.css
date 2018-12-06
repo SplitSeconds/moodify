@@ -126,6 +126,9 @@ body {
 .Playlist h2 {
   margin-bottom: 0px; }
 
+.Login a {
+  text-decoration: none; }
+
 /* User playlists section   */
 .user-playlists-wrapper {
   display: inline-block;

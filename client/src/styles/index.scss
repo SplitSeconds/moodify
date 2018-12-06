@@ -127,10 +127,10 @@ body {
   flex-direction: column;
   justify-content: center;
 }
-.about-container-section h3{
+.about-container-section h3 {
   margin-top: 2px;
 }
-.about-container-section p{
+.about-container-section p {
   margin-top: 2px;
 }
 .pic-div {
@@ -163,12 +163,12 @@ body {
   stroke: gray;
   stroke-width: 1;
 }
-.rv-xy-plot__axis__line{
+.rv-xy-plot__axis__line {
   stroke: black !important;
 }
-.rv-xy-plot__axis{
+.rv-xy-plot__axis {
   margin-right: 10px !important;
-} 
+}
 .rv-xy-plot__axis--vertical {
   margin-right: 10px !important;
 }
@@ -184,6 +184,10 @@ body {
 
 .Playlist h2 {
   margin-bottom: 0px;
+}
+
+.Login a {
+  text-decoration: none;
 }
 
 /* User playlists section   */
@@ -269,4 +273,3 @@ body {
     margin: 0 25%;
   }
 }
-
