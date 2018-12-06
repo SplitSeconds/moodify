@@ -207,6 +207,10 @@ body {
   width: 200px;
   height: 30px; }
 
+.song-preview-elements img {
+  width: 70px;
+  height: 70px; }
+
 /* ------------------------------- */
 /* Media Queries ----------------- */
 @media only screen and (min-width: 1080px) {

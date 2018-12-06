@@ -107,12 +107,11 @@ class SongsStyle extends Component {
           <div className="songs-preview-container">
             {filtered.map(song => (
               <div key={song.uri} className="songs-preview-section">
-                <div>
-                  <h5>{song.name}</h5>
-                  <h5>{song.artists}</h5>
+                <div className="song-preview-elements">
                   <img src={song.image} />
-
-                  <h5>{song.artistName}</h5>
+                  <span>{song.artists}</span>
+                  <span>{song.name}</span>
+                  <span>{song.artistName}</span>
                 </div>
 
                 <SpotifyPlayer

@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { Route, Link, NavLink, Switch } from 'react-router-dom';
-import Home from './pages/Home';
-import Playlists from './pages/Playlists';
-import Login from './pages/Login';
-import LoginCallback from './pages/LoginCallback';
-import EditProfile from './pages/EditProfile';
-import About from './pages/About';
-import api from '../api';
-import logo from '../Moodify.png';
+import React, { Component } from "react";
+import { Route, Link, NavLink, Switch } from "react-router-dom";
+import Home from "./pages/Home";
+import Playlists from "./pages/Playlists";
+import Login from "./pages/Login";
+import LoginCallback from "./pages/LoginCallback";
+import EditProfile from "./pages/EditProfile";
+import About from "./pages/About";
+import api from "../api";
+import logo from "../Moodify.png";
 
 class App extends Component {
   constructor(props) {
@@ -34,8 +34,8 @@ class App extends Component {
           <NavLink to="/" exact>
             Home
           </NavLink>
-          <NavLink to="/playlists">Playlists</NavLink>
-          {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
+          <NavLink to="/playlists">My Playlists</NavLink>
+          {/* {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>} */}
           {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
           {api.isLoggedIn() && (
             <Link to="/" onClick={e => this.handleLogoutClick(e)}>
