@@ -35,18 +35,63 @@ class App extends Component {
             {/* <img src={logo} className="Moodify-logo" alt="logo" /> */}
             <h1 className="App-title">Moodify</h1>
           </div>
-          <NavLink to="/" exact>
-            Home
-          </NavLink>
-          {api.isLoggedIn() && <NavLink to="/playlists">Playlists</NavLink>}
-          {/* <NavLink to="/playlists">Playlists</NavLink> */}
-          {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
-          {api.isLoggedIn() && (
-            <Link to="/" onClick={e => this.handleLogoutClick(e)}>
-              Logout
-            </Link>
-          )}
-          <NavLink to="/secret">About</NavLink>
+          
+              {/* <NavLink to="/" exact>
+                Home
+              </NavLink>
+            
+              {/* <NavLink to="/playlists">Playlists</NavLink> */}
+              {/* {api.isLoggedIn() && (
+                <NavLink to="/playlists">
+                  Playlists
+                </NavLink>
+              )}
+          
+          
+              {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
+          
+            
+              {api.isLoggedIn() && (
+                <Link to="/" onClick={e => this.handleLogoutClick(e)}>
+                  Logout
+                </Link>
+              )}
+          
+     
+              <NavLink to="/secret">About</NavLink> */}
+ 
+        
+
+
+
+          <div className="nav-container">
+            <div className="nav-component nav-home">
+              <NavLink to="/" exact>
+                Home
+              </NavLink>
+            </div>
+            <div className="nav-component nav-playlists">
+              {/* <NavLink to="/playlists">Playlists</NavLink> */}
+              {api.isLoggedIn() && (
+                <NavLink to="/playlists">
+                  My Playlists
+                </NavLink>
+              )}
+            </div>
+            {/* <div className="nav-component nav-login">
+              {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
+            </div> */}
+            <div className="nav-component nav-logout">
+              {api.isLoggedIn() && (
+                <Link to="/" onClick={e => this.handleLogoutClick(e)}>
+                  Logout
+                </Link>
+              )}
+            </div>
+            <div className="nav-component nav-about">
+              <NavLink to="/secret">About</NavLink>
+            </div>
+          </div>
         </header>
         <Switch>
           <Route path="/" exact component={Home} />

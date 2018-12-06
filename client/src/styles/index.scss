@@ -92,7 +92,18 @@ body {
     }
   }
 }
-
+//----------- Nav bar:
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.nav-component {
+  margin-right: 2px;
+  margin-left: 2px;
+}
 .logo-container {
   display: flex;
   flex-direction: row;
@@ -218,6 +229,15 @@ body {
   text-decoration: none;
 }
 
+.login-with-spotify-prompt a {
+  text-decoration: none;
+  color: white;
+}
+
+.how-u-been {
+  color: #412faf;
+}
+
 /* User playlists section   */
 .user-playlists-wrapper {
   display: inline-block;
@@ -244,8 +264,19 @@ body {
   margin-bottom: 15px;
 }
 
+.input-range__slider {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-top: -0.85rem !important;
+}
+
 .input-range__label-container {
   display: none;
+}
+
+.input-range__track {
+  height: 0.6rem !important;
+  background: #412faf !important;
 }
 
 .form-label {
@@ -255,8 +286,12 @@ body {
   margin-bottom: 15px;
 }
 
+.input-range__track--active {
+  background: #412faf !important;
+}
+
 .input-range__track--background {
-  background-color: #3f51b567 !important;
+  background: #402faf5d !important;
 }
 
 /* Songs preview -------------------- */
@@ -278,8 +313,7 @@ body {
   display: flex;
   margin-bottom: 10px;
   padding-top: 10px;
-  border-top: 1px solid #3f51b567;
-  // border-top: 0.4px solid rgba(255, 255, 255, 0.486);
+  border-top: 0.6px solid #412faf;
   width: 70%;
 }
 
@@ -302,6 +336,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   margin-top: 20px;
 }
 
@@ -310,38 +345,57 @@ body {
   height: 30px;
 }
 
-.song-info {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin-left: 15px;
+/* Login -------------------- */
+.login-component {
+  margin-top: 15px;
 }
-
-.song-name {
-  font-size: 1.1em;
-  margin-bottom: 3px;
+.login-wrapper {
+  position: relative;
 }
-
-.song-artists {
-  font-size: 0.8em;
-  color: rgba(255, 255, 255, 0.486);
+.login-text {
+  position: absolute;
+  top: 70px;
+  right: 130px;
 }
-
-.inline-block {
-  display: inline-block;
+.login-h2 {
+  margin-bottom: 1vh;
 }
-
-/* ------------------------------- */
-/* Media Queries ----------------- */
-
-@media only screen and (min-width: 1080px) {
-  .form-wrapper {
-    margin: 0 25%;
+.btn-link {
+  text-decoration: none;
+  color: white;
+}
+  .song-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 15px;
   }
-}
 
-@media only screen and (max-width: 700px) {
-  .songs-preview-section {
-    width: 100%;
+  .song-name {
+    font-size: 1.1em;
+    margin-bottom: 3px;
   }
-}
+
+  .song-artists {
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.486);
+  }
+
+  .inline-block {
+    display: inline-block;
+  }
+
+  /* ------------------------------- */
+  /* Media Queries ----------------- */
+
+  @media only screen and (min-width: 1080px) {
+    .form-wrapper {
+      margin: 0 25%;
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    .songs-preview-section {
+      width: 100%;
+    }
+  }

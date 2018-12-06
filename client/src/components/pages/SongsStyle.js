@@ -83,7 +83,7 @@ class SongsStyle extends Component {
             <span>Dancey</span>
           </div>
           <InputRange
-            maxValue={1}
+            // maxValue={1}
             minValue={0}
             step={0.01}
             name="danceability"
@@ -171,6 +171,9 @@ class SongsStyle extends Component {
             >
               Create playlist
             </button>
+            <h5 className="login-with-spotify-prompt">
+              <a href="">Login with Spotify to create a playlist</a>
+            </h5>
           </div>
           <div className="user-playlists-wrapper">
             <SpotifyPlayer
