@@ -21,8 +21,6 @@ class Songs extends Component {
     });
   };
   getPlaylist = () => {
-    // let data = this.state.filtered;
-    console.log("hi");
     api
       .addToPlaylist(this.getFilteredSongs().map(song => song.uri))
       .then(() => {})
@@ -127,13 +125,10 @@ class Songs extends Component {
 
         {filtered.map(song => (
           <div>
-            <h2>{song._id}</h2>
+            <h2>{song.name}</h2>
           </div>
         ))}
 
-        {/* <button onClick={this.getAllSongs} className="btn-style">
-          Preview Songs
-        </button> */}
         <button onClick={this.getPlaylist} className="btn-style">
           Create playlist
         </button>

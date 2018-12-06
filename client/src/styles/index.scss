@@ -57,7 +57,7 @@ body {
 
   .App-header {
     background-color: black;
-    padding: 20px;
+    padding: 5px;
     color: white;
 
     a {
@@ -90,7 +90,18 @@ body {
   }
 }
 
-.nav-links {
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.Moodify-logo {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
 }
 
 // --------------------
@@ -119,7 +130,7 @@ body {
 /* Profile section ---------------------------  */
 .about-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
 }
 .about-container-section {
@@ -127,7 +138,10 @@ body {
   flex-direction: column;
   justify-content: center;
 }
-.about-container-section h3 {
+.about-container h1 {
+  margin-bottom: 2px;
+}
+.about-container h3 {
   margin-top: 2px;
 }
 .about-container-section p {
@@ -145,16 +159,17 @@ body {
   width: 100px;
   border-radius: 50px;
 }
+.mood-h2 {
+  margin-bottom: 2vh !important;
+}
 /* Graph ---------------------------  */
 .graph {
   display: flex;
   justify-content: center;
   align-content: center;
   align-items: center;
-}
-.graph-box {
-  width: 300px;
-  margin-right: 25px;
+  margin-right: 5vw;
+  margin-top: 2vh;
 }
 .rv-xy-plot__axis__tick__text {
   color: white;

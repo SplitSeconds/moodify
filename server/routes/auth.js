@@ -76,6 +76,10 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
   res.json(req.user);
 });
 
+router.get("/spotify/playlists/edit-profile", isLoggedIn, (req, res, next) => {
+  res.json(req.user);
+});
+
 router.get(
   "/spotify-login",
   passport.authenticate("spotify", {

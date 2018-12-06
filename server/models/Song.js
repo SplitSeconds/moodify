@@ -21,7 +21,8 @@ const songSchema = new mongoose.Schema({
   track_href: String,
   analysis_url: String,
   duration_ms: Number,
-  time_signature: Number
+  time_signature: Number,
+  image: String
 });
 
 const Song = mongoose.model("Song", songSchema);
