@@ -319,6 +319,17 @@ input:focus {
 .inline-block {
   display: inline-block; }
 
+/* number input ----------------------------------------- */
+.nb-of-songs-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px; }
+
+.nb-input {
+  width: 20%;
+  margin-left: 8%; }
+
 /* ------------------------------- */
 /* Media Queries ----------------- */
 @media only screen and (min-width: 1080px) {

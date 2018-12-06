@@ -131,21 +131,21 @@ class SongsStyle extends Component {
             onChangeComplete={this.getAllSongs}
           />
           {/* {acousticness => console.log("value1: " + acousticness)} */}
-
-          <input
-            className="input-field"
-            type="number"
-            min="1"
-            name="nbOfSongs"
-            value={this.state.nbOfSongs}
-            onChange={e => {
-              this.setState({
-                nbOfSongs: e.target.value
-              });
-            }}
-          />
-
-          <br />
+          <div className="nb-of-songs-input">
+            <span>Enter number of songs for playlist</span>
+            <input
+              className="input-field nb-input"
+              type="number"
+              min="1"
+              name="nbOfSongs"
+              value={this.state.nbOfSongs}
+              onChange={e => {
+                this.setState({
+                  nbOfSongs: e.target.value
+                });
+              }}
+            />
+          </div>
         </form>
 
         <div className="songs-preview-with-btn">

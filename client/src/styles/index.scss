@@ -392,6 +392,7 @@ input:focus {
 .login-h2 {
   margin-bottom: 1vh;
 }
+
 .btn-link {
   text-decoration: none;
   color: white;
@@ -421,6 +422,19 @@ input:focus {
 
 .inline-block {
   display: inline-block;
+}
+
+/* number input ----------------------------------------- */
+.nb-of-songs-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.nb-input {
+  width: 20%;
+  margin-left: 8%;
 }
 
 /* ------------------------------- */
