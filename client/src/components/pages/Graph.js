@@ -206,7 +206,7 @@ export default class Graph extends Component {
           <XAxis />
           <YAxis />
             <LineMarkSeries
-              stroke="8A2BE2"
+              stroke="412faf"
               color="5F4B8B"
               opacity="0.8"
               fill="5F4B8B"
