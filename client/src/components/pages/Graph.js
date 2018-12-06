@@ -45,8 +45,8 @@ export default class Graph extends Component {
     api
       .getMyRecentlyPlayedTracks()
       .then(data => {
-        //console.log("FROM BACKEND", data);
-        //console.log("NAME", data[1]);
+        // console.log("FROM BACKEND", data);
+        // console.log("NAME", data[1]);
         // console.log("ALL SONG INFOS", data[data.length - 2]);
         // console.log("ONE SONG INFO YAY", data[data.length - 2][5].danceability);
 

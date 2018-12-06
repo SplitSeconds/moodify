@@ -78,7 +78,7 @@ export default class Playlists extends Component {
         </button> */}
         </div>
 
-        <h2>Your mood</h2>
+        <h2 className="mood-h2">Your mood</h2>
         <Graph />
         {/* <button onClick={this.handleClickGraph} className="btn-style">
           Create graph

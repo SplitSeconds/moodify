@@ -107,6 +107,9 @@ body {
   width: 100px;
   border-radius: 50px; }
 
+.mood-h2 {
+  margin-bottom: 2vh !important; }
+
 /* Graph ---------------------------  */
 .graph {
   display: flex;
