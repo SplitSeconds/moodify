@@ -101,11 +101,11 @@ export default {
   //Anjali is testing generating a playlist
   //-------------------------------------------------
 
-  addToPlaylist(songUris) {
+  addToPlaylist(songUris, playlistName) {
     console.log("songUris", songUris);
 
     return service
-      .post("/spotify/playliststest", { songUris })
+      .post("/spotify/playliststest", { songUris, playlistName })
       .then(res => {
         console.log(" calling playlist in api.js");
         res.data;
