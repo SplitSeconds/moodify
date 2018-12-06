@@ -11,6 +11,7 @@ export default class Playlists extends Component {
     this.state = {
       name: "",
       // profilePic: "",
+      defaultPic: "../../../build/static/media/default-pic.png",
       about: "I like music.",
       playlists: [],
       recenttracks: []
@@ -54,12 +55,18 @@ export default class Playlists extends Component {
   render() {
     return (
       <div className="Playlist">
-        <h1>{this.state.name}'s Profile</h1>
-
+        <h2>
+          Hi {this.state.name}! <br />
+        </h2>
+        <h3>How've you been?</h3>
         <div className="about-container">
           <div className="pic-div">
             <img
-              src={this.state.profilePic}
+              src={
+                this.state.profilePic
+                  ? this.state.profilePic
+                  : this.state.defaultPic
+              }
               alt="Profile pic"
               className="profile-pic"
             />
@@ -72,19 +79,15 @@ export default class Playlists extends Component {
         <button onClick={this.handleClickEdit} className="btn-style">
           Edit Profile
         </button>
-
         <h2>Your mood</h2>
         <Graph />
         {/* <button onClick={this.handleClickGraph} className="btn-style">
           Create graph
         </button> */}
-
         {/* <button onClick={this.handleClickAdd} className="btn-style">
           Add playlist
         </button> */}
-
         <h1>Your playlists</h1>
-
         {this.state.playlists.map((p, index) => (
           <div className="user-playlists-wrapper" key={index}>
             <SpotifyPlayer uri={p.uri} size="large" view="list" theme="black" />

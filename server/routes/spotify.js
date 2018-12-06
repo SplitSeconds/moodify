@@ -177,7 +177,7 @@ router.get("/playlists/graph", isLoggedIn, (req, res, next) => {
             spotifyApi.getAudioFeaturesForTracks(songIDs).then(data => {
               //console.log("RECENT TRACKS AUDIO FEATURES", data.body, "NAME", arr);
               let info = data.body.audio_features;
-  
+
               //console.log("FUUUUUUUCCCCCCCKKKKKKKK " + data.body.audio_features.length);
               // console.log("HEREEEEE ISSSS First " + arrayPass[0]);
               // console.log("HEREEEEE ISSSS Second " + arrayPass[1]);
@@ -187,7 +187,6 @@ router.get("/playlists/graph", isLoggedIn, (req, res, next) => {
               //console.log("MEEEEEEEEEEEH" + arrayPass.length)
 
               if (data.body.audio_features.length >= 20) {
-              
                 res.json(arrayPass);
                 //res.json(info);
               }

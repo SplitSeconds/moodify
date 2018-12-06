@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import InputRange from "react-input-range";
+import SpotifyPlayer from "react-spotify-player";
 import "react-input-range/lib/css/index.css";
 import api from "../../api";
 
@@ -11,8 +12,7 @@ class SongsStyle extends Component {
       energy: 0.3,
       acousticness: 0.5,
       moreSongs: [],
-      filtered: [],
-      buttonVisible: false
+      buttonIsVisible: false
     };
   }
   getAllSongs = () => {
@@ -20,7 +20,7 @@ class SongsStyle extends Component {
       console.log(moreSongs);
       this.setState({
         moreSongs: moreSongs.songs,
-        buttonVisible: true
+        buttonIsVisible: true
       });
     });
   };
@@ -31,14 +31,15 @@ class SongsStyle extends Component {
     });
   };
 
-  render() {
-    let filtered = this.state.moreSongs
+  getFilteredSongs() {
+    return this.state.moreSongs
       .map(song => {
         // a score is added, the closer score and 0 are, the better it is
         let score =
           Math.abs(song.danceability - this.state.danceability) +
           Math.abs(song.energy - this.state.energy) +
           Math.abs(song.acousticness - this.state.acousticness);
+
         return {
           ...song,
           score: score
@@ -46,6 +47,10 @@ class SongsStyle extends Component {
       })
       .sort((a, b) => a.score - b.score)
       .slice(0, 10);
+  }
+
+  render() {
+    let filtered = this.getFilteredSongs();
 
     return (
       <div className="form-wrapper">
@@ -61,7 +66,7 @@ class SongsStyle extends Component {
             name="danceability"
             value={this.state.danceability}
             onChange={danceability =>
-              this.setState({ danceability, buttonVisible: true })
+              this.setState({ danceability, buttonIsVisible: true })
             }
             onChangeComplete={this.getAllSongs}
             // {danceability => console.log("value1: " + danceability)}
@@ -101,30 +106,40 @@ class SongsStyle extends Component {
         <div className="songs-preview-wrapper">
           <div className="songs-preview-container">
             {filtered.map(song => (
-              <div className="songs-preview-section">
+              <div key={song.uri} className="songs-preview-section">
                 <div>
-                  <h4>{song._id}</h4>
-                  {/* <button>remove item</button> */}
-                </div>
-                <div>
-                  <img>{song.albumArt}</img>
-                  <h5>{song.title}</h5>
+                  <h5>{song.name}</h5>
+                  <h5>{song.artists}</h5>
+                  <img src={song.image} />
+
                   <h5>{song.artistName}</h5>
                 </div>
+
+                <SpotifyPlayer
+                  uri={song.uri}
+                  // uri="spotify:track:6rqhFgbbKwnb9MLmUQDhG6"
+                  size="compact"
+                  view="list"
+                  theme="black"
+                />
               </div>
             ))}
           </div>
-          {/* <button onClick={this.getAllSongs} className="btn-style temp-btn">
-          Preview Songs
-        </button> */}
           <div className="create-playlist-btn-wrapper">
-            <button className="btn-style create-playlist-btn">
+            <button
+              onClick={this.getPlaylist}
+              name="buttonIsVisible"
+              className="btn-style create-playlist-btn"
+            >
               Create playlist
             </button>
           </div>
         </div>
       </div>
     );
+  }
+  componentDidMount() {
+    this.getAllSongs();
   }
 }
 

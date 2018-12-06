@@ -12,8 +12,6 @@ $primary: #32c3ff;
 // @import 'bootstrap/scss/bootstrap';
 // ----------------------------------------
 
-//@import "~react-vis/dist/style";
-
 //----------- Graph colors:
 //Electric Purple (bright purple / stroke) "8A2BE2"
 //Ultra Violet (less bright / orb) "5F4B8B"
@@ -90,6 +88,9 @@ body {
       transform: rotate(360deg);
     }
   }
+}
+
+.nav-links {
 }
 
 // --------------------
@@ -172,8 +173,17 @@ body {
   margin-right: 10px !important;
 }
 /* Animation ---------------------------  */
-.gif {
-  width: 20vw;
+// .gif {
+//   width: 20vw;
+// }
+
+.Playlist h3 {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.Playlist h2 {
+  margin-bottom: 0px;
 }
 
 /* User playlists section   */
@@ -214,7 +224,7 @@ body {
 }
 
 .input-range__track--background {
-  background-color: #3f51b575 !important;
+  background-color: #3f51b567 !important;
 }
 
 /* Songs preview -------------------- */
