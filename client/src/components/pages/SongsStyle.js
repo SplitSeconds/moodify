@@ -103,27 +103,32 @@ class SongsStyle extends Component {
           {/* {acousticness => console.log("value1: " + acousticness)} */}
         </form>
 
-        <div className="songs-preview-wrapper">
+        <div className="songs-preview-with-btn">
           <div className="songs-preview-container">
             {filtered.map(song => (
               <div key={song.uri} className="songs-preview-section">
                 <div className="song-preview-elements">
                   <img src={song.image} />
-                  <span>{song.artists}</span>
-                  <span>{song.name}</span>
-                  <span>{song.artistName}</span>
+                  <div className="song-info">
+                    <span className="song-name inline-block">{song.name}</span>
+                    <span className="song-artists inline-block">
+                      {song.artists}
+                    </span>
+                    {/* <span className="artist-name">{song.artistName}</span> */}
+                  </div>
                 </div>
 
-                <SpotifyPlayer
+                {/* <SpotifyPlayer
                   uri={song.uri}
                   // uri="spotify:track:6rqhFgbbKwnb9MLmUQDhG6"
                   size="compact"
                   view="list"
                   theme="black"
-                />
+                /> */}
               </div>
             ))}
           </div>
+
           <div className="create-playlist-btn-wrapper">
             <button
               onClick={this.getPlaylist}

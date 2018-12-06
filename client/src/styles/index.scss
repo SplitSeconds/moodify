@@ -247,42 +247,75 @@ body {
 }
 
 /* Songs preview -------------------- */
+
+.songs-preview-with-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 30px;
+}
 .songs-preview-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 15px;
-}
-
-.songs-preview-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 30px;
+  align-items: center;
 }
 
 .songs-preview-section {
   display: flex;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #3f51b567;
+  // border-top: 0.4px solid rgba(255, 255, 255, 0.486);
+  width: 70%;
 }
 
 .songs-preview-section h4 {
   margin: 0;
 }
 
-.create-playlist-btn-wrapper {
+.song-preview-elements {
   display: flex;
   align-items: center;
-}
-
-.create-playlist-btn {
-  width: 200px;
-  height: 30px;
+  justify-content: center;
 }
 
 .song-preview-elements img {
-  width: 70px;
-  height: 70px;
+  width: 40px;
+  height: 40px;
+}
+
+.create-playlist-btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.create-playlist-btn {
+  width: 30%;
+  height: 30px;
+}
+
+.song-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 15px;
+}
+
+.song-name {
+  font-size: 1.1em;
+  margin-bottom: 3px;
+}
+
+.song-artists {
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.486);
+}
+
+.inline-block {
+  display: inline-block;
 }
 
 /* ------------------------------- */
@@ -291,5 +324,11 @@ body {
 @media only screen and (min-width: 1080px) {
   .form-wrapper {
     margin: 0 25%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .songs-preview-section {
+    width: 100%;
   }
 }
