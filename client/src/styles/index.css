@@ -302,6 +302,11 @@ body {
 .inline-block {
   display: inline-block; }
 
+.about-link {
+  text-decoration: none;
+  color: grey;
+  font-weight: bold; }
+
 /* ------------------------------- */
 /* Media Queries ----------------- */
 @media only screen and (min-width: 1080px) {
