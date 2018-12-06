@@ -53,25 +53,6 @@ class Home extends Component {
       })
       .catch(err => this.setState({ message: err.toString() }));
   }
-  // handleClick(e) {
-  //   e.preventDefault();
-  //   let data = {
-  //     danceability: this.state.danceability
-  //   };
-  //   api
-  //     .getSongs(data)
-  //     .then(result => {
-  //       this.setState({
-  //         result
-  //       });
-  //       setTimeout(() => {
-  //         this.setState({
-  //           message: null
-  //         });
-  //       }, 2000);
-  //     })
-  //     .catch(err => this.setState({ message: err.toString() }));
-  // }
   addSongs = () => {
     api.getTopSongsPlaylist().then(songs => {
       console.log(songs);
@@ -110,9 +91,6 @@ class Home extends Component {
         <div />
         <div>
           <h3>Playlist</h3>
-          {/* <div className="slider-wrapper">
-            <Slider />
-          </div> */}
 
           <SpotifyPlayer
             uri="spotify:album:7M0Zg2A3mrTOOqfVyRUjb8"

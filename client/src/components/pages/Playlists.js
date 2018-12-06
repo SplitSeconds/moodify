@@ -10,7 +10,7 @@ export default class Playlists extends Component {
     super(props);
     this.state = {
       name: "",
-      profilePic: "",
+      // profilePic: "",
       defaultPic: "../../../build/static/media/default-pic.png",
       about: "I like music.",
       playlists: [],
@@ -40,8 +40,8 @@ export default class Playlists extends Component {
     api.getSpoftiyUserData().then(data =>
       //console.log("Spotify data", data, "Spotify pic", data.body.images[0].url)
       this.setState({
-        name: data.body.display_name,
-        profilePic: data.body.images[0].url
+        name: data.body.display_name
+        // profilePic: data.body.images[0].url
       })
     );
 

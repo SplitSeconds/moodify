@@ -12,7 +12,6 @@ class SongsStyle extends Component {
       energy: 0.3,
       acousticness: 0.5,
       moreSongs: [],
-      filtered: [],
       buttonIsVisible: false
     };
   }
@@ -32,14 +31,15 @@ class SongsStyle extends Component {
     });
   };
 
-  render() {
-    let filtered = this.state.moreSongs
+  getFilteredSongs() {
+    return this.state.moreSongs
       .map(song => {
         // a score is added, the closer score and 0 are, the better it is
         let score =
           Math.abs(song.danceability - this.state.danceability) +
           Math.abs(song.energy - this.state.energy) +
           Math.abs(song.acousticness - this.state.acousticness);
+
         return {
           ...song,
           score: score
@@ -47,6 +47,10 @@ class SongsStyle extends Component {
       })
       .sort((a, b) => a.score - b.score)
       .slice(0, 10);
+  }
+
+  render() {
+    let filtered = this.getFilteredSongs();
 
     return (
       <div className="form-wrapper">
@@ -104,12 +108,10 @@ class SongsStyle extends Component {
             {filtered.map(song => (
               <div key={song.uri} className="songs-preview-section">
                 <div>
-                  <h4>{song._id}</h4>
-                  {/* <button>remove item</button> */}
-                </div>
-                <div>
-                  <img>{song.albumArt}</img>
-                  <h5>{song.title}</h5>
+                  <h5>{song.name}</h5>
+                  <h5>{song.artists}</h5>
+                  <img src={song.image} />
+
                   <h5>{song.artistName}</h5>
                 </div>
 
@@ -123,11 +125,9 @@ class SongsStyle extends Component {
               </div>
             ))}
           </div>
-          {/* <button onClick={this.getAllSongs} className="btn-style temp-btn">
-          Preview Songs
-        </button> */}
           <div className="create-playlist-btn-wrapper">
             <button
+              onClick={this.getPlaylist}
               name="buttonIsVisible"
               className="btn-style create-playlist-btn"
             >
@@ -137,6 +137,9 @@ class SongsStyle extends Component {
         </div>
       </div>
     );
+  }
+  componentDidMount() {
+    this.getAllSongs();
   }
 }
 

@@ -31,12 +31,16 @@ spotifyApi.clientCredentialsGrant().then(data => {
     })
     .then(results => {
       console.log(`We have ${results.length} spotify songs`);
-      console.log("First body results from the spotify API", results[0].body);
+      console.log(
+        "First body results from the spotify API",
+        results[0].body.album.images[0].url
+      );
       return Song.create(
         jsonSongs.map((jsonSong, i) => ({
           ...jsonSong,
           name: results[i].body.name,
-          artists: results[i].body.artists.map(artist => artist.name)
+          artists: results[i].body.artists.map(artist => artist.name),
+          image: results[i].body.album.images[0].url
         }))
       );
     })
