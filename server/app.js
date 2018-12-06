@@ -54,7 +54,6 @@ require("./passport")(app);
 
 app.use("/api", require("./routes/index"));
 app.use("/api", require("./routes/auth"));
-app.use("/api/countries", require("./routes/countries"));
 app.use("/api/spotify", require("./routes/spotify"));
 
 // For any routes that starts with "/api", catch 404 and forward to error handler
