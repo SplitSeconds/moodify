@@ -12,8 +12,10 @@ class SongsStyle extends Component {
       energy: 0.3,
       acousticness: 0.5,
       moreSongs: [],
+      firstPlaylist: [],
       buttonIsVisible: false,
-      playlistName: ""
+      playlistName: "",
+      isloading: false
     };
   }
   getAllSongs = () => {
@@ -25,14 +27,7 @@ class SongsStyle extends Component {
       });
     });
   };
-  handleInput = e => {
-    let name = e.target.name;
-    this.setState({
-      [name]: e.target.value
-    });
-  };
-  getPlaylist = () => {
-    console.log(this.state.playlistName);
+  postPlaylist = () => {
     api
       .addToPlaylist(
         this.getFilteredSongs().map(song => song.uri),
@@ -40,7 +35,20 @@ class SongsStyle extends Component {
       )
       .then(() => {})
       .catch(error => console.log(error));
+    this.displayPlaylist();
   };
+
+  displayPlaylist = () => {
+    api.getPlaylists().then(firstPlaylist => {
+      this.setState({
+        firstPlaylist
+      });
+    });
+  };
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState({ playlistName: e.target.value });
+  }
 
   getFilteredSongs() {
     return this.state.moreSongs
@@ -114,49 +122,69 @@ class SongsStyle extends Component {
             onChangeComplete={this.getAllSongs}
           />
           {/* {acousticness => console.log("value1: " + acousticness)} */}
-          Playlist name:{" "}
-          <input
-            className="input-field"
-            type="text"
-            name="playlistName"
-            value={this.state.playlistName}
-            onChange={e => {
-              this.handleSubmit(e);
-            }}
-          />{" "}
+
           <br />
         </form>
 
-        <div className="songs-preview-wrapper">
+        <div className="songs-preview-with-btn">
           <div className="songs-preview-container">
             {filtered.map(song => (
               <div key={song.uri} className="songs-preview-section">
-                <div>
-                  <h5>{song.name}</h5>
-                  <h5>{song.artists}</h5>
+                <div className="song-preview-elements">
                   <img src={song.image} />
-
-                  <h5>{song.artistName}</h5>
+                  <div className="song-info">
+                    <span className="song-name inline-block">{song.name}</span>
+                    <span className="song-artists inline-block">
+                      {song.artists}
+                    </span>
+                    {/* <span className="artist-name">{song.artistName}</span> */}
+                  </div>
                 </div>
 
-                <SpotifyPlayer
+                {/* <SpotifyPlayer
                   uri={song.uri}
                   // uri="spotify:track:6rqhFgbbKwnb9MLmUQDhG6"
                   size="compact"
                   view="list"
                   theme="black"
-                />
+                /> */}
               </div>
             ))}
           </div>
+          Playlist name:{" "}
+          <div className="playlist-title">
+            <input
+              className="input-field"
+              type="text"
+              name="playlistName"
+              value={this.state.playlistName}
+              onChange={e => {
+                this.handleSubmit(e);
+              }}
+            />{" "}
+          </div>
           <div className="create-playlist-btn-wrapper">
             <button
-              onClick={this.getPlaylist}
+              onClick={this.postPlaylist}
               name="buttonIsVisible"
               className="btn-style create-playlist-btn"
             >
               Create playlist
             </button>
+          </div>
+          <div className="user-playlists-wrapper">
+            <SpotifyPlayer
+              uri={
+                this.state.firstPlaylist.length ? (
+                  this.state.firstPlaylist[0].uri
+                ) : (
+                  <p>Default Markup</p>
+                )
+              }
+              size="large"
+              view="list"
+              theme="black"
+            />
           </div>
         </div>
       </div>

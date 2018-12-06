@@ -5,7 +5,6 @@ import GeneratedPlaylist from "./GeneratedPlaylist";
 import SongsStyle from "./SongsStyle";
 import SpotifyPlayer from "react-spotify-player";
 // import Animation from "./Animation";
-import Gif from "../../animation/Moodify_Logo.svg";
 import Slider from "../Slider";
 import "react-input-range/lib/css/index.css";
 import "../../styles/index.scss";
@@ -73,19 +72,20 @@ class Home extends Component {
   };
 
   render() {
+    // if (!this.state.isPlaylist) {
+    //   return <div>Loading...</div>;
+    // }
     return (
       <div className="Home">
         <div>
           <SongsStyle />
         </div>
-        <br />
-        <br />
-        <h1>ANJALI IS TESTING DOWN HERE</h1>
-        <div>
-          <Songs />
-        </div>
-        {/* <Animation /> */}
-        <img src={Gif} className="gif" alt="logo-ani" />
+        {/* <button onClick={this.addSongs} className="btn-style">
+          Add songs to playlist
+        </button>
+        <button onClick={this.getAllSongs} className="btn-style">
+          Add all of the songs
+        </button> */}
         <div />
         <div>
           <h3>Playlist</h3>

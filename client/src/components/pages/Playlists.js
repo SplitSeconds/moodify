@@ -36,6 +36,7 @@ export default class Playlists extends Component {
   handleClickEdit = () => {
     this.props.history.push("/edit-profile/" + { EditProfile });
   };
+
   componentDidMount() {
     api.getSpoftiyUserData().then(data =>
       //console.log("Spotify data", data, "Spotify pic", data.body.images[0].url)
@@ -53,6 +54,9 @@ export default class Playlists extends Component {
     });
   }
   render() {
+    // if (!this.state.playlists || !this.state.profilePic) {
+    //   return <div>Loading...</div>;
+    // }
     return (
       <div className="Playlist">
         <div className="about-container">
