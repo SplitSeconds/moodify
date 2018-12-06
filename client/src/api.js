@@ -178,7 +178,7 @@ export default {
   },
   editProfile(body) {
     return service
-      .put("/users/profile", body)
+      .put("/spotify/playlists/edit-profile", body)
       .then(res => res.data)
       .catch(errHandler);
   },

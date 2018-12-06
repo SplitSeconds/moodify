@@ -55,31 +55,30 @@ export default class Playlists extends Component {
   render() {
     return (
       <div className="Playlist">
-        <h2>
-          Hi {this.state.name}! <br />
-        </h2>
-        <h3>How've you been?</h3>
-        <div className="about-container">
-          <div className="pic-div">
-            <img
-              src={
+         <div className="about-container">
+           <h2>Hi {this.state.name}!</h2>
+           <h3>How've you been?</h3>
+           <div className="pic-div">
+             <img
+               src={
                 this.state.profilePic
                   ? this.state.profilePic
                   : this.state.defaultPic
               }
-              alt="Profile pic"
-              className="profile-pic"
-            />
-          </div>
-          <div className="about-container-section">
-            <h3>About me:</h3>
-            <p>{this.state.about}</p>
-          </div>
-        </div>
-        <button onClick={this.handleClickEdit} className="btn-style">
+               alt="Profile pic"
+               className="profile-pic"
+             />
+           </div>
+          {/* <div className="about-container-section"> */}
+            {/* <h3>About me:</h3> */}
+            {/* <p>{this.state.about}</p> */}
+          {/* </div> */}
+        {/* <button onClick={this.handleClickEdit} className="btn-style">
           Edit Profile
-        </button>
-        <h2>Your mood</h2>
+        </button> */}
+        </div>
+
+        <h2 className="mood-h2">Your mood</h2>
         <Graph />
         {/* <button onClick={this.handleClickGraph} className="btn-style">
           Create graph
@@ -87,7 +86,8 @@ export default class Playlists extends Component {
         {/* <button onClick={this.handleClickAdd} className="btn-style">
           Add playlist
         </button> */}
-        <h1>Your playlists</h1>
+
+        <h2>Your playlists</h2>
         {this.state.playlists.map((p, index) => (
           <div className="user-playlists-wrapper" key={index}>
             <SpotifyPlayer uri={p.uri} size="large" view="list" theme="black" />
