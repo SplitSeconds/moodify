@@ -79,9 +79,7 @@ class Home extends Component {
       <div className="Home">
         <div className="login-component">{!api.isLoggedIn() && <Login />}</div>
 
-        <div>
-          <SongsStyle />
-        </div>
+        <div>{api.isLoggedIn() && <SongsStyle />}</div>
         {/* <button onClick={this.addSongs} className="btn-style">
           Add songs to playlist
         </button>

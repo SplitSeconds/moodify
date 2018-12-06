@@ -108,7 +108,7 @@ export default {
       .post("/spotify/playliststest", { songUris, playlistName })
       .then(res => {
         console.log(" calling playlist in api.js");
-        res.data;
+        return res.data;
       })
       .catch(errHandler);
   },

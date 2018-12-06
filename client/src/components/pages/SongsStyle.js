@@ -15,7 +15,9 @@ class SongsStyle extends Component {
       firstPlaylist: [],
       buttonIsVisible: false,
       playlistName: "",
-      isloading: false
+      isloading: false,
+      isPlaylistLoading: false,
+      nbOfSongs: 12
     };
   }
   getAllSongs = () => {
@@ -28,20 +30,27 @@ class SongsStyle extends Component {
     });
   };
   postPlaylist = () => {
+    this.setState({
+      isPlaylistLoading: true
+    });
     api
       .addToPlaylist(
         this.getFilteredSongs().map(song => song.uri),
         this.state.playlistName
       )
-      .then(() => {})
+      .then(() => {
+        console.log("HEYyyyyyy");
+
+        this.displayPlaylist();
+      })
       .catch(error => console.log(error));
-    this.displayPlaylist();
   };
 
-  displayPlaylist = async () => {
-    await api.getPlaylists().then(firstPlaylist => {
+  displayPlaylist = () => {
+    api.getPlaylists().then(firstPlaylist => {
       this.setState({
-        firstPlaylist
+        firstPlaylist,
+        isPlaylistLoading: false
       });
     });
   };
@@ -65,7 +74,7 @@ class SongsStyle extends Component {
         };
       })
       .sort((a, b) => a.score - b.score)
-      .slice(0, 10);
+      .slice(0, this.state.nbOfSongs);
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -83,8 +92,8 @@ class SongsStyle extends Component {
             <span>Dancey</span>
           </div>
           <InputRange
-            // maxValue={1}
-            minValue={0}
+            maxValue={0.85}
+            minValue={0.2}
             step={0.01}
             name="danceability"
             value={this.state.danceability}
@@ -100,7 +109,7 @@ class SongsStyle extends Component {
           </div>
           <InputRange
             maxValue={1}
-            minValue={0}
+            minValue={0.15}
             step={0.01}
             name="energy"
             value={this.state.energy}
@@ -114,7 +123,7 @@ class SongsStyle extends Component {
           </div>
           <InputRange
             maxValue={1}
-            minValue={0}
+            minValue={0.15}
             step={0.01}
             name="valence"
             value={this.state.valence}
@@ -122,6 +131,19 @@ class SongsStyle extends Component {
             onChangeComplete={this.getAllSongs}
           />
           {/* {acousticness => console.log("value1: " + acousticness)} */}
+
+          <input
+            className="input-field"
+            type="number"
+            min="1"
+            name="nbOfSongs"
+            value={this.state.nbOfSongs}
+            onChange={e => {
+              this.setState({
+                nbOfSongs: e.target.value
+              });
+            }}
+          />
 
           <br />
         </form>
@@ -151,9 +173,7 @@ class SongsStyle extends Component {
               </div>
             ))}
           </div>
-          <div className="playlist-headline">
-            Playlist name:{" "}
-          </div>
+          <p className="name-your-playlist">Name your playlist:</p>{" "}
           <div className="playlist-title">
             <input
               className="input-field"
@@ -173,23 +193,18 @@ class SongsStyle extends Component {
             >
               Create playlist
             </button>
-            <h5 className="login-with-spotify-prompt">
-              <a href="">Login with Spotify to create a playlist</a>
-            </h5>
           </div>
           <div className="user-playlists-wrapper">
-            <SpotifyPlayer
-              uri={
-                this.state.firstPlaylist.length ? (
-                  this.state.firstPlaylist[0].uri
-                ) : (
-                  <p>Default Markup</p>
-                )
-              }
-              size="large"
-              view="list"
-              theme="black"
-            />
+            {this.state.isPlaylistLoading && <div>Loading...</div>}
+            {!this.state.isPlaylistLoading &&
+              this.state.firstPlaylist.length > 0 && (
+                <SpotifyPlayer
+                  uri={this.state.firstPlaylist[0].uri}
+                  size="large"
+                  view="list"
+                  theme="black"
+                />
+              )}
           </div>
         </div>
       </div>

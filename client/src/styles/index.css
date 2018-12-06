@@ -17,6 +17,12 @@ body {
   border-radius: 20px;
   margin-top: 2vh; }
 
+button:focus {
+  outline: 0; }
+
+input:focus {
+  outline: 0; }
+
 .info {
   margin: 20px;
   padding: 10px 20px;
@@ -93,8 +99,11 @@ body {
   color: #32c3ff; }
 
 .input-field {
-  margin-top: 10px;
-  width: 20vw; }
+  width: 60%;
+  height: 30px;
+  color: white;
+  background-color: #402faf38;
+  border: 1px solid #412faf; }
 
 /* Profile section ---------------------------  */
 .about-container {
@@ -264,6 +273,10 @@ body {
 .playlist-headline {
   margin-top: 20px; }
 
+.name-your-playlist {
+  color: white;
+  margin-top: 60px; }
+
 /* Login -------------------- */
 .login-component {
   margin-top: 15px; }
@@ -274,7 +287,7 @@ body {
 .login-text {
   position: absolute;
   left: 0;
-  top: 70px;
+  top: 100px;
   right: 0;
   bottom: 0; }
 
@@ -283,7 +296,11 @@ body {
 
 .btn-link {
   text-decoration: none;
-  color: white; }
+  color: white;
+  padding: 5px; }
+
+.welcome-login-btn {
+  padding: 8px 13px; }
 
 .song-info {
   display: flex;
@@ -295,17 +312,19 @@ body {
   font-size: 1.1em;
   margin-bottom: 3px; }
 
+.about-link {
+  text-decoration: none;
+  color: grey;
+  font-weight: bold; }
+
+/* ------------------------------- */
+/* Media Queries ----------------- */
 .song-artists {
   font-size: 0.8em;
   color: rgba(255, 255, 255, 0.486); }
 
 .inline-block {
   display: inline-block; }
-
-.about-link {
-  text-decoration: none;
-  color: grey;
-  font-weight: bold; }
 
 /* ------------------------------- */
 /* Media Queries ----------------- */
