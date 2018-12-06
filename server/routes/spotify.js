@@ -11,7 +11,7 @@ router.get("/me", initSpotifyWithLoggedInUser, (req, res, next) => {
   spotifyApi
     .getMe()
     .then(data => {
-      console.log("DEBUG data", data);
+      //console.log("DEBUG data", data);
       res.json(data);
     })
     .catch(err => {
@@ -40,7 +40,7 @@ router.post("/playliststest", initSpotifyWithLoggedInUser, (req, res, next) => {
 
 router.get("/songs", (req, res, next) => {
   let { danceabilityMin } = req.query;
-  console.log("you have called get songs in spotify.js");
+  //console.log("you have called get songs in spotify.js");
   Song.find()
     .then(songs => {
       let filteredSongs = songs.filter(song => {
@@ -110,8 +110,8 @@ router.get(
         data => {
           let songs = data.body.tracks.items;
           res.json(songs);
-          console.log(data.body.tracks.items[0].track.name);
-          console.log(songs);
+          //console.log(data.body.tracks.items[0].track.name);
+          //console.log(songs);
           // return res.spotifyApi
           //   .getAudioFeaturesForTrack("3Qm86XLflmIXVm1wcwkgDK")
           //   .then(

@@ -5,12 +5,12 @@ class Login extends Component {
   render() {
     return (
       <div className="Login">
-        <a
-          href={api.service.defaults.baseURL + "/spotify-login"}
-          className="btn-style"
-        >
-          Login with Spotify
-        </a>
+        <h2>Login</h2>
+        <button className="btn-style">
+          <a href={api.service.defaults.baseURL + "/spotify-login"}>
+            Login with Spotify
+          </a>
+        </button>
       </div>
     );
   }

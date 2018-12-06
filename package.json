@@ -10,5 +10,9 @@
   },
   "engines": {
     "node": "8.9.4"
+  },
+  "dependencies": {
+    "bodymovin": "^4.13.0",
+    "react-input-range": "^1.3.0"
   }
 }
