@@ -414,6 +414,13 @@ input:focus {
   margin-bottom: 3px;
 }
 
+  .about-link {
+    text-decoration: none;
+    color: grey;
+    font-weight: bold;
+  }
+  /* ------------------------------- */
+  /* Media Queries ----------------- */
 .song-artists {
   font-size: 0.8em;
   color: rgba(255, 255, 255, 0.486);

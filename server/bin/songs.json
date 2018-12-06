@@ -2098,5 +2098,25 @@
     "analysis_url": "https://api.spotify.com/v1/audio-analysis/5CwpjGvqndv8PqyOLpG4Xc",
     "duration_ms": 319120,
     "time_signature": 4
+  },
+  {
+    "danceability": 0.678,
+    "energy": 0.5,
+    "key": 10,
+    "loudness": -7.902,
+    "mode": 0,
+    "speechiness": 0.165,
+    "acousticness": 0.376,
+    "instrumentalness": 0,
+    "liveness": 0.22,
+    "valence": 0.7,
+    "tempo": 175.986,
+    "type": "audio_features",
+    "id": "5JrKMaevft2nG3UMh7FhCT",
+    "uri": "spotify:track:5JrKMaevft2nG3UMh7FhCT",
+    "track_href": "https://api.spotify.com/v1/tracks/5JrKMaevft2nG3UMh7FhCT",
+    "analysis_url": "https://api.spotify.com/v1/audio-analysis/5JrKMaevft2nG3UMh7FhCT",
+    "duration_ms": 129342,
+    "time_signature": 4
   }
 ]
