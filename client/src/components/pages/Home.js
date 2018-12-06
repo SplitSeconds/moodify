@@ -9,7 +9,6 @@ import Slider from "../Slider";
 import "react-input-range/lib/css/index.css";
 import "../../styles/index.scss";
 
-
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -90,6 +89,7 @@ class Home extends Component {
       });
     });
   };
+
   render() {
     return (
       <div className="Home">
@@ -104,12 +104,12 @@ class Home extends Component {
         </div>
         {/* <Animation /> */}
         <img src={Gif} className="gif" alt="logo-ani" />
-        <button onClick={this.addSongs} className="btn-style">
+        {/* <button onClick={this.addSongs} className="btn-style">
           Add songs to playlist
         </button>
         <button onClick={this.getAllSongs} className="btn-style">
           Add all of the songs
-        </button>
+        </button> */}
         <div />
         <div>
           <h3>Playlist</h3>

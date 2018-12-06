@@ -167,6 +167,7 @@ body {
   align-content: center;
   align-items: center;
   margin-right: 5vw;
+  margin-top: 2vh;
 }
 .rv-xy-plot__axis__tick__text {
   color: white;
@@ -188,6 +189,15 @@ body {
 // .gif {
 //   width: 20vw;
 // }
+
+.Playlist h3 {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.Playlist h2 {
+  margin-bottom: 0px;
+}
 
 /* User playlists section   */
 .user-playlists-wrapper {
@@ -227,7 +237,7 @@ body {
 }
 
 .input-range__track--background {
-  background-color: #3f51b575 !important;
+  background-color: #3f51b567 !important;
 }
 
 /* Songs preview -------------------- */

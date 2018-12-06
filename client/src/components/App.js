@@ -4,8 +4,8 @@ import Home from './pages/Home';
 import Playlists from './pages/Playlists';
 import Login from './pages/Login';
 import LoginCallback from './pages/LoginCallback';
-import Signup from './pages/Signup';
 import EditProfile from './pages/EditProfile';
+import About from './pages/About';
 import api from '../api';
 import logo from '../Moodify.png';
 
@@ -47,7 +47,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/playlists" component={Playlists} />
-          <Route path="/signup" component={Signup} />
+          <Route path="/secret" component={About} />
           <Route path="/login" exact component={Login} />
           <Route path="/login/callback" component={LoginCallback} />
           <Route path="/edit-profile" component={EditProfile} />
