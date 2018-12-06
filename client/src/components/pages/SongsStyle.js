@@ -151,7 +151,7 @@ class SongsStyle extends Component {
               </div>
             ))}
           </div>
-          Playlist name:{" "}
+          <p className="name-your-playlist">Name your playlist:</p>{" "}
           <div className="playlist-title">
             <input
               className="input-field"
@@ -171,9 +171,6 @@ class SongsStyle extends Component {
             >
               Create playlist
             </button>
-            <h5 className="login-with-spotify-prompt">
-              <a href="">Login with Spotify to create a playlist</a>
-            </h5>
           </div>
           <div className="user-playlists-wrapper">
             <SpotifyPlayer

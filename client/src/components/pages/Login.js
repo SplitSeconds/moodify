@@ -11,7 +11,7 @@ class Login extends Component {
         </div>
         <div className="login-text">
           <h2 className="login-h2">Welcome.</h2>
-          <button className="btn-style">
+          <button className="btn-style welcome-login-btn">
             <a
               href={api.service.defaults.baseURL + "/spotify-login"}
               className="btn-link"

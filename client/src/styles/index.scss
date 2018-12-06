@@ -35,6 +35,15 @@ body {
   border-radius: 20px;
   margin-top: 2vh;
 }
+
+button:focus {
+  outline: 0;
+}
+
+input:focus {
+  outline: 0;
+}
+
 .info {
   margin: 20px;
   padding: 10px 20px;
@@ -148,7 +157,12 @@ body {
 }
 
 .input-field {
-  width: 20vw;
+  // width: 20vw;
+  width: 60%;
+  height: 30px;
+  color: white;
+  background-color: #402faf38;
+  border: 1px solid #412faf;
 }
 
 /* Profile section ---------------------------  */
@@ -345,6 +359,10 @@ body {
   height: 30px;
 }
 
+.name-your-playlist {
+  color: white;
+}
+
 /* Login -------------------- */
 .login-component {
   margin-top: 15px;
@@ -352,50 +370,65 @@ body {
 .login-wrapper {
   position: relative;
 }
+// .login-text {
+//   position: absolute;
+//   top: 70px;
+//   right: 130px;
+// }
+
 .login-text {
   position: absolute;
-  top: 70px;
-  right: 130px;
+  left: 0;
+  top: 100px;
+  right: 0;
+  bottom: 0;
 }
+
 .login-h2 {
   margin-bottom: 1vh;
 }
 .btn-link {
   text-decoration: none;
   color: white;
+  padding: 5px;
 }
-  .song-info {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin-left: 15px;
-  }
 
-  .song-name {
-    font-size: 1.1em;
-    margin-bottom: 3px;
-  }
+.welcome-login-btn {
+  padding: 8px 13px;
+}
 
-  .song-artists {
-    font-size: 0.8em;
-    color: rgba(255, 255, 255, 0.486);
-  }
+.song-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 15px;
+}
 
-  .inline-block {
-    display: inline-block;
-  }
+.song-name {
+  font-size: 1.1em;
+  margin-bottom: 3px;
+}
 
-  /* ------------------------------- */
-  /* Media Queries ----------------- */
+.song-artists {
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.486);
+}
 
-  @media only screen and (min-width: 1080px) {
-    .form-wrapper {
-      margin: 0 25%;
-    }
-  }
+.inline-block {
+  display: inline-block;
+}
 
-  @media only screen and (max-width: 700px) {
-    .songs-preview-section {
-      width: 100%;
-    }
+/* ------------------------------- */
+/* Media Queries ----------------- */
+
+@media only screen and (min-width: 1080px) {
+  .form-wrapper {
+    margin: 0 25%;
   }
+}
+
+@media only screen and (max-width: 700px) {
+  .songs-preview-section {
+    width: 100%;
+  }
+}
