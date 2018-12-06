@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
-import { Route, Link, NavLink, Switch } from 'react-router-dom';
-import Home from './pages/Home';
-import Playlists from './pages/Playlists';
-import Login from './pages/Login';
-import LoginCallback from './pages/LoginCallback';
-import EditProfile from './pages/EditProfile';
-import About from './pages/About';
-import api from '../api';
-import logo from '../Moodify.png';
+import React, { Component } from "react";
+import { Route, Link, NavLink, Switch } from "react-router-dom";
+import Home from "./pages/Home";
+import Playlists from "./pages/Playlists";
+import Login from "./pages/Login";
+import LoginCallback from "./pages/LoginCallback";
+import EditProfile from "./pages/EditProfile";
+import About from "./pages/About";
+import api from "../api";
+import logo from "../Moodify.png";
+
+import LottieControl from "./pages/Animation";
 
 class App extends Component {
   constructor(props) {
@@ -26,9 +28,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <div className="logo-container">
-            <img src={logo} className="Moodify-logo" alt="logo" />
+            <div className="animation-container">
+              <LottieControl className="logo-animation" />
+            </div>
+            {/* <img src={logo} className="Moodify-logo" alt="logo" /> */}
             <h1 className="App-title">Moodify</h1>
           </div>
           <NavLink to="/" exact>
