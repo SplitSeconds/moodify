@@ -5,7 +5,7 @@ import GeneratedPlaylist from "./GeneratedPlaylist";
 import SongsStyle from "./SongsStyle";
 import SpotifyPlayer from "react-spotify-player";
 // import Animation from "./Animation";
-import Slider from "../Slider";
+import Login from "./Login";
 import "react-input-range/lib/css/index.css";
 import "../../styles/index.scss";
 
@@ -77,6 +77,11 @@ class Home extends Component {
     // }
     return (
       <div className="Home">
+
+        <div className="login-component">
+              {!api.isLoggedIn() && <Login />}
+        </div>
+
         <div>
           <SongsStyle />
         </div>

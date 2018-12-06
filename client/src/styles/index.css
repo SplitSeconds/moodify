@@ -51,6 +51,17 @@ body {
   to {
     transform: rotate(360deg); } }
 
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.nav-component {
+  margin-right: 2px;
+  margin-left: 2px; }
+
 .logo-container {
   display: flex;
   flex-direction: row;
@@ -245,6 +256,25 @@ body {
 .create-playlist-btn {
   width: 30%;
   height: 30px; }
+
+/* Login -------------------- */
+.login-component {
+  margin-top: 15px; }
+
+.login-wrapper {
+  position: relative; }
+
+.login-text {
+  position: absolute;
+  top: 70px;
+  right: 130px; }
+
+.login-h2 {
+  margin-bottom: 1vh; }
+
+.btn-link {
+  text-decoration: none;
+  color: white; }
 
 .song-info {
   display: flex;
