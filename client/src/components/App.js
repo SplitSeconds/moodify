@@ -89,14 +89,14 @@ class App extends Component {
               )}
             </div>
             <div className="nav-component nav-about">
-              <NavLink to="/secret">About</NavLink>
+              <NavLink to="/about">About</NavLink>
             </div>
           </div>
         </header>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/playlists" component={Playlists} />
-          <Route path="/secret" component={About} />
+          <Route path="/about" component={About} />
           <Route path="/login" exact component={Login} />
           <Route path="/login/callback" component={LoginCallback} />
           <Route path="/edit-profile" component={EditProfile} />
