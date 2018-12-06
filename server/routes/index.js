@@ -4,7 +4,7 @@ const router = express.Router();
 const Song = require("../models/Song");
 require("../configs/database");
 
-router.get("/secret", isLoggedIn, (req, res, next) => {
+router.get("/about", isLoggedIn, (req, res, next) => {
   res.json({
     secret: 42,
     user: req.user
