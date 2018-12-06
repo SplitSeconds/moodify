@@ -18,6 +18,9 @@ $primary: #32c3ff;
 
 // --------------------
 // Style reusable for all components
+.error {
+  display: none;
+}
 body {
   margin: 0;
   padding: 0;
@@ -100,7 +103,7 @@ body {
 .animation-container {
   margin-right: 20px;
 }
-.logo-animation{
+.logo-animation {
   display: flex;
 }
 // .Moodify-logo {
@@ -109,7 +112,7 @@ body {
 //   height: 50px;
 //   margin-right: 10px;
 // }
-.App-title {
+.App-title  {
   display: flex;
   margin-left: 20px !important;
 }

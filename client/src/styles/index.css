@@ -1,5 +1,8 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Muli");
+.error {
+  display: none; }
+
 body {
   margin: 0;
   padding: 0;
