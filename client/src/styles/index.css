@@ -246,8 +246,10 @@ body {
 
 .login-text {
   position: absolute;
+  left: 0;
   top: 70px;
-  right: 130px; }
+  right: 0;
+  bottom: 0; }
 
 .login-h2 {
   margin-bottom: 1vh; }
