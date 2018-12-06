@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import api from "../../api";
 import Songs from "./Songs";
+import GeneratedPlaylist from "./GeneratedPlaylist";
 import SongsStyle from "./SongsStyle";
 import SpotifyPlayer from "react-spotify-player";
 // import Animation from "./Animation";
@@ -71,6 +72,9 @@ class Home extends Component {
   };
 
   render() {
+    // if (!this.state.isPlaylist) {
+    //   return <div>Loading...</div>;
+    // }
     return (
       <div className="Home">
 
@@ -81,13 +85,6 @@ class Home extends Component {
         <div>
           <SongsStyle />
         </div>
-        
-        <br />
-        <br />
-        <h1>ANJALI IS TESTING DOWN HERE</h1>
-        <div>
-          <Songs />
-        </div>
         {/* <button onClick={this.addSongs} className="btn-style">
           Add songs to playlist
         </button>
@@ -97,13 +94,14 @@ class Home extends Component {
         <div />
         <div>
           <h3>Playlist</h3>
+          {/* <GeneratedPlaylist />
 
           <SpotifyPlayer
             uri="spotify:album:7M0Zg2A3mrTOOqfVyRUjb8"
             size="large"
             view="List"
             theme="black"
-          />
+          /> */}
         </div>
       </div>
     );

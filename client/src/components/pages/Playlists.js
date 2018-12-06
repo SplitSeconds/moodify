@@ -36,6 +36,7 @@ export default class Playlists extends Component {
   handleClickEdit = () => {
     this.props.history.push("/edit-profile/" + { EditProfile });
   };
+
   componentDidMount() {
     api.getSpoftiyUserData().then(data =>
       //console.log("Spotify data", data, "Spotify pic", data.body.images[0].url)
@@ -53,27 +54,30 @@ export default class Playlists extends Component {
     });
   }
   render() {
+    // if (!this.state.playlists || !this.state.profilePic) {
+    //   return <div>Loading...</div>;
+    // }
     return (
       <div className="Playlist">
-         <div className="about-container">
-           <h2>Hi {this.state.name}!</h2>
-           <h3>How've you been?</h3>
-           <div className="pic-div">
-             <img
-               src={
+        <div className="about-container">
+          <h2>Hi {this.state.name}!</h2>
+          <h3>How've you been?</h3>
+          <div className="pic-div">
+            <img
+              src={
                 this.state.profilePic
                   ? this.state.profilePic
                   : this.state.defaultPic
               }
-               alt="Profile pic"
-               className="profile-pic"
-             />
-           </div>
+              alt="Profile pic"
+              className="profile-pic"
+            />
+          </div>
           {/* <div className="about-container-section"> */}
-            {/* <h3>About me:</h3> */}
-            {/* <p>{this.state.about}</p> */}
+          {/* <h3>About me:</h3> */}
+          {/* <p>{this.state.about}</p> */}
           {/* </div> */}
-        {/* <button onClick={this.handleClickEdit} className="btn-style">
+          {/* <button onClick={this.handleClickEdit} className="btn-style">
           Edit Profile
         </button> */}
         </div>
