@@ -12,14 +12,6 @@ import logo from "../Moodify.png";
 import LottieControl from "./pages/Animation";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      countries: []
-    };
-    // api.loadUser();
-  }
-
   handleLogoutClick(e) {
     api.logout();
   }
@@ -35,35 +27,6 @@ class App extends Component {
             {/* <img src={logo} className="Moodify-logo" alt="logo" /> */}
             <h1 className="App-title">Moodify</h1>
           </div>
-          
-              {/* <NavLink to="/" exact>
-                Home
-              </NavLink>
-            
-              {/* <NavLink to="/playlists">Playlists</NavLink> */}
-              {/* {api.isLoggedIn() && (
-                <NavLink to="/playlists">
-                  Playlists
-                </NavLink>
-              )}
-          
-          
-              {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
-          
-            
-              {api.isLoggedIn() && (
-                <Link to="/" onClick={e => this.handleLogoutClick(e)}>
-                  Logout
-                </Link>
-              )}
-          
-     
-              <NavLink to="/secret">About</NavLink> */}
- 
-        
-
-
-
           <div className="nav-container">
             <div className="nav-component nav-home">
               <NavLink to="/" exact>
@@ -73,9 +36,7 @@ class App extends Component {
             <div className="nav-component nav-playlists">
               {/* <NavLink to="/playlists">Playlists</NavLink> */}
               {api.isLoggedIn() && (
-                <NavLink to="/playlists">
-                  My Playlists
-                </NavLink>
+                <NavLink to="/playlists">My Playlists</NavLink>
               )}
             </div>
             {/* <div className="nav-component nav-login">

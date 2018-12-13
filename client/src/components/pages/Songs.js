@@ -1,44 +1,54 @@
 import React, { Component } from "react";
-import api from "../../api";
 import InputRange from "react-input-range";
 import SpotifyPlayer from "react-spotify-player";
-import { readFile } from "fs";
+import "react-input-range/lib/css/index.css";
+import api from "../../api";
 
 class Songs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      danceability: "",
-      energy: "",
-      acousticness: "",
+      danceability: 0.7,
+      energy: 0.3,
+      valence: 0.5,
       moreSongs: [],
-      playlistName: "",
       firstPlaylist: [],
-      isloading: false
+      buttonIsVisible: false,
+      playlistName: "",
+      isloading: false,
+      isPlaylistLoading: false,
+      nbOfSongs: 12
     };
   }
   getAllSongs = () => {
     api.getAllSongs().then(moreSongs => {
+      console.log(moreSongs);
       this.setState({
-        moreSongs: moreSongs.songs
+        moreSongs: moreSongs.songs,
+        buttonIsVisible: true
       });
     });
   };
   postPlaylist = () => {
+    this.setState({
+      isPlaylistLoading: true
+    });
     api
       .addToPlaylist(
         this.getFilteredSongs().map(song => song.uri),
         this.state.playlistName
       )
-      .then(() => {})
+      .then(() => {
+        this.displayPlaylist();
+      })
       .catch(error => console.log(error));
-    this.displayPlaylist();
   };
 
   displayPlaylist = () => {
     api.getPlaylists().then(firstPlaylist => {
       this.setState({
-        firstPlaylist
+        firstPlaylist,
+        isPlaylistLoading: false
       });
     });
   };
@@ -53,7 +63,7 @@ class Songs extends Component {
         let score =
           Math.abs(song.danceability - this.state.danceability) +
           Math.abs(song.energy - this.state.energy) +
-          Math.abs(song.acousticness - this.state.acousticness);
+          Math.abs(song.valence - this.state.valence);
 
         return {
           ...song,
@@ -61,87 +71,128 @@ class Songs extends Component {
         };
       })
       .sort((a, b) => a.score - b.score)
-      .slice(0, 10);
+      .slice(0, this.state.nbOfSongs);
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState({ playlistName: e.target.value });
   }
 
   render() {
     let filtered = this.getFilteredSongs();
+
     return (
-      <div className="Songs">
-        <form>
-          Danceability:{" "}
+      <div className="form-wrapper">
+        <form className="form">
+          <div className="form-label">
+            <span>Slow</span>
+            <span>Dancey</span>
+          </div>
           <InputRange
-            maxValue={1}
-            minValue={0}
+            maxValue={0.85}
+            minValue={0.2}
             step={0.01}
             name="danceability"
             value={this.state.danceability}
-            onChange={danceability => this.setState({ danceability })}
-            onChangeComplete={danceability =>
-              console.log("value1: " + danceability)
+            onChange={danceability =>
+              this.setState({ danceability, buttonIsVisible: true })
             }
+            onChangeComplete={this.getAllSongs}
           />
-          <br />
-          Energy:{" "}
+          <div className="form-label">
+            <span>Chill</span>
+            <span>Energetic</span>
+          </div>
           <InputRange
             maxValue={1}
-            minValue={0}
+            minValue={0.15}
             step={0.01}
-            name="danceability"
+            name="energy"
             value={this.state.energy}
             onChange={energy => this.setState({ energy })}
-            onChangeComplete={energy => console.log("value1: " + energy)}
+            onChangeComplete={this.getAllSongs}
           />
-          <br />
-          Acousticness:{" "}
+          <div className="form-label">
+            <span>Moody</span>
+            <span>Cheerful</span>
+          </div>
           <InputRange
             maxValue={1}
-            minValue={0}
+            minValue={0.15}
             step={0.01}
-            name="danceability"
-            value={this.state.acousticness}
-            onChange={acousticness => this.setState({ acousticness })}
-            onChangeComplete={acousticness =>
-              console.log("value1: " + acousticness)
-            }
+            name="valence"
+            value={this.state.valence}
+            onChange={valence => this.setState({ valence })}
+            onChangeComplete={this.getAllSongs}
           />
-          <br />
-          Playlist name:{" "}
-          <input
-            className="input-field"
-            type="text"
-            name="playlistName"
-            value={this.state.playlistName}
-            onChange={e => {
-              this.handleSubmit(e);
-            }}
-          />{" "}
-          <br />
+          {/* {acousticness => console.log("value1: " + acousticness)} */}
+          <div className="nb-of-songs-input">
+            <span>Enter number of songs for playlist</span>
+            <input
+              className="input-field nb-input"
+              type="number"
+              min="1"
+              name="nbOfSongs"
+              value={this.state.nbOfSongs}
+              onChange={e => {
+                this.setState({
+                  nbOfSongs: e.target.value
+                });
+              }}
+            />
+          </div>
         </form>
 
-        {filtered.map(song => (
-          <div>
-            <h2>{song.name}</h2>
+        <div className="songs-preview-with-btn">
+          <div className="songs-preview-container">
+            {filtered.map(song => (
+              <div key={song.uri} className="songs-preview-section">
+                <div className="song-preview-elements">
+                  <img src={song.image} />
+                  <div className="song-info">
+                    <span className="song-name inline-block">{song.name}</span>
+                    <span className="song-artists inline-block">
+                      {song.artists}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-
-        <button onClick={this.postPlaylist} className="btn-style">
-          Create playlist
-        </button>
-
-        <div className="user-playlists-wrapper">
-          <SpotifyPlayer
-            uri={
-              this.state.firstPlaylist.length ? (
-                this.state.firstPlaylist[0].uri
-              ) : (
-                <p>Default Markup</p>
-              )
-            }
-            size="large"
-            view="list"
-            theme="black"
-          />
+          <p className="name-your-playlist">Name your playlist:</p>{" "}
+          <div className="playlist-title">
+            <input
+              className="input-field"
+              type="text"
+              name="playlistName"
+              value={this.state.playlistName}
+              onChange={e => {
+                this.handleSubmit(e);
+              }}
+            />{" "}
+          </div>
+          <div className="create-playlist-btn-wrapper">
+            <button
+              onClick={this.postPlaylist}
+              name="buttonIsVisible"
+              className="btn-style create-playlist-btn"
+              width="500"
+            >
+              Create playlist
+            </button>
+          </div>
+          <div className="user-playlists-wrapper">
+            {this.state.isPlaylistLoading && <div>Loading...</div>}
+            {!this.state.isPlaylistLoading &&
+              this.state.firstPlaylist.length > 0 && (
+                <SpotifyPlayer
+                  uri={this.state.firstPlaylist[0].uri}
+                  size="large"
+                  view="list"
+                  theme="black"
+                />
+              )}
+          </div>
         </div>
       </div>
     );
