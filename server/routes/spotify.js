@@ -45,34 +45,58 @@ router.get("/playlists/graph", isLoggedIn, (req, res, next) => {
   spotifyApi.setAccessToken(req.user.accessToken);
   spotifyApi.setRefreshToken(req.user.refreshToken);
   spotifyApi
-    .getMe()
-    .then(data => {
-      // console.log(data);
-      spotifyApi
-        .getMyRecentlyPlayedTracks({
-          limit: 20
-        })
-        .then(function(data) {
-          songIDs = [];
-          data.body.items.forEach(function(p) {
-            var obj = {
-              id: p.track.id,
-              played_at: p.played_at,
-              name: p.track.name
-            };
-            arr.push(obj.name);
-            songIDs.push(p.track.id);
+    .getMyRecentlyPlayedTracks({
+      limit: 20
+    })
+    .then(function(data) {
+      songIDs = [];
+      data.body.items.forEach(function(p) {
+        arr.push(p.track.name);
+        songIDs.push(p.track.id);
 
-            spotifyApi.getAudioFeaturesForTracks(songIDs).then(data => {
-              let info = data.body.audio_features;
-              //console.log("FUUUUUUUCCCCCCCKKKKKKKK " + data.body.audio_features.length);
-              arrayPass.push(info, arr);
-              if (data.body.audio_features.length >= 20) {
-                res.json(arrayPass);
-              }
-            });
-          });
+        spotifyApi.getAudioFeaturesForTracks(songIDs).then(data => {
+          let info = data.body.audio_features;
+          //console.log("FUUUUUUUCCCCCCCKKKKKKKK " + data.body.audio_features.length);
+          arrayPass.push(info, arr);
+          if (data.body.audio_features.length >= 20) {
+            res.json(arrayPass);
+          }
         });
+      });
+    })
+    .catch(err => {
+      console.log("DEBUG err", err);
+    });
+});
+
+router.get("/playlists/graphSimpler", isLoggedIn, (req, res, next) => {
+  var arr = [];
+  var arrayPass = [];
+  const spotifyApi = new SpotifyWebApi();
+  spotifyApi.setAccessToken(req.user.accessToken);
+  spotifyApi.setRefreshToken(req.user.refreshToken);
+  spotifyApi
+    .getMyRecentlyPlayedTracks({
+      limit: 20
+    })
+    .then(function(data) {
+      songIDs = [];
+      data.body.items.forEach(function(p) {
+        arr.push(p.track.name);
+        songIDs.push(p.track.id);
+
+        spotifyApi.getAudioFeaturesForTracks(songIDs).then(data => {
+          let info = data.body.audio_features;
+          //console.log("FUUUUUUUCCCCCCCKKKKKKKK " + data.body.audio_features.length);
+          arrayPass.push(info, arr);
+          if (data.body.audio_features.length >= 20) {
+            res.json({
+              trackNames: arrayPass[arrayPass.length - 1],
+              audioFeatures: arrayPass[arrayPass.length - 2]
+            });
+          }
+        });
+      });
     })
     .catch(err => {
       console.log("DEBUG err", err);

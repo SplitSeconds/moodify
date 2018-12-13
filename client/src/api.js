@@ -146,7 +146,7 @@ export default {
 
   getMyRecentlyPlayedTracks() {
     return service
-      .get("/spotify/playlists/graph")
+      .get("/spotify/playlists/graphSimpler")
       .then(res => res.data)
       .catch(errHandler);
   }
