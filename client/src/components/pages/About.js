@@ -15,7 +15,7 @@ class Secret extends Component {
 
         <p>Moodify is cool !!!</p>
 
-        <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/L-Wilson" class="about-link">Lindsay</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/anjapatel" class="about-link">Anjali</a> and <a target="_blank" rel="noopener noreferrer" href="https://github.com/SplitSeconds" class="about-link">Nele</a> ate a lot of choclate while coding this page in 9 days. 
+        <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/L-Wilson" class="about-link">Lindsay</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/anjapatel" class="about-link">Anjali</a> and <a target="_blank" rel="noopener noreferrer" href="https://github.com/SplitSeconds" class="about-link">Nele</a> ate a lot of chocolate while coding this page in 9 days. 
         &hearts;
         </p>
       </div>
