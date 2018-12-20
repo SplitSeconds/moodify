@@ -1,6 +1,6 @@
 # MOODIFY 
 
-![Moodify Logo](./Moodify.png)
+![Moodify Logo](./client/public/favicon.ico)
 
 ## About
 
@@ -10,7 +10,7 @@ Visit the live version @ https://moodify-music.herokuapp.com/
 
 Moodify was coded as our Final Project at Ironhack Berlin's Coding Bootcamp. [Lindsay](https://github.com/L-Wilson "Lindsay"), [Anjali](https://github.com/anjapatel "Anjali") and [Nele](https://github.com/L-Wilson "Nele") ate a lot of chocolate while coding this page in 9 days. &hearts;
 
-Please reach out, if you have any questions, ideas or feedback! 
+Please reach out, if you have any questions, ideas or feedback!
 
 ## Created with MERN boilerplate | Ironhack Fullstack Application
 
