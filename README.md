@@ -1,6 +1,6 @@
 # MOODIFY 
 
-![Moodify Logo](./client/src/Moodify.png)
+![Moodify Logo](./Moodify.png)
 
 ## About
 
@@ -8,11 +8,7 @@ Moodify enables the user to create a unique playlist using the Spotify API. Base
 
 Visit the live version @ https://moodify-music.herokuapp.com/
 
-[Lindsay](https://github.com/L-Wilson "Lindsay")
-[Anjali](https://github.com/anjapatel "Anjali")
-[Nele](https://github.com/L-Wilson "Nele")
-
-Moodify was coded as our Final Project at Ironhack Berlin's Coding Bootcamp. Lindsay, Anjali and Nele ate a lot of chocolate while coding this page in 9 days. &hearts;
+Moodify was coded as our Final Project at Ironhack Berlin's Coding Bootcamp. [Lindsay](https://github.com/L-Wilson "Lindsay"), [Anjali](https://github.com/anjapatel "Anjali") and [Nele](https://github.com/L-Wilson "Nele") ate a lot of chocolate while coding this page in 9 days. &hearts;
 
 Please reach out, if you have any questions, ideas or feedback! 
 
