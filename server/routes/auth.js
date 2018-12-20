@@ -76,10 +76,6 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
   res.json(req.user);
 });
 
-router.get("/spotify/playlists/edit-profile", isLoggedIn, (req, res, next) => {
-  res.json(req.user);
-});
-
 router.get(
   "/spotify-login",
   passport.authenticate("spotify", {
@@ -104,30 +100,6 @@ router.get(
     res.redirect(process.env.FRONTEND_URI + "/login/callback");
   }
 );
-
-router.post("/login-with-passport-local-strategy", (req, res, next) => {
-  passport.authenticate("local", (err, theUser, failureDetails) => {
-    if (err) {
-      res.status(500).json({ message: "Something went wrong" });
-      return;
-    }
-
-    if (!theUser) {
-      res.status(401).json(failureDetails);
-      return;
-    }
-
-    req.login(theUser, err => {
-      if (err) {
-        res.status(500).json({ message: "Something went wrong" });
-        return;
-      }
-
-      // We are now logged in (notice req.user)
-      res.json(req.user);
-    });
-  })(req, res, next);
-});
 
 router.get("/logout", (req, res) => {
   req.logout();

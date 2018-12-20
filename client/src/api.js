@@ -20,6 +20,10 @@ const errHandler = err => {
 export default {
   service: service,
 
+  //-------------------------------------------------
+  //Login
+  //-------------------------------------------------
+
   isLoggedIn() {
     return localStorage.getItem("user") != null;
   },
@@ -54,6 +58,38 @@ export default {
     return service.get("/logout");
   },
 
+  //-------------------------------------------------
+  //Home page
+  //-------------------------------------------------
+
+  getAllSongs() {
+    return service
+      .get("/spotify/getsongs")
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  addToPlaylist(songUris, playlistName) {
+    return service
+      .post("/spotify/addSongsToPlaylist", { songUris, playlistName })
+      .then(res => {
+        console.log(" calling playlist in api.js");
+        return res.data;
+      })
+      .catch(errHandler);
+  },
+
+  getPlaylists() {
+    return service
+      .get("/spotify/playlists")
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  //-------------------------------------------------
+  //Profile
+  //-------------------------------------------------
+
   getProfile() {
     return service
       .get("/profile")
@@ -64,79 +100,10 @@ export default {
       })
       .catch(errHandler);
   },
+
   getSpoftiyUserData() {
     return service
       .get("/spotify/me")
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-  getPlaylists() {
-    return service
-      .get("/spotify/playlists")
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-  addPlaylistWithFixedName() {
-    return service
-      .post("/spotify/playliststest")
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  // getSongs() {
-  //   return service
-  //     .get("/")
-  //     .then(res => res.data)
-  //     .catch(errHandler);
-  // },
-
-  addSongsToPlaylist() {
-    return service
-      .get("/spotify/songs")
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  //-------------------------------------------------
-  //Anjali is testing generating a playlist
-  //-------------------------------------------------
-
-  addToPlaylist(songUris, playlistName) {
-    console.log("songUris", songUris);
-
-    return service
-      .post("/spotify/playliststest", { songUris, playlistName })
-      .then(res => {
-        console.log(" calling playlist in api.js");
-        return res.data;
-      })
-      .catch(errHandler);
-  },
-
-  getTopSongsPlaylist() {
-    return service
-      .get("/spotify/playlists/toptracks")
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  addTracks() {
-    return service
-      .post("/spotify/playlists/tracks")
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  getCountries() {
-    return service
-      .get("/countries")
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  postCountries(data) {
-    return service
-      .post("/countries", data)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -144,13 +111,6 @@ export default {
   getSecret() {
     return service
       .get("/secret")
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  getAllSongs() {
-    return service
-      .get("/spotify/getsongs")
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -176,22 +136,18 @@ export default {
       .then(res => res.data)
       .catch(errHandler);
   },
+
   editProfile(body) {
     return service
       .put("/spotify/playlists/edit-profile", body)
       .then(res => res.data)
       .catch(errHandler);
   },
-  //-------------------------------------------------
-  //Nele is testing Users recently play tracks start
-  //-------------------------------------------------
+
   getMyRecentlyPlayedTracks() {
     return service
-      .get("/spotify/playlists/graph")
+      .get("/spotify/playlists/graphSimpler")
       .then(res => res.data)
       .catch(errHandler);
   }
-  //-------------------------------------------------
-  //Nele is testing Users recently play tracks end
-  //-------------------------------------------------
 };

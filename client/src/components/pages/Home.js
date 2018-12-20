@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import api from "../../api";
 import Songs from "./Songs";
 import GeneratedPlaylist from "./GeneratedPlaylist";
-import SongsStyle from "./SongsStyle";
 import SpotifyPlayer from "react-spotify-player";
 // import Animation from "./Animation";
 import Login from "./Login";
@@ -72,31 +71,14 @@ class Home extends Component {
   };
 
   render() {
-    // if (!this.state.isPlaylist) {
-    //   return <div>Loading...</div>;
-    // }
     return (
       <div className="Home">
         <div className="login-component">{!api.isLoggedIn() && <Login />}</div>
 
-        <div>{api.isLoggedIn() && <SongsStyle />}</div>
-        {/* <button onClick={this.addSongs} className="btn-style">
-          Add songs to playlist
-        </button>
-        <button onClick={this.getAllSongs} className="btn-style">
-          Add all of the songs
-        </button> */}
-        <div />
-        <div>
-          {/* <GeneratedPlaylist />
+        <div>{api.isLoggedIn() && <Songs />}</div>
 
-          <SpotifyPlayer
-            uri="spotify:album:7M0Zg2A3mrTOOqfVyRUjb8"
-            size="large"
-            view="List"
-            theme="black"
-          /> */}
-        </div>
+        <div />
+        <div />
       </div>
     );
   }
